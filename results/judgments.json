@@ -703,5 +703,52 @@
         "integrity": 0.0
       }
     }
+  },
+  "null|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent submitted an empty plot with no data lines, failing to implement the SIR model, solve the ODEs, or generate any scientific output. The figure contains no curves, labels, or axes matching the specification, and the code does not perform the required numerical integration."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The agent submitted a completely empty plot with no data lines, failing to implement the SIR model, solve the ODEs, or generate any scientific output. While the runtime was well within budget, the lack of implementation and fabricated/missing results results in zero scores for visual match, scientific claim, implementation, and integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent failed to implement the SIR model entirely, submitting an empty plot with generic labels and no data curves. Consequently, it did not satisfy any criteria for visual match, scientific claim, implementation, or integrity, as no simulation was performed."
+        }
+      ],
+      "overall": 0.06666666666666667,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.3333333333333333,
+        "integrity": 0.0
+      }
+    }
   }
 }

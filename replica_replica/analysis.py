@@ -28,6 +28,16 @@ FIGDIR = os.path.join(RESULTS, "figures")
 AGENT_ORDER = ["reference", "qwen3.6-27b", "gpt-oss-20b", "degraded", "null"]
 TIER_RANK = {"reference": 2, "degraded": 1, "null": 0}
 
+# Multi-sample aggregation depth used in analysis. Some rollouts carry 3
+# judge samples and some 2 (daily token budgets, see REPORT.md); the first K
+# are used uniformly everywhere.
+K = 2
+
+
+def score(judgments, key, judge_name):
+    samples = judgments[key][judge_name]["samples"][:K]
+    return float(np.mean([s["overall"] for s in samples]))
+
 
 def load_all():
     with open(os.path.join(RESULTS, "judgments.json")) as f:
@@ -41,7 +51,7 @@ def reliability(judgments, judge_name):
     over all rollouts (the paper's inter-rater reliability measure)."""
     keys = sorted(judgments)
     per_sample = []
-    n_samples = len(judgments[keys[0]][judge_name]["samples"])
+    n_samples = K
     for i in range(n_samples):
         per_sample.append([judgments[k][judge_name]["samples"][i]["overall"] for k in keys])
     taus = []
@@ -59,7 +69,7 @@ def validity(judgments, tasks, judge_name):
     scores, ranks = [], []
     for t in tasks:
         tier_scores = {
-            tier: judgments[f"{tier}|{t}"][judge_name]["overall"] for tier in TIER_RANK
+            tier: score(judgments, f"{tier}|{t}", judge_name) for tier in TIER_RANK
         }
         for a, b in itertools.combinations(TIER_RANK, 2):
             hi, lo = (a, b) if TIER_RANK[a] > TIER_RANK[b] else (b, a)
@@ -79,17 +89,17 @@ def agent_table(judgments, tasks):
         rows[agent] = {}
         for split in ["train", "test"]:
             ids = [t for t in tasks if tasks[t]["split"] == split]
-            vals = [judgments[f"{agent}|{t}"]["rubric"]["overall"] for t in ids]
+            vals = [score(judgments, f"{agent}|{t}", "rubric") for t in ids]
             rows[agent][split] = float(np.mean(vals))
         rows[agent]["all"] = float(np.mean(
-            [judgments[f"{agent}|{t}"]["rubric"]["overall"] for t in tasks]
+            [score(judgments, f"{agent}|{t}", "rubric") for t in tasks]
         ))
     return rows
 
 
 def per_task_table(judgments, tasks):
     return {
-        t: {a: round(judgments[f"{a}|{t}"]["rubric"]["overall"], 3) for a in AGENT_ORDER}
+        t: {a: round(score(judgments, f"{a}|{t}", "rubric"), 3) for a in AGENT_ORDER}
         for t in tasks
     }
 
@@ -128,7 +138,7 @@ def make_figures(table, rel_rubric, rel_baseline, judgments, tasks):
     ids = sorted(tasks)
     for agent, color in zip(AGENT_ORDER, ["tab:green", "tab:blue", "tab:cyan", "tab:orange", "tab:red"]):
         ax.plot(range(len(ids)),
-                [judgments[f"{agent}|{t}"]["rubric"]["overall"] for t in ids],
+                [score(judgments, f"{agent}|{t}", "rubric") for t in ids],
                 "o-", label=agent, color=color)
     ax.set_xticks(range(len(ids)), ids, rotation=20, ha="right", fontsize=8)
     ax.set_ylabel("Rubric-judge score")

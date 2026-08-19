@@ -27,7 +27,11 @@ AGENTS = {
     "qwen3.6-27b": ("llm", llm.AGENT_27B),
     "gpt-oss-20b": ("llm", llm.AGENT_20B),
 }
-JUDGE_SAMPLES = 3
+# The paper aggregates k=3 judge samples. Groq's free tier gives each model
+# 200k tokens/day; full k=3 judging needs ~470k, so we collect k=2 (the
+# minimum that still measures inter-sample reliability) and analysis uses the
+# first 2 samples uniformly. Documented as a deviation in REPORT.md.
+JUDGE_SAMPLES = 2
 
 
 def rollout_path(agent, task_id):

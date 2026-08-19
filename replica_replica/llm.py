@@ -20,7 +20,7 @@ LAST_USAGE = {}
 
 
 def chat(messages, model=JUDGE_MODEL, temperature=0.7, max_tokens=4096,
-         json_mode=False, seed=None, retries=8, reasoning_effort=None):
+         json_mode=False, seed=None, retries=40, reasoning_effort=None):
     payload = {
         "model": model,
         "messages": messages,
@@ -63,7 +63,7 @@ def chat(messages, model=JUDGE_MODEL, temperature=0.7, max_tokens=4096,
                 wait = int(m.group(1) or 0) * 60 + float(m.group(2)) + 2
                 time.sleep(min(wait, 900))
             else:
-                time.sleep(2 ** attempt)
+                time.sleep(min(2 ** attempt, 60))
     raise RuntimeError(f"Groq call failed after {retries} attempts: {last_err}")
 
 
