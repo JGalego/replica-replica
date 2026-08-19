@@ -1,0 +1,16 @@
+{
+  "id": "anscombe-1973",
+  "split": "train",
+  "domain": "statistics",
+  "paper": {
+    "title": "Graphs in Statistical Analysis",
+    "authors": "F. J. Anscombe",
+    "year": 1973,
+    "venue": "The American Statistician 27(1)"
+  },
+  "redacted_excerpt": "The paper argues that numerical summary statistics are insufficient for data analysis and that graphs are essential. To demonstrate, the author constructs four datasets of eleven (x, y) observations each. All four datasets share (to two decimal places) the same mean of x (9.0), mean of y (7.50), variance of x (11.0), variance of y (~4.13), correlation between x and y (0.816), and fitted least-squares regression line y = 3.00 + 0.500 x. Dataset I is well described by the linear model; dataset II follows a smooth curved (quadratic) relationship; dataset III is linear except for one large outlier; dataset IV has all x values equal to 8 except a single high-leverage point at x = 19. The canonical data values are published in the paper's tables and are widely reproduced in statistics references.",
+  "figure_caption": "Scatter plots of the four datasets, arranged in a 2x2 grid of panels with common axis ranges, each panel showing the eleven observations together with the identical fitted regression line y = 3 + 0.5 x.",
+  "claim": "Datasets with identical summary statistics (means, variances, correlation, regression line) can have radically different structure, visible only when plotted.",
+  "budget_seconds": 120,
+  "assets": []
+}

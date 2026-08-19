@@ -1,0 +1,16 @@
+{
+  "id": "benford-1938",
+  "split": "test",
+  "domain": "physical-statistics",
+  "paper": {
+    "title": "The Law of Anomalous Numbers",
+    "authors": "F. Benford",
+    "year": 1938,
+    "venue": "Proceedings of the American Philosophical Society 78(4)"
+  },
+  "redacted_excerpt": "The paper documents that in many naturally occurring collections of numbers, the leading (first significant) digit d is not uniformly distributed but follows P(d) = log10(1 + 1/d), so that 1 appears as the leading digit about 30.1% of the time and 9 only about 4.6%. Scale-invariant and multiplicative processes produce this distribution exactly in the limit; a classic exact-in-the-limit example is the sequence of powers of 2 (or equally the Fibonacci sequence), whose leading digits are equidistributed modulo 1 in log10 and hence Benford-distributed. For this replication, compute the leading-digit distribution of the first 1000 Fibonacci numbers and compare it against the Benford prediction P(d) = log10(1 + 1/d).",
+  "figure_caption": "Distribution of leading digits 1-9 of the first 1000 Fibonacci numbers (bars, empirical relative frequency) compared with the Benford law prediction P(d) = log10(1 + 1/d) (marked line or points), showing close agreement, with digit on the x-axis and relative frequency on the y-axis.",
+  "claim": "The leading digits of the Fibonacci sequence follow Benford's law P(d) = log10(1 + 1/d), with digit 1 occurring roughly 30% of the time.",
+  "budget_seconds": 120,
+  "assets": []
+}

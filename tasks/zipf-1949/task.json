@@ -1,0 +1,16 @@
+{
+  "id": "zipf-1949",
+  "split": "train",
+  "domain": "nlp-statistics",
+  "paper": {
+    "title": "Human Behavior and the Principle of Least Effort",
+    "authors": "G. K. Zipf",
+    "year": 1949,
+    "venue": "Addison-Wesley"
+  },
+  "redacted_excerpt": "Zipf observed that in natural-language corpora, the frequency f of a word is approximately inversely proportional to its frequency rank r: f ∝ 1/r^s with exponent s close to 1. On doubly logarithmic axes the rank-frequency relation is therefore close to a straight line of slope approximately -1 over several orders of magnitude, with deviations at the extreme head and tail. The canonical demonstration corpus in the literature is the text of Melville's novel Moby-Dick. For this replication, tokenize the provided corpus file into words (lowercase alphabetic tokens), count word frequencies, sort by descending frequency to obtain ranks, and analyze the rank-frequency relation, estimating the exponent s by a least-squares fit of log f against log r over the bulk of the distribution.",
+  "figure_caption": "Word frequency versus frequency rank for the corpus on log-log axes, showing the empirical rank-frequency points following an approximate power law across several orders of magnitude, together with a fitted reference line of slope approximately -1 (fitted exponent annotated).",
+  "claim": "Word frequencies in a natural-language corpus follow an approximate power law in rank, f ∝ 1/r^s with s ≈ 1, appearing as a straight line of slope ≈ -1 on log-log axes.",
+  "budget_seconds": 120,
+  "assets": ["assets/moby_dick.txt"]
+}

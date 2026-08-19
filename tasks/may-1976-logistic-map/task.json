@@ -1,0 +1,16 @@
+{
+  "id": "may-1976-logistic-map",
+  "split": "test",
+  "domain": "dynamical-systems",
+  "paper": {
+    "title": "Simple mathematical models with very complicated dynamics",
+    "authors": "R. M. May",
+    "year": 1976,
+    "venue": "Nature 261"
+  },
+  "redacted_excerpt": "The paper studies the discrete logistic map x_{t+1} = r * x_t * (1 - x_t) as a model of population dynamics, showing that this first-order difference equation exhibits a remarkable range of behavior as the growth parameter r increases: a stable fixed point for 1 < r < 3, a cascade of period-doubling bifurcations (stable cycles of period 2, 4, 8, ...) for 3 < r < ~3.57, and apparently chaotic dynamics beyond the accumulation point r ≈ 3.5699, interrupted by periodic windows (notably a period-3 window near r ≈ 3.83). The long-run behavior is characterized by iterating the map from an interior initial condition, discarding a transient of several hundred iterations, and recording the subsequent iterates as the attractor for each value of r.",
+  "figure_caption": "Bifurcation diagram of the logistic map: the attractor (long-run iterates of x, after discarding transients) plotted as points against the growth parameter r for r between 2.5 and 4.0, showing the stable branch, the period-doubling cascade beginning at r = 3, the onset of chaos near r ≈ 3.57, and the period-3 window near r ≈ 3.83.",
+  "claim": "A simple deterministic quadratic map exhibits a period-doubling route to chaos as its single parameter increases, with periodic windows embedded in the chaotic regime.",
+  "budget_seconds": 180,
+  "assets": []
+}

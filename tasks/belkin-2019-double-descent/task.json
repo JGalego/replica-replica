@@ -1,0 +1,16 @@
+{
+  "id": "belkin-2019-double-descent",
+  "split": "train",
+  "domain": "machine-learning",
+  "paper": {
+    "title": "Reconciling modern machine-learning practice and the classical bias-variance trade-off",
+    "authors": "M. Belkin, D. Hsu, S. Ma, S. Mandal",
+    "year": 2019,
+    "venue": "PNAS 116(32)"
+  },
+  "redacted_excerpt": "The paper introduces the 'double descent' risk curve, subsuming the classical U-shaped bias-variance trade-off. As model capacity grows past the interpolation threshold (the point where the model has just enough parameters to fit the training data exactly), test risk first rises to a peak at the threshold and then descends again in the overparameterized regime, often below the best underparameterized risk. The authors demonstrate this with Random Fourier Features (RFF): features z(x) = cos(W x + b) with W drawn i.i.d. Gaussian and b uniform, followed by linear regression fit by minimum-norm least squares (pseudoinverse). Capacity is controlled by the number of random features N. Experiments use a subset of a small image classification dataset with one-hot regression targets; train and test error are measured as a function of N, with N swept from far below to far above the number of training samples n. For this replication, use scikit-learn's built-in digits dataset (load_digits, 8x8 images, 10 classes), a training set of about n = 300 samples, and squared loss on one-hot targets; classify by argmax to also report error rates if desired.",
+  "figure_caption": "Test risk (squared loss, log scale) of the Random Fourier Features model on the digits dataset as a function of the number of random features N (log scale), showing the classical U-shaped regime for N < n, a peak in test risk at the interpolation threshold N ≈ n (n = number of training samples, marked with a vertical dashed line), and a second descent for N > n. Train risk is shown on the same axes, reaching zero at the threshold.",
+  "claim": "Test risk as a function of model capacity follows a double-descent curve: it peaks at the interpolation threshold (N ≈ n) and decreases again in the overparameterized regime N > n.",
+  "budget_seconds": 300,
+  "assets": []
+}
