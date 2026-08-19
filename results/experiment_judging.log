@@ -37,3 +37,18 @@
   gpt-oss-20b    may-1976-logistic-map        -> ok (30.1s)
   gpt-oss-20b    zipf-1949                    -> ok (1.4s)
 == Phase 3: judging ==
+  judged reference|anscombe-1973 [rubric] -> 0.937
+  judged reference|belkin-2019-double-descent [rubric] -> 0.983
+  judged reference|benford-1938 [rubric] -> 0.960
+  judged reference|kermack-1927-sir [rubric] -> 0.960
+  judged reference|may-1976-logistic-map [rubric] -> 0.930
+  judged reference|zipf-1949 [rubric] -> 0.957
+  judged degraded|anscombe-1973 [rubric] -> 0.200
+  judged degraded|belkin-2019-double-descent [rubric] -> 0.167
+  judged degraded|benford-1938 [rubric] -> 0.453
+  judged degraded|kermack-1927-sir [rubric] -> 0.413
+  judged degraded|may-1976-logistic-map [rubric] -> 0.067
+  judged degraded|zipf-1949 [rubric] -> 0.113
+  judged null|anscombe-1973 [rubric] -> 0.133
+  judged null|belkin-2019-double-descent [rubric] -> 0.067
+  judged null|benford-1938 [rubric] -> 0.000

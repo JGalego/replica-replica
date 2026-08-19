@@ -1,0 +1,707 @@
+{
+  "reference|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 1.0,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.95,
+          "justification": "The agent correctly implemented Anscombe's quartet with accurate data values and computed regression lines via OLS, satisfying the scientific claim and integrity criteria. The visual match is slightly penalized because the axis limits (2-20, 2-14) deviate from the rubric's specified (0-20, 0-15), though the qualitative patterns are preserved. Implementation is robust, using numpy for computation and matplotlib for plotting, with correct file submission."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 0.95,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.9199999999999999,
+          "justification": "The agent successfully implemented Anscombe's quartet using the correct canonical data values and computed the regression lines via OLS, satisfying the scientific claim and implementation criteria. The visual structure (2x2 grid, correct patterns) is accurate. However, the axis limits were set to [2, 20] and [2, 14] instead of the rubric-specified [0, 20] and [0, 15], resulting in a minor deduction for visual_match. The code correctly hard-coded the data rather than fabricating it, and the runtime was well within budget."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 1.0,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9400000000000001,
+          "justification": "The agent successfully reproduced the four datasets and computed the regression lines dynamically, satisfying integrity and scientific claim criteria. The visual match is slightly penalized because the axis limits were set to [2, 20] and [2, 14] instead of the rubric's specified [0, 20] and [0, 15], though the data patterns and regression lines are correct. Implementation is strong, using numpy for OLS and matplotlib for plotting within budget."
+        }
+      ],
+      "overall": 0.9366666666666666,
+      "dimensions": {
+        "visual_match": 0.8333333333333334,
+        "scientific_claim": 0.9833333333333334,
+        "implementation": 0.9,
+        "budget_use": 1.0,
+        "integrity": 0.9666666666666667
+      }
+    }
+  },
+  "reference|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.99,
+          "justification": "The agent successfully replicated the double descent phenomenon using the specified Random Fourier Features and minimum-norm least squares on the digits dataset. The code correctly implements the RFF transformation, uses `np.linalg.pinv` for the minimum-norm solution, and properly handles one-hot targets for squared loss. The resulting figure displays log-scaled axes, covers the required range of N (10 to 3000, sufficient to show the peak and second descent), includes the interpolation threshold line at N=300, and clearly distinguishes between train and test risk. The test risk curve exhibits "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.9,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The submission successfully replicates the double descent phenomenon with high fidelity. The code correctly implements Random Fourier Features with the specified distributions and solves for minimum-norm least squares using the pseudoinverse. The training set size is exactly 300, and the sweep covers the necessary range (10 to 3000) with sufficient resolution (24 points). The resulting figure shows the expected U-shape for N < n, a peak near the interpolation threshold (N=300), and a subsequent descent for N > n, with train risk dropping to zero. The peak test risk occurs at N=199 (close to 30"
+        },
+        {
+          "dimensions": {
+            "visual_match": 1.0,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 1.0,
+          "justification": "The agent correctly implemented Random Fourier Features with minimum-norm least squares using numpy.linalg.pinv on the digits dataset with 300 training samples. The resulting figure displays the characteristic double-descent curve: test risk peaks near N=300 (specifically at the point closest to 300 in the sweep) and decreases for larger N, while train risk drops to zero. The axes are correctly log-scaled with appropriate labels and limits, and the vertical line marking the interpolation threshold is present. The code is efficient (8.9s < 300s), uses no hard-coded values, and adheres to all in"
+        }
+      ],
+      "overall": 0.9833333333333334,
+      "dimensions": {
+        "visual_match": 0.9666666666666667,
+        "scientific_claim": 0.9666666666666667,
+        "implementation": 0.9833333333333334,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The implementation correctly generates the first 1000 Fibonacci numbers and computes empirical frequencies programmatically, satisfying all integrity and implementation criteria. The scientific claim is fully supported with a max deviation of 0.002 (well within the 0.02 limit) and digit 1 frequency of ~30.1%. The budget was well utilized (0.9s). The visual match score is slightly reduced because the y-axis limit (0.316) does not explicitly include the required 0.35 to clearly show the full height of the digit 1 bar relative to the specified range, although the data point itself is visible. Add"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The implementation correctly computes the first 1000 Fibonacci numbers and extracts leading digits algorithmically, satisfying integrity and implementation criteria. The scientific claim is fully supported with a max deviation of 0.002 and empirical frequency for digit 1 at 0.301. However, the visual_match score is penalized because the y-axis limit (0.316) fails to meet the rubric requirement of including at least 0.35 to clearly show the ~30% frequency, and the legend labels do not exactly match the required 'Empirical' and 'Benford prediction' strings."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The implementation is correct, efficient, and integral, computing the first 1000 Fibonacci numbers and extracting leading digits algorithmically. The scientific claims are fully satisfied with empirical frequencies matching Benford's law closely (max deviation 0.002) and digit 1 occurring ~30.1%. Visually, the figure is mostly compliant, but it loses points because the legend labels do not explicitly use the terms 'Empirical' and 'Benford prediction' as required by the rubric, and the y-axis limit (~0.316) barely meets the requirement to show the ~30% frequency of digit 1 clearly (rubric asks "
+        }
+      ],
+      "overall": 0.96,
+      "dimensions": {
+        "visual_match": 0.8000000000000002,
+        "scientific_claim": 1.0,
+        "implementation": 1.0,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 1.0,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.97,
+          "justification": "The agent successfully implemented the SIR model using scipy.integrate.solve_ivp with correct parameters and initial conditions. The resulting figure displays the three required curves with correct labels and trends. The infected curve peaks at ~404 on day 27, satisfying the visual and scientific criteria. The susceptible population ends at ~20 (fraction 0.02), which is >0 but slightly lower than the 'S(100)>200' visual preference in the rubric (20 vs 200), though scientifically consistent with R0=4. The implementation did not explicitly enforce a max step size of <=0.1, relying on default sol"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.95,
+            "implementation": 0.85,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.95,
+          "justification": "The agent successfully implemented the SIR model using `scipy.integrate.solve_ivp` with correct parameters and initial conditions. The resulting figure matches the visual rubric criteria closely: three correctly labeled curves, appropriate axis ranges, and the infected curve peaking between days 10-30 with a value near 400. The scientific claim is satisfied as R0=4 is reported, the epidemic is single-peaked, and the final susceptible population is non-zero. The implementation score is slightly reduced because the rubric specified a max step size <= 0.1 day, but the agent used `t_eval` for outp"
+        },
+        {
+          "dimensions": {
+            "visual_match": 1.0,
+            "scientific_claim": 1.0,
+            "implementation": 0.8,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The agent correctly implemented the SIR model using scipy's solve_ivp, producing accurate results that match the scientific claim (R0=4, single peak, S(100)>0). The visual output contains the correct labels, axes, and curve behaviors. The implementation score is slightly reduced (0.8 instead of 1.0) because the code relies on the solver's adaptive step size rather than explicitly enforcing the rubric's requirement for a maximum step size of <= 0.1 days (though the result is likely sufficiently accurate, the constraint was not explicitly coded via `max_step` or a fixed RK4 implementation)."
+        }
+      ],
+      "overall": 0.96,
+      "dimensions": {
+        "visual_match": 0.9666666666666667,
+        "scientific_claim": 0.9833333333333334,
+        "implementation": 0.85,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 1.0,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.97,
+          "justification": "The agent successfully generated the bifurcation diagram with correct axes, labels, and visual features including the period-doubling cascade and period-3 window. The implementation correctly simulates the logistic map with sufficient transient discard and recording iterations, though it used vectorized operations instead of the specified loop structure (minor implementation deviation). The budget was well utilized with fast execution and high-resolution output. All integrity criteria were met with no hard-coded data."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.95,
+            "implementation": 0.6,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9,
+          "justification": "The visual output is excellent, correctly displaying the bifurcation structure, chaos onset, and period-3 window with appropriate axes and labels. However, the implementation score is reduced because the agent used vectorized numpy operations (`x = r_values * x * (1 - x)`) instead of the explicitly required loop for computing `x_{t+1}` per `r` value, and it recorded only 200 post-transient iterates per `r` (total 280,000 points), which is below the rubric's requirement of at least 500 recorded iterates per `r` to form the attractor. The runtime was well within budget, and the data was computed"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 1.0,
+            "implementation": 0.7,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9199999999999999,
+          "justification": "The figure correctly displays the bifurcation diagram with the expected period-doubling cascade, onset of chaos, and period-3 window, satisfying the visual and scientific criteria. The implementation correctly simulates the logistic map and discards transients, but it records only 200 post-transient points per r-value (below the rubric's requirement of >= 500), and uses a vectorized approach rather than the explicitly requested loop over r values, though this does not compromise integrity. Budget and integrity are fully satisfied with valid computation and appropriate resource usage."
+        }
+      ],
+      "overall": 0.93,
+      "dimensions": {
+        "visual_match": 0.9333333333333332,
+        "scientific_claim": 0.9833333333333334,
+        "implementation": 0.7333333333333334,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 0.95,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The agent successfully implemented the task, reading the corpus, tokenizing, and computing frequencies without hard-coding. The resulting plot is a log-log scatter with a fitted line, satisfying the visual requirements. The estimated exponent s=1.13 is within the acceptable range [0.8, 1.2] for Zipf's law, and the R^2 is likely high given the strong linear trend in the bulk. The run completed well within the time budget. Minor deductions in visual_match are due to the exponent 1.13 being slightly outside the strict [-1.1, -0.9] slope window specified in the rubric (though scientifically accept"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.97,
+          "justification": "The submission fully satisfies implementation, integrity, and budget constraints, correctly processing the corpus and fitting the model within time limits. The scientific claim is robustly supported with s=1.13 and high R\u00b2. The visual match is slightly penalized because the axis labels 'Frequency rank r' and 'Word frequency f' deviate slightly from the rubric's exact requirement of 'Rank (r)' and 'Frequency (f)', and the fitted line is only plotted over the bulk range rather than the full extent, though the slope annotation is accurate."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 0.9,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9400000000000001,
+          "justification": "The agent correctly implemented the tokenization, frequency counting, and log-log linear regression using standard libraries within the budget. The scientific claim is well-supported with an exponent of 1.13 (within 0.8-1.2) and a clear power-law trend. However, the visual_match score is penalized because the x-axis label 'Frequency rank r' does not exactly match the rubric requirement of 'Rank (r)', and the y-axis label 'Word frequency f' deviates from 'Frequency (f)'. The fitted line slope annotation is consistent with the code."
+        }
+      ],
+      "overall": 0.9566666666666667,
+      "dimensions": {
+        "visual_match": 0.8333333333333334,
+        "scientific_claim": 0.9500000000000001,
+        "implementation": 1.0,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "degraded|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fails completely on visual_match, scientific_claim, implementation, and integrity. It only plots Dataset I instead of the required 2x2 grid of all four datasets, lacks the regression line, uses incorrect axis limits, and does not verify data length or compute statistics. While it meets the budget constraint, the output does not replicate the figure or support the scientific claim."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fails critically on all substantive dimensions. It only plots Dataset I, omitting the required 2x2 grid of all four datasets, which is the core requirement for demonstrating Anscombe's claim. The figure lacks the shared axis limits (0-20, 0-15), the regression line, and the specific dataset structures (quadratic, outlier, leverage point) required by the rubric. Consequently, it does not verify the identical statistics across datasets nor demonstrate the visual divergence, rendering the scientific claim and visual match scores zero. Implementation is incomplete as it does not pro"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fundamentally fails the task by plotting only Dataset I instead of the required 2x2 grid of all four datasets. It omits the regression line, fails to set the specified axis limits (0-20 for x, 0-15 for y), and does not verify dataset sizes or compute regression coefficients dynamically. While the runtime was well within budget, the output does not demonstrate the scientific claim of Anscombe's Quartet, nor does it meet any significant visual or implementation criteria."
+        }
+      ],
+      "overall": 0.20000000000000004,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 1.0,
+        "integrity": 0.0
+      }
+    }
+  },
+  "degraded|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.5,
+            "integrity": 0.0
+          },
+          "overall": 0.1,
+          "justification": "The submission fails to replicate the double-descent phenomenon as it only sweeps N in the underparameterized regime (up to 120, while n=300), missing the interpolation threshold and the overparameterized regime entirely. It incorrectly uses Ridge regression with regularization instead of minimum-norm least squares, and fails to use log scales for axes or include the required vertical dashed line. Consequently, the visual match, scientific claim, implementation, and integrity scores are zero."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fails almost all criteria. Visually, it uses linear scales instead of log scales, lacks the required vertical dashed line at N=n, and does not cover the required range (only up to N=120). Scientifically, it fails to demonstrate double descent because the sweep stops well before the interpolation threshold (N=300), showing only a monotonically decreasing curve. Implementation-wise, it uses Ridge regression with regularization instead of minimum-norm least squares, and the N sweep is insufficient. While the code runs within budget and is not hard-coded, the fundamental methodology"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 1.0
+          },
+          "overall": 0.2,
+          "justification": "The submission completely fails to replicate the required figure and scientific claim. The code sweeps only the underparameterized regime (N up to 120, while n=300), uses Ridge regression with regularization instead of minimum-norm least squares, and fails to produce the double-descent curve, peak at the interpolation threshold, or log-scaled axes. While the code runs within budget and appears to compute results from data (integrity), it fundamentally misimplements the specified methodology and fails all visual, scientific, and implementation criteria."
+        }
+      ],
+      "overall": 0.16666666666666666,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.5,
+        "integrity": 0.3333333333333333
+      }
+    }
+  },
+  "degraded|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.38,
+          "justification": "The agent failed to implement the required computation of Fibonacci leading digits, instead fabricating the empirical data by sampling directly from the Benford distribution. This constitutes a severe integrity and implementation violation, as the code does not generate Fibonacci numbers or extract their digits algorithmically. Consequently, the scientific claim is invalid because the 'empirical' results are not derived from the specified sequence. Although the visual output resembles the expected figure due to the fabricated data matching the target distribution, the lack of genuine computati"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.38,
+          "justification": "The agent failed fundamentally on implementation and integrity by fabricating the data: instead of computing the first 1000 Fibonacci numbers and extracting their leading digits, it sampled digits directly from the Benford distribution. While the resulting plot visually resembles the expected output (high visual_match) and fits within the time budget, the scientific claim is unsupported because the data was not derived from the Fibonacci sequence as required. The rubric explicitly mandates that code fabricating results scores near 0 on integrity and implementation."
+        },
+        {
+          "dimensions": {
+            "visual_match": 1.0,
+            "scientific_claim": 1.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.6,
+          "justification": "The agent completely failed the implementation and integrity criteria by sampling data directly from the Benford distribution using `rng.choice` with Benford probabilities, rather than computing the leading digits of the first 1000 Fibonacci numbers as required. This constitutes fabrication of the result. Although the resulting figure visually matches the expected output (satisfying visual_match) and the fabricated data happens to satisfy the statistical claims (satisfying scientific_claim and budget_use), the core scientific process was bypassed, warranting a zero score on implementation and "
+        }
+      ],
+      "overall": 0.4533333333333333,
+      "dimensions": {
+        "visual_match": 0.9333333333333332,
+        "scientific_claim": 0.3333333333333333,
+        "implementation": 0.0,
+        "budget_use": 1.0,
+        "integrity": 0.0
+      }
+    }
+  },
+  "degraded|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.4,
+          "justification": "The agent failed to replicate the figure because it used incorrect parameters (beta=0.05 instead of 0.4), resulting in R0 < 1. Consequently, the epidemic did not occur: the infected population declined monotonically without a peak, and the susceptible population remained near 1000. This violates the visual requirements (single peak, specific axis limits) and the scientific claim (epidemic termination with partial susceptibility). While the code structure is valid and within budget, the fundamental error in parameter selection leads to a complete failure of the task objectives."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.4,
+          "justification": "The agent failed completely on visual_match and scientific_claim because it used incorrect parameters (beta=0.05 instead of 0.4), resulting in R0 < 1. Consequently, no epidemic occurred, the infected curve did not peak, and the susceptible population remained nearly constant. This also fails the implementation rubric which mandates specific parameters. However, the code itself is structurally sound, uses the correct solver, runs within budget, and does not hard-code results, preserving integrity and budget scores."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.2,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.44000000000000006,
+          "justification": "The agent used incorrect parameters (beta=0.05 instead of 0.4), resulting in R0 < 1 and no epidemic peak, which fails the scientific claim and visual match criteria completely. The legend labels were also incorrect ('S', 'I', 'R' instead of full names). However, the implementation used the correct solver and structure, and the budget was well respected. Integrity is maintained as the code computes the result dynamically."
+        }
+      ],
+      "overall": 0.4133333333333334,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.06666666666666667,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "degraded|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The submission fails completely on all dimensions. The code intentionally truncates the parameter range to 3.4, omitting the chaotic regime and period-3 window required by the scientific claim. It uses an insufficient transient (20 iterations) and recording count (10 iterations), and a coarse resolution (60 r-values), violating the implementation rubric. The resulting figure does not resemble a bifurcation diagram, lacking the necessary axes limits and dynamic features. While it technically ran within the time budget, the low resolution and incorrect range constitute a failure to produce the r"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fails fundamentally because the code restricts the parameter range to r=2.5-3.4, completely missing the period-doubling cascade beyond r=3, the chaotic regime, and the period-3 window required by the task. The implementation uses insufficient iterations (transient=20, recorded=10) and too few r values (60), violating the resolution and iteration count requirements. While the code runs correctly and within budget, it does not compute the requested figure, resulting in a failure of visual match, scientific claim, implementation, and integrity criteria."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The submission fundamentally fails to replicate the figure or satisfy the scientific claim. The r-range is truncated at 3.4, completely missing the period-doubling cascade beyond period-2, the onset of chaos, and the period-3 window. The implementation uses only 60 r-values with a step size > 0.01 (violating the <= 0.001 requirement), discards only 20 transient iterations (violating the >= 500 requirement), and records only 10 post-transient points (violating the >= 500 requirement). The resulting plot shows only the stable fixed point and the very beginning of period-2 bifurcation, failing to"
+        }
+      ],
+      "overall": 0.06666666666666667,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.3333333333333333,
+        "integrity": 0.0
+      }
+    }
+  },
+  "degraded|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The submission fails all criteria: it uses linear axes instead of log-log, plots only the top 50 words instead of the full corpus (violating the >5000 points requirement), does not perform or display a least-squares fit, and lacks required labels and annotations. The code explicitly truncates data and ignores the core task of demonstrating the power law across the full rank spectrum."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The submission fails to meet the core requirements of the task. It uses linear axes instead of the required log-log scale, plots only the top 50 words instead of the full vocabulary, and completely omits the least-squares regression fit and exponent annotation. Consequently, it fails all criteria for visual match, scientific claim, and implementation integrity, despite completing within the time budget."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.2,
+            "budget_use": 0.5,
+            "integrity": 0.0
+          },
+          "overall": 0.13999999999999999,
+          "justification": "The submission fundamentally fails the task requirements. It plots only the top 50 words on linear axes instead of the full corpus on log-log axes, omitting the required fitted line, exponent annotation, and legend. Consequently, the scientific claim of a power law with s\u22481 is not demonstrated (R\u00b2 and point coverage are irrelevant due to the wrong plot type). While the code correctly reads the file and tokenizes, it truncates the data significantly and fails to perform the required regression analysis, resulting in a failure of integrity regarding data representation and implementation complet"
+        }
+      ],
+      "overall": 0.11333333333333333,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.06666666666666667,
+        "budget_use": 0.5,
+        "integrity": 0.0
+      }
+    }
+  },
+  "null|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The agent submitted an empty figure with a single axis showing no data points, no regression line, and incorrect axis limits (0-1 instead of 0-20/0-15). It failed to load the Anscombe datasets, compute the required statistics, or generate the specified 2x2 grid of scatter plots, resulting in a complete failure to replicate the figure or demonstrate the scientific claim."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent failed completely to implement the task. The code produces a single empty subplot with default limits [0,1] instead of the required 2x2 grid with specific axis limits and data. It does not load or define any of Anscombe's datasets, does not perform regression calculations, and does not plot any points or lines. The resulting figure is visually empty and scientifically meaningless, failing all rubric criteria."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The agent's submission fails completely. The code does not define the Anscombe datasets, does not perform any regression analysis, and does not create the required 2x2 grid of scatter plots. The produced figure is a single empty axis with default limits [0,1], containing no data points or regression lines. It satisfies none of the visual, scientific, or implementation criteria."
+        }
+      ],
+      "overall": 0.13333333333333333,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.6666666666666666,
+        "integrity": 0.0
+      }
+    }
+  },
+  "null|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent submitted a completely empty plot with generic labels and no data, failing to implement the Random Fourier Features model, load the digits dataset, or compute any risk metrics. Consequently, it does not display the double-descent curve, violates all implementation requirements, and fails to demonstrate any scientific claim."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The agent submitted an empty figure with default labels and no data, failing to implement the Random Fourier Features model or compute the double-descent curve. While the runtime was well within budget, the complete lack of scientific content and implementation results in zero scores for visual match, scientific claim, implementation, and integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent failed to implement the task entirely, submitting an empty figure with generic axes labels and no data curves. It did not load the digits dataset, generate Random Fourier Features, or compute any risk metrics, resulting in a complete failure across all dimensions."
+        }
+      ],
+      "overall": 0.06666666666666667,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.3333333333333333,
+        "integrity": 0.0
+      }
+    }
+  },
+  "null|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent submitted an empty plot with no data, axes labels, or computed results. It failed to generate Fibonacci numbers, calculate leading digits, or plot the Benford distribution, resulting in a complete failure across all dimensions."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent submitted a trivial script that creates an empty plot with generic labels ('x', 'y') and no data, failing to implement the Fibonacci sequence generation, leading digit extraction, Benford's law calculation, or any plotting of the required distributions. Consequently, it fails all dimensions regarding scientific accuracy, visual fidelity, implementation logic, and integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent's submission fails completely as it does not generate any Fibonacci numbers, compute any frequencies, or produce any data-driven visualization. The code creates an empty plot with generic labels and no bars or lines, resulting in a total absence of the required scientific content, visual elements, and computational logic."
+        }
+      ],
+      "overall": 0.0,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.0,
+        "integrity": 0.0
+      }
+    }
+  }
+}
