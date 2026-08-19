@@ -1,0 +1,11 @@
+{
+  "task_id": "belkin-2019-double-descent",
+  "status": "no_figure",
+  "runtime_seconds": 0.0,
+  "budget_seconds": 300,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": null,
+  "has_png": false,
+  "solution_code": ""
+}

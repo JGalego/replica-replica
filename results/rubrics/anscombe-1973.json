@@ -1,0 +1,35 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Figure consists of a 2x2 grid with panels ordered I (top\u2011left), II (top\u2011right), III (bottom\u2011left), IV (bottom\u2011right)",
+      "All panels share identical axis limits: x\u2011axis from 0 to 20 and y\u2011axis from 0 to 15",
+      "Each panel displays exactly eleven points whose coordinates match the published dataset values within \u00b10.01",
+      "The regression line y = 3 + 0.5x is drawn across the full axis range in every panel",
+      "The qualitative pattern in each panel matches the description: I linear cloud, II smooth quadratic curve, III linear with one distant outlier, IV vertical cluster at x\u22488 plus a single high\u2011leverage point at (19,\u202fy)"
+    ],
+    "scientific_claim": [
+      "Computed means of x for all four datasets equal 9.0\u202f\u00b1\u202f0.01 and means of y equal 7.50\u202f\u00b1\u202f0.01",
+      "Computed variances of x equal 11.0\u202f\u00b1\u202f0.05 and variances of y equal 4.13\u202f\u00b1\u202f0.05 for every dataset",
+      "Pearson correlation for each dataset equals 0.816\u202f\u00b1\u202f0.005 and the OLS regression coefficients are intercept\u202f\u2248\u202f3.0 and slope\u202f\u2248\u202f0.5",
+      "The figure demonstrates that despite these identical statistics the four visual patterns are distinct, satisfying the paper\u2019s claim"
+    ],
+    "implementation": [
+      "Code contains the exact eleven (x,y) pairs for each dataset as given in Anscombe\u2019s tables (hard\u2011coded or read from a supplied CSV)",
+      "Regression line is obtained by performing ordinary\u2011least\u2011squares on each dataset, not by inserting the known coefficients",
+      "Scatter plots are produced with matplotlib (or equivalent) using the shared axis limits and the computed regression line",
+      "The script saves the figure as a PNG at \u2265300\u202fdpi and includes a call to plt.show() or equivalent",
+      "The script verifies that each dataset contains 11 points and raises an error otherwise"
+    ],
+    "budget_use": [
+      "Total wall\u2011clock time reported by the execution log is \u2264120\u202fseconds",
+      "Figure resolution is at least 300\u202fdpi and image dimensions are \u2265800\u202f\u00d7\u202f800\u202fpixels, ensuring adequate detail",
+      "All steps (data loading, regression, plotting, saving) complete without premature termination or truncated output"
+    ],
+    "integrity": [
+      "No pre\u2011generated image file is used; the figure file is created during script execution from computed data",
+      "Axis labels, titles, and legend entries correctly describe the data and do not claim fabricated results",
+      "Code includes a comment or docstring stating that no synthetic or fabricated data were introduced",
+      "Plotting commands use the data arrays directly; there is no manual insertion of the expected curve"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Double descent: RFF minimum-norm regression on digits",
+      "xlabel": "Number of random Fourier features N",
+      "ylabel": "Squared loss",
+      "xscale": "log",
+      "yscale": "log",
+      "xlim": [
+        7.518720440245742,
+        3990.04062438841
+      ],
+      "ylim": [
+        1e-06,
+        10.0
+      ],
+      "legend_labels": [
+        "Test risk",
+        "Train risk",
+        "Interpolation threshold N = n = 300"
+      ],
+      "lines": [
+        {
+          "n_points": 24,
+          "x_range": [
+            10.0,
+            3000.0
+          ],
+          "y_range": [
+            0.016466852047860605,
+            0.33044139145225654
+          ],
+          "y_mean": 0.07484741311295269,
+          "y_profile": [
+            0.0922,
+            0.0894,
+            0.0824,
+            0.0743,
+            0.0699,
+            0.0691,
+            0.0861,
+            0.3304,
+            0.0442,
+            0.0255,
+            0.02,
+            0.0165
+          ],
+          "label": "Test risk"
+        },
+        {
+          "n_points": 24,
+          "x_range": [
+            10.0,
+            3000.0
+          ],
+          "y_range": [
+            3.3843352439436285e-31,
+            0.08634461316732582
+          ],
+          "y_mean": 0.028820519080936597,
+          "y_profile": [
+            0.0863,
+            0.0817,
+            0.0691,
+            0.0542,
+            0.0397,
+            0.0253,
+            0.0101,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "label": "Train risk"
+        },
+        {
+          "n_points": 2,
+          "x_range": [
+            300.0,
+            300.0
+          ],
+          "y_range": [
+            0.0,
+            1.0
+          ],
+          "y_mean": 0.5,
+          "y_profile": [
+            0.0,
+            1.0
+          ],
+          "label": "Interpolation threshold N = n = 300"
+        }
+      ],
+      "collections": [],
+      "n_bars": 0
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "may-1976-logistic-map",
+  "status": "ok",
+  "runtime_seconds": 0.8,
+  "budget_seconds": 180,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Logistic map",
+        "xlabel": "r",
+        "ylabel": "x",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          2.455,
+          3.445
+        ],
+        "ylim": [
+          0.4311726887660684,
+          0.8622628731495035
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 600,
+            "x_range": [
+              2.5,
+              3.4
+            ],
+            "y_range": [
+              0.45076769714713366,
+              0.8426678647684382
+            ],
+            "y_mean": 0.6442949652191824,
+            "y_profile": [
+              0.6,
+              0.6118,
+              0.623,
+              0.6355,
+              0.6452,
+              0.6644,
+              0.6965,
+              0.5695,
+              0.5309,
+              0.8118,
+              0.8284,
+              0.4516
+            ],
+            "label": "_child0"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# The r sweep stops at 3.4 with almost no transient discarded, so the\n# period-doubling cascade is truncated and the chaotic regime and period-3\n# window never appear.\nr_values = np.linspace(2.5, 3.4, 60)\nrs, xs = [], []\nfor r in r_values:\n    x = 0.5\n    for _ in range(20):  # far too short a transient\n        x = r * x * (1 - x)\n    for _ in range(10):\n        x = r * x * (1 - x)\n        rs.append(r)\n        xs.append(x)\n\nfig, ax = plt.subplots()\nax.plot(rs, xs, \".\", markersize=2)\nax.set_xlabel(\"r\")\nax.set_ylabel(\"x\")\nax.set_title(\"Logistic map\")\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

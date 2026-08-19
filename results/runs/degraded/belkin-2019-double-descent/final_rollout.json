@@ -1,0 +1,81 @@
+{
+  "task_id": "belkin-2019-double-descent",
+  "status": "ok",
+  "runtime_seconds": 2.2,
+  "budget_seconds": 300,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Risk vs number of random features",
+        "xlabel": "Number of random features N",
+        "ylabel": "Squared loss",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          -0.75,
+          125.75
+        ],
+        "ylim": [
+          0.020610605734511615,
+          0.09121238222223559
+        ],
+        "legend_labels": [
+          "Test risk",
+          "Train risk"
+        ],
+        "lines": [
+          {
+            "n_points": 6,
+            "x_range": [
+              5.0,
+              120.0
+            ],
+            "y_range": [
+              0.06417797854680203,
+              0.08800321056370268
+            ],
+            "y_mean": 0.07465593449367364,
+            "y_profile": [
+              0.088,
+              0.0829,
+              0.0813,
+              0.0672,
+              0.0643,
+              0.0642
+            ],
+            "label": "Test risk"
+          },
+          {
+            "n_points": 6,
+            "x_range": [
+              5.0,
+              120.0
+            ],
+            "y_range": [
+              0.023819777393044524,
+              0.08397543703832047
+            ],
+            "y_mean": 0.05664169020464697,
+            "y_profile": [
+              0.084,
+              0.0753,
+              0.0705,
+              0.0507,
+              0.0356,
+              0.0238
+            ],
+            "label": "Train risk"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.datasets import load_digits\nfrom sklearn.linear_model import Ridge\nfrom sklearn.model_selection import train_test_split\n\n# Sweeps N only in the underparameterized regime (N << n) with ridge\n# regularization, so neither the interpolation peak nor the second descent\n# can appear: the figure shows only a classical curve and cannot support the\n# double-descent claim.\ndigits = load_digits()\nX = digits.data / 16.0\nY = np.eye(10)[digits.target]\nXtr, Xte, Ytr, Yte = train_test_split(X, Y, train_size=300, random_state=0)\n\nNs = [5, 10, 20, 40, 80, 120]\ntrain_risk, test_risk = [], []\nrs = np.random.default_rng(0)\nfor N in Ns:\n    W = rs.normal(0, 1.0, size=(X.shape[1], N))\n    b = rs.uniform(0, 2 * np.pi, size=N)\n    Ztr, Zte = np.cos(Xtr @ W + b), np.cos(Xte @ W + b)\n    model = Ridge(alpha=1.0).fit(Ztr, Ytr)\n    train_risk.append(np.mean((model.predict(Ztr) - Ytr) ** 2))\n    test_risk.append(np.mean((model.predict(Zte) - Yte) ** 2))\n\nfig, ax = plt.subplots()\nax.plot(Ns, test_risk, \"o-\", label=\"Test risk\")\nax.plot(Ns, train_risk, \"s-\", label=\"Train risk\")\nax.set_xlabel(\"Number of random features N\")\nax.set_ylabel(\"Squared loss\")\nax.set_title(\"Risk vs number of random features\")\nax.legend()\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

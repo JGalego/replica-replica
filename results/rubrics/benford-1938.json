@@ -1,0 +1,33 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "x-axis tick labels must be the integers 1 through 9 in order",
+      "y-axis limits must include 0 and at least 0.35 to show the ~30% frequency of digit\u202f1",
+      "nine bars must be present, one per digit, with heights equal to the empirical relative frequencies computed from the code",
+      "a superimposed line or point series must display the theoretical Benford probabilities P(d)=log10(1+1/d) for d=1..9",
+      "legend must identify \"Empirical\" and \"Benford prediction\""
+    ],
+    "scientific_claim": [
+      "empirical relative frequency for digit\u202f1 must lie between 0.28 and 0.32 (\u224830%\u00b12%)",
+      "maximum absolute difference between empirical and Benford probabilities across digits 1\u20119 must be \u22640.02",
+      "chi\u2011squared goodness\u2011of\u2011fit test against the Benford distribution must yield p\u2011value \u22650.05",
+      "sum of empirical frequencies must be within 0.001 of 1.0"
+    ],
+    "implementation": [
+      "code must generate the first 1000 Fibonacci numbers programmatically (no hard\u2011coded list)",
+      "leading digit extraction must be performed algorithmically (e.g., using log10 or string conversion) for each Fibonacci number",
+      "empirical frequencies must be computed by counting occurrences of each leading digit and dividing by 1000",
+      "plotting must be done with a standard library such as matplotlib, using bar() for empirical data and plot() or scatter() for Benford curve",
+      "no external data files may be read; all inputs are generated inside the script"
+    ],
+    "budget_use": [
+      "total wall\u2011clock runtime recorded in the execution log must be \u2264120\u202fseconds\",\"the script must complete the full computation for all 1000 Fibonacci numbers and produce the plot without early termination\",\"output image resolution must be at least 600\u202f\u00d7\u202f400 pixels\",\"memory usage reported must stay below 2\u202fGB\",\"sample size used in the analysis must be exactly 1000 (no subsampling)"
+    ],
+    "integrity": [
+      "the figure must be produced from the computed empirical frequencies, not by inserting pre\u2011computed numbers or copying the expected curve\",\"all axis labels, titles, and legend entries must accurately describe the data shown (e.g., \"Leading digit\" and \"Relative frequency\")",
+      "no part of the code may contain a hard\u2011coded array of the expected frequencies; the Benford prediction must be calculated from the formula P(d)=log10(1+1/d)",
+      "the execution log must show the steps of computation and plotting, demonstrating that the result was generated during the run",
+      "any random seeds (if used) must be fixed and documented, and no stochastic shortcuts may be employed to fabricate agreement"
+    ]
+  }
+}

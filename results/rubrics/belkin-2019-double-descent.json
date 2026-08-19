@@ -1,0 +1,31 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "X-axis must be log-scaled and labeled with the number of random features N, ranging from at least 10^1 to 10^4 and covering the training sample size n\u2248300 with a vertical dashed line at N=n",
+      "Y-axis must be log-scaled and labeled 'Test risk (squared loss)' and display values between ~10^-2 and 10^1 consistent with the paper's risk range",
+      "Both train and test risk curves must be present: train risk reaches zero (or near\u2011zero) at N\u2248n and stays at zero for N>n, test risk shows a peak near N=n and declines for larger N",
+      "The overall shape of the test curve must be U\u2011shaped for N<n, a clear peak at N\u2248n, and a descending tail for N>n, matching the caption description"
+    ],
+    "scientific_claim": [
+      "The reported test risk curve must exhibit a local maximum at N within \u00b15% of the training sample count n (i.e., 285\u2264N\u2264315)",
+      "For N>n the test risk values must be statistically lower (e.g., at least 10% reduction) than the peak risk at the interpolation threshold",
+      "The test risk at the smallest N (\u224810) must be higher than the risk at the largest N (\u224810^4), confirming a double\u2011descent pattern"
+    ],
+    "implementation": [
+      "Code must generate Random Fourier Features using z(x)=cos(Wx+b) with W drawn from N(0,1) and b uniform on [0,2\u03c0)",
+      "Linear regression must be solved via minimum\u2011norm least squares (e.g., using numpy.linalg.pinv or sklearn.LinearRegression with fit_intercept=False and no regularization)",
+      "Training set must be a random subset of exactly 300 samples from sklearn.datasets.load_digits, with one\u2011hot encoded targets for squared loss",
+      "Prediction must be obtained by applying the linear model to test features and computing squared error against one\u2011hot targets; classification error may be reported via argmax but must not be used to compute the plotted risk"
+    ],
+    "budget_use": [
+      "The entire experiment (data loading, feature generation for all N values, model fitting, risk computation, and figure generation) must complete within 300 seconds on a single CPU core",
+      "The sweep over N must include at least 15 logarithmically spaced points between 10 and 10^4, ensuring sufficient resolution to observe the peak",
+      "Memory usage must stay below 2\u202fGB; code must not pre\u2011allocate arrays larger than this limit"
+    ],
+    "integrity": [
+      "All plotted points must be derived from actual model training and evaluation; no hard\u2011coded risk values or copying of expected curves are allowed",
+      "Figure annotations (vertical line at N=n, legends, axis labels) must be generated programmatically, not manually edited after plotting",
+      "The code repository must include the full execution log with timestamps, showing start and end times and confirming wall\u2011clock compliance"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "The figure must be a log\u2011log scatter plot with x\u2011axis labeled \"Rank (r)\" covering the full rank range (minimum 1, maximum at least the total number of distinct words) and y\u2011axis labeled \"Frequency (f)\" covering the observed frequency range (minimum 1, maximum at least the most frequent word count)",
+      "A fitted reference line must be overlaid on the scatter points",
+      "The slope of the fitted line, as reported in the plot annotation, must lie between -1.1 and -0.9",
+      "The annotated exponent value displayed on the plot must be within \u00b10.1 of the exponent computed by the code",
+      "The plot must include a legend or caption indicating that the points are empirical data and the line is the power\u2011law fit"
+    ],
+    "scientific_claim": [
+      "The exponent s estimated by the least\u2011squares fit on log10(r) vs log10(f) must be between 0.8 and 1.2",
+      "The coefficient of determination (R\u00b2) of the linear fit on the log\u2011log data must be \u22650.80",
+      "At least 90% of the points in the central rank interval (e.g., ranks 10 to 10\u202f000) must lie within \u00b10.2\u202fdex of the fitted line",
+      "The figure caption text reproduced in the structured description must match the provided caption verbatim",
+      "The plot must visually demonstrate a straight\u2011line trend over at least three orders of magnitude on both axes"
+    ],
+    "implementation": [
+      "The submitted code must read the provided corpus file, extract lowercase alphabetic tokens using a regular expression (e.g., `[a\u2011z]+`), and count frequencies without any pre\u2011computed tables",
+      "Word frequencies must be sorted in descending order and assigned integer ranks starting at 1",
+      "The exponent s must be obtained by performing an ordinary least\u2011squares regression of log10(f) on log10(r) over the bulk of the distribution (e.g., excluding the top 5 ranks and the bottom 5% of ranks)",
+      "The code must generate the plot programmatically (e.g., using matplotlib) rather than loading a static image",
+      "All numerical operations must use standard libraries (numpy, pandas, scipy) and no hard\u2011coded frequency values are allowed"
+    ],
+    "budget_use": [
+      "The total wall\u2011clock time reported in the execution log must be \u2264120 seconds",
+      "The code must process the entire corpus (no random subsampling) and produce a plot containing at least 5\u202f000 distinct rank points",
+      "Memory consumption must stay below 2\u202fGB (as reported by the runtime environment)",
+      "The run must complete without premature termination or truncation of the data processing steps",
+      "If the budget is exceeded, the submission is marked down regardless of other criteria"
+    ],
+    "integrity": [
+      "No fabricated data: frequencies must be derived directly from the corpus file",
+      "The plotted points must be generated from the computed frequency\u2011rank pairs, not from a saved dataset",
+      "The fitted line must be computed from the regression result, not manually drawn to match the expected slope",
+      "All axis labels, legends, and annotations must accurately describe the underlying data and analysis steps",
+      "The submission must include a reproducible random seed (if any randomness is used) and a complete execution log showing each step"
+    ]
+  }
+}

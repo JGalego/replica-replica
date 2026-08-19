@@ -1,0 +1,63 @@
+{
+  "task_id": "zipf-1949",
+  "status": "ok",
+  "runtime_seconds": 1.0,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Top 50 word frequencies",
+        "xlabel": "Rank",
+        "ylabel": "Frequency",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          -1.4500000000000002,
+          52.45
+        ],
+        "ylim": [
+          -111.55000000000007,
+          15234.55
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 50,
+            "x_range": [
+              1.0,
+              50.0
+            ],
+            "y_range": [
+              586.0,
+              14537.0
+            ],
+            "y_mean": 1861.22,
+            "y_profile": [
+              14537.0,
+              4627.0,
+              2522.0,
+              1742.0,
+              1618.0,
+              1205.0,
+              1065.0,
+              869.0,
+              715.0,
+              633.0,
+              618.0,
+              586.0
+            ],
+            "label": "_child0"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import re\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Linear axes and only the top 50 words: the power law spans orders of\n# magnitude and is invisible here; no exponent is fitted.\nwith open(\"moby_dick.txt\", encoding=\"utf-8\") as f:\n    text = f.read().lower()\nwords = re.findall(r\"[a-z]+\", text)\nfreq = {}\nfor w in words:\n    freq[w] = freq.get(w, 0) + 1\ncounts = sorted(freq.values(), reverse=True)[:50]\nranks = np.arange(1, 51)\n\nfig, ax = plt.subplots()\nax.plot(ranks, counts, \"o-\")\nax.set_xlabel(\"Rank\")\nax.set_ylabel(\"Frequency\")\nax.set_title(\"Top 50 word frequencies\")\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

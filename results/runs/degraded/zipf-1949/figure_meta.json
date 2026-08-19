@@ -1,0 +1,53 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Top 50 word frequencies",
+      "xlabel": "Rank",
+      "ylabel": "Frequency",
+      "xscale": "linear",
+      "yscale": "linear",
+      "xlim": [
+        -1.4500000000000002,
+        52.45
+      ],
+      "ylim": [
+        -111.55000000000007,
+        15234.55
+      ],
+      "legend_labels": [],
+      "lines": [
+        {
+          "n_points": 50,
+          "x_range": [
+            1.0,
+            50.0
+          ],
+          "y_range": [
+            586.0,
+            14537.0
+          ],
+          "y_mean": 1861.22,
+          "y_profile": [
+            14537.0,
+            4627.0,
+            2522.0,
+            1742.0,
+            1618.0,
+            1205.0,
+            1065.0,
+            869.0,
+            715.0,
+            633.0,
+            618.0,
+            586.0
+          ],
+          "label": "_child0"
+        }
+      ],
+      "collections": [],
+      "n_bars": 0
+    }
+  ]
+}

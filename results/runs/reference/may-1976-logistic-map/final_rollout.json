@@ -1,0 +1,100 @@
+{
+  "task_id": "may-1976-logistic-map",
+  "status": "ok",
+  "runtime_seconds": 1.1,
+  "budget_seconds": 180,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Bifurcation diagram of the logistic map x[t+1] = r x[t](1 - x[t])",
+        "xlabel": "Growth parameter r",
+        "ylabel": "Long-run population x",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          2.5,
+          4.0
+        ],
+        "ylim": [
+          0.0,
+          1.0
+        ],
+        "legend_labels": [
+          "First bifurcation r = 3",
+          "Onset of chaos r \u2248 3.57"
+        ],
+        "lines": [
+          {
+            "n_points": 280000,
+            "x_range": [
+              2.5,
+              4.0
+            ],
+            "y_range": [
+              0.0,
+              0.9997295139596687
+            ],
+            "y_mean": 0.6367101249527587,
+            "y_profile": [
+              0.6,
+              0.6207,
+              0.6393,
+              0.6562,
+              0.5935,
+              0.5201,
+              0.8273,
+              0.4584,
+              0.8306,
+              0.2942,
+              0.9478,
+              0.0
+            ],
+            "label": "_child0"
+          },
+          {
+            "n_points": 2,
+            "x_range": [
+              3.0,
+              3.0
+            ],
+            "y_range": [
+              0.0,
+              1.0
+            ],
+            "y_mean": 0.5,
+            "y_profile": [
+              0.0,
+              1.0
+            ],
+            "label": "First bifurcation r = 3"
+          },
+          {
+            "n_points": 2,
+            "x_range": [
+              3.5699,
+              3.5699
+            ],
+            "y_range": [
+              0.0,
+              1.0
+            ],
+            "y_mean": 0.5,
+            "y_profile": [
+              0.0,
+              1.0
+            ],
+            "label": "Onset of chaos r \u2248 3.57"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nn_r = 1400\nn_transient = 600\nn_keep = 200\n\nr_values = np.linspace(2.5, 4.0, n_r)\nx = np.full(n_r, 0.5)\nfor _ in range(n_transient):\n    x = r_values * x * (1 - x)\n\nrs, xs = [], []\nfor _ in range(n_keep):\n    x = r_values * x * (1 - x)\n    rs.append(r_values)\n    xs.append(x.copy())\nrs = np.concatenate(rs)\nxs = np.concatenate(xs)\n\nfig, ax = plt.subplots(figsize=(8, 5.5))\nax.plot(rs, xs, \",\", color=\"black\", alpha=0.25)\nax.axvline(3.0, color=\"tab:blue\", linestyle=\"--\", linewidth=0.8, label=\"First bifurcation r = 3\")\nax.axvline(3.5699, color=\"tab:red\", linestyle=\"--\", linewidth=0.8, label=\"Onset of chaos r \u2248 3.57\")\nax.set_xlabel(\"Growth parameter r\")\nax.set_ylabel(\"Long-run population x\")\nax.set_title(\"Bifurcation diagram of the logistic map x[t+1] = r x[t](1 - x[t])\")\nax.set_xlim(2.5, 4.0)\nax.set_ylim(0, 1)\nax.legend(loc=\"upper left\", fontsize=8)\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

@@ -1,0 +1,121 @@
+{
+  "task_id": "kermack-1927-sir",
+  "status": "ok",
+  "runtime_seconds": 1.4,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "S-I-R Epidemic Model (R0 = 4)",
+        "xlabel": "Time (days)",
+        "ylabel": "Population",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          -5.0,
+          105.0
+        ],
+        "ylim": [
+          -49.95,
+          1048.95
+        ],
+        "legend_labels": [
+          "Susceptible (S)",
+          "Infected (I)",
+          "Recovered (R)"
+        ],
+        "lines": [
+          {
+            "n_points": 1000,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              19.786393579458842,
+              999.0
+            ],
+            "y_mean": 247.05171584480058,
+            "y_profile": [
+              999.0,
+              980.8358,
+              773.5857,
+              247.0862,
+              69.5168,
+              34.6356,
+              25.2554,
+              21.9729,
+              20.6657,
+              20.1192,
+              19.8865,
+              19.7864
+            ],
+            "label": "Susceptible (S)"
+          },
+          {
+            "n_points": 1000,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.8847236599839954,
+              403.52866797791364
+            ],
+            "y_mean": 97.83698139261799,
+            "y_profile": [
+              1.0,
+              14.5769,
+              162.5531,
+              403.5008,
+              264.9297,
+              127.0124,
+              57.2355,
+              25.0373,
+              10.8908,
+              4.7238,
+              2.0458,
+              0.8847
+            ],
+            "label": "Infected (I)"
+          },
+          {
+            "n_points": 1000,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.0,
+              979.3288827605572
+            ],
+            "y_mean": 655.1113027625815,
+            "y_profile": [
+              0.0,
+              4.5873,
+              63.8611,
+              349.4129,
+              665.5535,
+              838.352,
+              917.509,
+              952.9898,
+              968.4435,
+              975.1569,
+              978.0677,
+              979.3289
+            ],
+            "label": "Recovered (R)"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import solve_ivp\n\n# Parameters\nN = 1000\nbeta = 0.4\ngamma = 0.1\nt_span = (0, 100)\nt_eval = np.linspace(0, 100, 1000)\n\n# Initial conditions\nS0 = N - 1\nI0 = 1\nR0 = 0\ny0 = [S0, I0, R0]\n\ndef sir_model(t, y):\n    S, I, R = y\n    dSdt = -beta * S * I / N\n    dIdt = beta * S * I / N - gamma * I\n    dRdt = gamma * I\n    return [dSdt, dIdt, dRdt]\n\nsol = solve_ivp(sir_model, t_span, y0, t_eval=t_eval, method='RK45')\n\nfig, ax = plt.subplots()\nax.plot(sol.t, sol.y[0], label='Susceptible (S)')\nax.plot(sol.t, sol.y[1], label='Infected (I)')\nax.plot(sol.t, sol.y[2], label='Recovered (R)')\nax.set_xlabel('Time (days)')\nax.set_ylabel('Population')\nax.set_title('S-I-R Epidemic Model (R0 = 4)')\nax.legend()\nax.grid(True)\n\nfrom replica_replica.harness import submit\nsubmit(fig)"
+}

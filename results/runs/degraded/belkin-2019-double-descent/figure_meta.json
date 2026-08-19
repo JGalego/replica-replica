@@ -1,0 +1,71 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Risk vs number of random features",
+      "xlabel": "Number of random features N",
+      "ylabel": "Squared loss",
+      "xscale": "linear",
+      "yscale": "linear",
+      "xlim": [
+        -0.75,
+        125.75
+      ],
+      "ylim": [
+        0.020610605734511615,
+        0.09121238222223559
+      ],
+      "legend_labels": [
+        "Test risk",
+        "Train risk"
+      ],
+      "lines": [
+        {
+          "n_points": 6,
+          "x_range": [
+            5.0,
+            120.0
+          ],
+          "y_range": [
+            0.06417797854680203,
+            0.08800321056370268
+          ],
+          "y_mean": 0.07465593449367364,
+          "y_profile": [
+            0.088,
+            0.0829,
+            0.0813,
+            0.0672,
+            0.0643,
+            0.0642
+          ],
+          "label": "Test risk"
+        },
+        {
+          "n_points": 6,
+          "x_range": [
+            5.0,
+            120.0
+          ],
+          "y_range": [
+            0.023819777393044524,
+            0.08397543703832047
+          ],
+          "y_mean": 0.05664169020464697,
+          "y_profile": [
+            0.084,
+            0.0753,
+            0.0705,
+            0.0507,
+            0.0356,
+            0.0238
+          ],
+          "label": "Train risk"
+        }
+      ],
+      "collections": [],
+      "n_bars": 0
+    }
+  ]
+}

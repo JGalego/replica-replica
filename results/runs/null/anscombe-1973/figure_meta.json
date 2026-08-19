@@ -1,0 +1,25 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Replication attempt",
+      "xlabel": "x",
+      "ylabel": "y",
+      "xscale": "linear",
+      "yscale": "linear",
+      "xlim": [
+        0.0,
+        1.0
+      ],
+      "ylim": [
+        0.0,
+        1.0
+      ],
+      "legend_labels": [],
+      "lines": [],
+      "collections": [],
+      "n_bars": 0
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Zipf's law in Moby-Dick (219066 tokens, 16957 types)",
+      "xlabel": "Frequency rank r",
+      "ylabel": "Word frequency f",
+      "xscale": "log",
+      "yscale": "log",
+      "xlim": [
+        0.614515085933236,
+        27594.115080589414
+      ],
+      "ylim": [
+        0.6192646085840808,
+        23474.617794222366
+      ],
+      "legend_labels": [
+        "Empirical rank-frequency",
+        "Power-law fit, s = 1.13"
+      ],
+      "lines": [
+        {
+          "n_points": 16957,
+          "x_range": [
+            1.0,
+            16957.0
+          ],
+          "y_range": [
+            1.0,
+            14537.0
+          ],
+          "y_mean": 12.918912543492363,
+          "y_profile": [
+            14537.0,
+            14.0,
+            7.0,
+            4.0,
+            3.0,
+            2.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "label": "Empirical rank-frequency"
+        },
+        {
+          "n_points": 9991,
+          "x_range": [
+            10.0,
+            10000.0
+          ],
+          "y_range": [
+            1.5961112777606352,
+            3977.537431728804
+          ],
+          "y_mean": 18.23515140414341,
+          "y_profile": [
+            3977.5374,
+            23.8405,
+            10.9441,
+            6.9296,
+            5.0085,
+            3.8928,
+            3.1674,
+            2.661,
+            2.2882,
+            2.0029,
+            1.778,
+            1.5961
+          ],
+          "label": "Power-law fit, s = 1.13"
+        }
+      ],
+      "collections": [],
+      "n_bars": 0
+    }
+  ]
+}

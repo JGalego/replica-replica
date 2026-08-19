@@ -1,0 +1,62 @@
+{
+  "task_id": "anscombe-1973",
+  "status": "ok",
+  "runtime_seconds": 0.9,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Anscombe dataset",
+        "xlabel": "x",
+        "ylabel": "y",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          3.5,
+          14.5
+        ],
+        "ylim": [
+          3.9309999999999996,
+          11.169
+        ],
+        "legend_labels": [],
+        "lines": [],
+        "collections": [
+          {
+            "n_points": 11,
+            "x_range": [
+              4.0,
+              14.0
+            ],
+            "y_range": [
+              4.26,
+              10.84
+            ],
+            "y_mean": 7.500909090909093,
+            "y_profile": [
+              4.26,
+              5.68,
+              7.24,
+              4.82,
+              6.95,
+              8.81,
+              8.04,
+              8.33,
+              10.84,
+              7.58,
+              9.96
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Only dataset I is plotted; the quartet comparison (the whole point of the\n# figure) is missing, and there is no fitted regression line.\nx = np.array([10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5], float)\ny = np.array([8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68])\n\nfig, ax = plt.subplots()\nax.scatter(x, y)\nax.set_title(\"Anscombe dataset\")\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

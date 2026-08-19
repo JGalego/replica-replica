@@ -1,0 +1,121 @@
+{
+  "task_id": "kermack-1927-sir",
+  "status": "ok",
+  "runtime_seconds": 1.4,
+  "budget_seconds": 120,
+  "stdout_tail": "Epidemic peak: I = 404 at day 27.3; final susceptible fraction 0.020\n",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "SIR epidemic (\u03b2 = 0.4, \u03b3 = 0.1, R\u2080 = 4, N = 1000)",
+        "xlabel": "Time (days)",
+        "ylabel": "Population",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          -5.0,
+          105.0
+        ],
+        "ylim": [
+          -49.95,
+          1048.95
+        ],
+        "legend_labels": [
+          "Susceptible",
+          "Infected",
+          "Recovered"
+        ],
+        "lines": [
+          {
+            "n_points": 500,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              19.882234236507696,
+              999.0
+            ],
+            "y_mean": 247.4910058837296,
+            "y_profile": [
+              999.0,
+              980.7847,
+              777.9228,
+              246.0632,
+              70.258,
+              35.2603,
+              25.4549,
+              22.1109,
+              20.7822,
+              20.2184,
+              19.9847,
+              19.8822
+            ],
+            "label": "Susceptible"
+          },
+          {
+            "n_points": 500,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.8857171754689199,
+              403.6452160012371
+            ],
+            "y_mean": 97.72923146832713,
+            "y_profile": [
+              1.0,
+              14.6148,
+              159.5453,
+              403.6452,
+              266.0968,
+              128.7404,
+              57.0836,
+              25.2179,
+              11.0537,
+              4.7415,
+              2.0689,
+              0.8857
+            ],
+            "label": "Infected"
+          },
+          {
+            "n_points": 500,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.0,
+              979.2320485880239
+            ],
+            "y_mean": 654.7797626479436,
+            "y_profile": [
+              0.0,
+              4.6005,
+              62.5319,
+              350.2916,
+              663.6453,
+              835.9993,
+              917.4615,
+              952.6712,
+              968.1641,
+              975.04,
+              977.9464,
+              979.232
+            ],
+            "label": "Recovered"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.integrate import solve_ivp\n\nN = 1000.0\nbeta, gamma = 0.4, 0.1\nI0, R0_init = 1.0, 0.0\nS0 = N - I0 - R0_init\n\ndef sir(t, y):\n    S, I, R = y\n    return [-beta * S * I / N, beta * S * I / N - gamma * I, gamma * I]\n\nt_eval = np.linspace(0, 100, 500)\nsol = solve_ivp(sir, [0, 100], [S0, I0, R0_init], t_eval=t_eval, rtol=1e-8)\nS, I, R = sol.y\n\nfig, ax = plt.subplots(figsize=(7, 5))\nax.plot(sol.t, S, color=\"tab:blue\", label=\"Susceptible\")\nax.plot(sol.t, I, color=\"tab:red\", label=\"Infected\")\nax.plot(sol.t, R, color=\"tab:green\", label=\"Recovered\")\nax.set_xlabel(\"Time (days)\")\nax.set_ylabel(\"Population\")\nax.set_title(f\"SIR epidemic (\u03b2 = {beta}, \u03b3 = {gamma}, R\u2080 = {beta/gamma:.0f}, N = {N:.0f})\")\nax.legend()\npeak_day = sol.t[np.argmax(I)]\nprint(f\"Epidemic peak: I = {I.max():.0f} at day {peak_day:.1f}; \"\n      f\"final susceptible fraction {S[-1]/N:.3f}\")\nfig.tight_layout()\n\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}

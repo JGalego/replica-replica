@@ -1,0 +1,35 @@
+{
+  "task_id": "anscombe-1973",
+  "status": "ok",
+  "runtime_seconds": 0.7,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Replication attempt",
+        "xlabel": "x",
+        "ylabel": "y",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          0.0,
+          1.0
+        ],
+        "ylim": [
+          0.0,
+          1.0
+        ],
+        "legend_labels": [],
+        "lines": [],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nax.set_title(\"Replication attempt\")\nax.set_xlabel(\"x\")\nax.set_ylabel(\"y\")\nfrom replica_replica.harness import submit\nsubmit(fig)\n"
+}
