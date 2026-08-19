@@ -1,0 +1,94 @@
+{
+  "task_id": "zipf-1949",
+  "status": "ok",
+  "runtime_seconds": 2.3,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Word Frequency vs Rank (Moby-Dick)",
+        "xlabel": "Rank",
+        "ylabel": "Frequency",
+        "xscale": "log",
+        "yscale": "log",
+        "xlim": [
+          0.6145096504964065,
+          27599.241096213205
+        ],
+        "ylim": [
+          0.5280665379829942,
+          23653.37832321593
+        ],
+        "legend_labels": [
+          "Empirical",
+          "Fit: s = 1.203"
+        ],
+        "lines": [
+          {
+            "n_points": 16960,
+            "x_range": [
+              1.0,
+              16960.0
+            ],
+            "y_range": [
+              1.0,
+              14537.0
+            ],
+            "y_mean": 12.915330188679246,
+            "y_profile": [
+              14537.0,
+              14.0,
+              7.0,
+              4.0,
+              3.0,
+              2.0,
+              2.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "label": "Empirical"
+          },
+          {
+            "n_points": 15095,
+            "x_range": [
+              170.0,
+              15264.0
+            ],
+            "y_range": [
+              0.8592252598708544,
+              192.46871324797408
+            ],
+            "y_mean": 6.3955984972459765,
+            "y_profile": [
+              192.4687,
+              13.5539,
+              6.3019,
+              3.9614,
+              2.8361,
+              2.1841,
+              1.7621,
+              1.4689,
+              1.2542,
+              1.0907,
+              0.9624,
+              0.8592
+            ],
+            "label": "Fit: s = 1.203"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import Counter\nfrom scipy import stats\n\nwith open('moby_dick.txt', 'r') as f:\n    text = f.read()\n\ntokens = []\ncurrent = []\nfor ch in text.lower():\n    if ch.isalpha():\n        current.append(ch)\n    else:\n        if current:\n            tokens.append(''.join(current))\n            current = []\nif current:\n    tokens.append(''.join(current))\n\nfreq_counter = Counter(tokens)\nfreqs = np.array(sorted(freq_counter.values(), reverse=True))\nranks = np.arange(1, len(freqs) + 1, dtype=float)\n\nfig, ax = plt.subplots(figsize=(8, 6))\nax.loglog(ranks, freqs, 'b.', markersize=1, label='Empirical')\n\nn = len(freqs)\nhead_cutoff = max(10, int(0.01 * n))\ntail_cutoff = max(10, int(0.1 * n))\nfit_mask = (ranks > head_cutoff) & (ranks <= n - tail_cutoff)\n\nlog_r = np.log(ranks[fit_mask])\nlog_f = np.log(freqs[fit_mask])\n\nslope, intercept, r_value, p_value, std_err = stats.linregress(log_r, log_f)\ns = -slope\n\nfit_r = ranks[fit_mask]\nfit_f = np.exp(intercept) * fit_r ** (-s)\n\nax.loglog(fit_r, fit_f, 'r-', linewidth=2, label=f'Fit: s = {s:.3f}')\n\nax.set_xlabel('Rank')\nax.set_ylabel('Frequency')\nax.set_title('Word Frequency vs Rank (Moby-Dick)')\nax.legend(loc='upper right')\nax.grid(True, which='both', linestyle='--', linewidth=0.5)\n\nfrom replica_replica.harness import submit\nsubmit(fig)",
+  "attempt": 2
+}

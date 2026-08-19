@@ -1,0 +1,63 @@
+{
+  "task_id": "may-1976-logistic-map",
+  "status": "ok",
+  "runtime_seconds": 1.0,
+  "budget_seconds": 180,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Bifurcation Diagram of the Logistic Map",
+        "xlabel": "r",
+        "ylabel": "x",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          2.5,
+          4.0
+        ],
+        "ylim": [
+          0.0,
+          1.0
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 150000,
+            "x_range": [
+              2.5,
+              4.0
+            ],
+            "y_range": [
+              0.0,
+              0.9997419495077422
+            ],
+            "y_mean": 0.6368157755162211,
+            "y_profile": [
+              0.6,
+              0.6207,
+              0.6393,
+              0.6563,
+              0.5939,
+              0.5203,
+              0.474,
+              0.4211,
+              0.8131,
+              0.7476,
+              0.6552,
+              0.0
+            ],
+            "label": "_child0"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nr_min, r_max = 2.5, 4.0\nnum_r = 1500\ntransient_steps = 100\nrecord_steps = 100\n\nr_vals = np.linspace(r_min, r_max, num_r)\nr_plot, x_plot = [], []\n\nfor r in r_vals:\n    x = 0.5\n    for _ in range(transient_steps):\n        x = r * x * (1 - x)\n    for _ in range(record_steps):\n        x = r * x * (1 - x)\n        r_plot.append(r)\n        x_plot.append(x)\n\nfig, ax = plt.subplots(figsize=(8, 6))\nax.plot(r_plot, x_plot, ',k', alpha=0.25, markersize=1)\nax.set_xlabel('r')\nax.set_ylabel('x')\nax.set_title('Bifurcation Diagram of the Logistic Map')\nax.set_xlim(r_min, r_max)\nax.set_ylim(0, 1)\n\nfrom replica_replica.harness import submit\nsubmit(fig)"
+}

@@ -1,0 +1,111 @@
+{
+  "task_id": "belkin-2019-double-descent",
+  "status": "ok",
+  "runtime_seconds": 3.3,
+  "budget_seconds": 300,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Double descent of RFF on digits dataset",
+        "xlabel": "Number of random Fourier features N",
+        "ylabel": "Mean squared loss",
+        "xscale": "log",
+        "yscale": "log",
+        "xlim": [
+          0.7079457843841379,
+          1412.5375446227545
+        ],
+        "ylim": [
+          2.9036161634362667e-32,
+          40.1374069057626
+        ],
+        "legend_labels": [
+          "Train risk",
+          "Test risk",
+          "Interpolation threshold"
+        ],
+        "lines": [
+          {
+            "n_points": 28,
+            "x_range": [
+              1.0,
+              1000.0
+            ],
+            "y_range": [
+              9.318168805747289e-31,
+              0.09988001362043186
+            ],
+            "y_mean": 0.06768106695536351,
+            "y_profile": [
+              0.0997,
+              0.0999,
+              0.0993,
+              0.0987,
+              0.0952,
+              0.0938,
+              0.0884,
+              0.0738,
+              0.0587,
+              0.0066,
+              0.0,
+              0.0
+            ],
+            "label": "Train risk"
+          },
+          {
+            "n_points": 28,
+            "x_range": [
+              1.0,
+              1000.0
+            ],
+            "y_range": [
+              0.10020303187338415,
+              1.2507138031037885
+            ],
+            "y_mean": 0.1932218733929484,
+            "y_profile": [
+              0.1003,
+              0.1002,
+              0.1007,
+              0.1013,
+              0.105,
+              0.1059,
+              0.1131,
+              0.1368,
+              0.1737,
+              1.2507,
+              0.2739,
+              0.1424
+            ],
+            "label": "Test risk"
+          },
+          {
+            "n_points": 2,
+            "x_range": [
+              300.0,
+              300.0
+            ],
+            "y_range": [
+              0.0,
+              1.0
+            ],
+            "y_mean": 0.5,
+            "y_profile": [
+              0.0,
+              1.0
+            ],
+            "label": "Interpolation threshold"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_digits\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import OneHotEncoder\nfrom sklearn.utils import check_random_state\n\n# Settings\nrandom_state = 0\nn_train = 300\n\n# Create a range of N values (logarithmically spaced)\nN_values = np.unique(\n    np.concatenate(\n        [\n            np.logspace(0, 1, 10, base=10, dtype=float),   # 1-10\n            np.logspace(1, 2, 10, base=10, dtype=float),   # 10-100\n            np.logspace(2, 3, 10, base=10, dtype=float),   # 100-1000\n        ]\n    )\n).astype(int)\nN_values = np.clip(N_values, 1, 2000)\nN_values = np.sort(N_values)\n\n# Load dataset\ndigits = load_digits()\nX = digits.data  # (n_samples, 64)\ny = digits.target  # (n_samples,)\n\n# Train/test split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, train_size=n_train, random_state=random_state, stratify=y\n)\n\n# One-hot encode targets\nenc = OneHotEncoder(sparse_output=False, categories='auto')\nY_train = enc.fit_transform(y_train.reshape(-1, 1)).astype(float)\nY_test = enc.transform(y_test.reshape(-1, 1)).astype(float)\n\nd = X_train.shape[1]  # 64\nrng = check_random_state(random_state)\n\ntrain_risk = []\ntest_risk = []\n\nfor N in N_values:\n    # Random Fourier Features\n    W = rng.normal(size=(d, N))\n    b = rng.uniform(0, 2 * np.pi, size=(N,))\n\n    def phi(X):\n        return np.sqrt(2.0 / N) * np.cos(np.dot(X, W) + b)\n\n    Z_train = phi(X_train)\n    Z_test = phi(X_test)\n\n    # Minimum norm least squares (pseudoinverse)\n    w = np.linalg.pinv(Z_train).dot(Y_train)\n\n    # Predictions\n    Y_pred_train = Z_train.dot(w)\n    Y_pred_test = Z_test.dot(w)\n\n    # Squared loss (mean over samples and classes)\n    train_loss = np.mean((Y_pred_train - Y_train) ** 2)\n    test_loss = np.mean((Y_pred_test - Y_test) ** 2)\n\n    train_risk.append(train_loss)\n    test_risk.append(test_loss)\n\n# Plotting\nfig, ax = plt.subplots(figsize=(8, 6))\nax.plot(N_values, train_risk, marker='o', label='Train risk')\nax.plot(N_values, test_risk, marker='s', label='Test risk')\nax.set_xscale('log')\nax.set_yscale('log')\nax.set_xlabel('Number of random Fourier features N')\nax.set_ylabel('Mean squared loss')\nax.set_title('Double descent of RFF on digits dataset')\nax.axvline(x=n_train, color='k', linestyle='--', label='Interpolation threshold')\nax.legend()\nax.grid(True, which='both', ls='--', alpha=0.5)\n\n# Submit figure\nfrom replica_replica.harness import submit\nsubmit(fig)"
+}

@@ -1,0 +1,53 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Bifurcation diagram of the logistic map",
+      "xlabel": "Growth parameter r",
+      "ylabel": "Population x",
+      "xscale": "linear",
+      "yscale": "linear",
+      "xlim": [
+        2.5,
+        4.0
+      ],
+      "ylim": [
+        0.0,
+        1.0
+      ],
+      "legend_labels": [],
+      "lines": [],
+      "collections": [
+        {
+          "n_points": 4000000,
+          "x_range": [
+            2.5,
+            4.0
+          ],
+          "y_range": [
+            0.0,
+            0.9999139813982514
+          ],
+          "y_mean": 0.6371235592064566,
+          "y_profile": [
+            0.6,
+            0.6207,
+            0.6393,
+            0.6562,
+            0.5937,
+            0.5202,
+            0.474,
+            0.4214,
+            0.8647,
+            0.9264,
+            0.6925,
+            0.0
+          ],
+          "kind": "scatter"
+        }
+      ],
+      "n_bars": 0
+    }
+  ]
+}

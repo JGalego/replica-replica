@@ -1,0 +1,64 @@
+{
+  "n_axes": 1,
+  "suptitle": "",
+  "axes": [
+    {
+      "title": "Leading digit distribution of first 1000 Fibonacci numbers",
+      "xlabel": "Leading digit",
+      "ylabel": "Relative frequency",
+      "xscale": "linear",
+      "yscale": "linear",
+      "xlim": [
+        0.26999999999999996,
+        9.729999999999999
+      ],
+      "ylim": [
+        0.0,
+        0.35
+      ],
+      "legend_labels": [
+        "Benford's law",
+        "Empirical"
+      ],
+      "lines": [
+        {
+          "n_points": 9,
+          "x_range": [
+            1.0,
+            9.0
+          ],
+          "y_range": [
+            0.04575749056067514,
+            0.3010299956639812
+          ],
+          "y_mean": 0.1111111111111111,
+          "y_profile": [
+            0.301,
+            0.1761,
+            0.1249,
+            0.0969,
+            0.0792,
+            0.0669,
+            0.058,
+            0.0512,
+            0.0458
+          ],
+          "label": "Benford's law"
+        }
+      ],
+      "collections": [],
+      "n_bars": 9,
+      "bar_heights": [
+        0.3013,
+        0.1772,
+        0.1251,
+        0.0951,
+        0.0801,
+        0.0671,
+        0.0561,
+        0.0531,
+        0.045
+      ]
+    }
+  ]
+}

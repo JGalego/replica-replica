@@ -1,0 +1,313 @@
+{
+  "task_id": "anscombe-1973",
+  "status": "ok",
+  "runtime_seconds": 1.1,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 4,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Dataset I",
+        "xlabel": "",
+        "ylabel": "",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          0.0,
+          15.0
+        ],
+        "ylim": [
+          0.0,
+          12.0
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 200,
+            "x_range": [
+              0.0,
+              15.0
+            ],
+            "y_range": [
+              3.0,
+              10.5
+            ],
+            "y_mean": 6.75,
+            "y_profile": [
+              3.0,
+              3.6784,
+              4.3568,
+              5.0352,
+              5.7136,
+              6.392,
+              7.0704,
+              7.7487,
+              8.4271,
+              9.1055,
+              9.7839,
+              10.5
+            ],
+            "label": "_child1"
+          }
+        ],
+        "collections": [
+          {
+            "n_points": 11,
+            "x_range": [
+              4.0,
+              14.0
+            ],
+            "y_range": [
+              4.26,
+              10.84
+            ],
+            "y_mean": 7.500909090909093,
+            "y_profile": [
+              4.26,
+              5.68,
+              7.24,
+              4.82,
+              6.95,
+              8.81,
+              8.04,
+              8.33,
+              10.84,
+              7.58,
+              9.96
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      },
+      {
+        "title": "Dataset II",
+        "xlabel": "",
+        "ylabel": "",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          0.0,
+          15.0
+        ],
+        "ylim": [
+          0.0,
+          12.0
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 200,
+            "x_range": [
+              0.0,
+              15.0
+            ],
+            "y_range": [
+              3.0,
+              10.5
+            ],
+            "y_mean": 6.75,
+            "y_profile": [
+              3.0,
+              3.6784,
+              4.3568,
+              5.0352,
+              5.7136,
+              6.392,
+              7.0704,
+              7.7487,
+              8.4271,
+              9.1055,
+              9.7839,
+              10.5
+            ],
+            "label": "_child1"
+          }
+        ],
+        "collections": [
+          {
+            "n_points": 11,
+            "x_range": [
+              4.0,
+              14.0
+            ],
+            "y_range": [
+              3.1,
+              9.26
+            ],
+            "y_mean": 7.50090909090909,
+            "y_profile": [
+              3.1,
+              4.74,
+              6.13,
+              7.26,
+              8.14,
+              8.77,
+              9.14,
+              9.26,
+              9.13,
+              8.74,
+              8.1
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      },
+      {
+        "title": "Dataset III",
+        "xlabel": "",
+        "ylabel": "",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          0.0,
+          15.0
+        ],
+        "ylim": [
+          0.0,
+          12.0
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 200,
+            "x_range": [
+              0.0,
+              15.0
+            ],
+            "y_range": [
+              3.0,
+              10.5
+            ],
+            "y_mean": 6.75,
+            "y_profile": [
+              3.0,
+              3.6784,
+              4.3568,
+              5.0352,
+              5.7136,
+              6.392,
+              7.0704,
+              7.7487,
+              8.4271,
+              9.1055,
+              9.7839,
+              10.5
+            ],
+            "label": "_child1"
+          }
+        ],
+        "collections": [
+          {
+            "n_points": 11,
+            "x_range": [
+              4.0,
+              14.0
+            ],
+            "y_range": [
+              5.39,
+              12.74
+            ],
+            "y_mean": 7.5,
+            "y_profile": [
+              5.39,
+              5.73,
+              6.08,
+              6.42,
+              6.77,
+              7.11,
+              7.46,
+              7.81,
+              8.15,
+              12.74,
+              8.84
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      },
+      {
+        "title": "Dataset IV",
+        "xlabel": "",
+        "ylabel": "",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          0.0,
+          15.0
+        ],
+        "ylim": [
+          0.0,
+          12.0
+        ],
+        "legend_labels": [],
+        "lines": [
+          {
+            "n_points": 200,
+            "x_range": [
+              0.0,
+              15.0
+            ],
+            "y_range": [
+              3.0,
+              10.5
+            ],
+            "y_mean": 6.75,
+            "y_profile": [
+              3.0,
+              3.6784,
+              4.3568,
+              5.0352,
+              5.7136,
+              6.392,
+              7.0704,
+              7.7487,
+              8.4271,
+              9.1055,
+              9.7839,
+              10.5
+            ],
+            "label": "_child1"
+          }
+        ],
+        "collections": [
+          {
+            "n_points": 11,
+            "x_range": [
+              4.0,
+              14.0
+            ],
+            "y_range": [
+              4.26,
+              10.84
+            ],
+            "y_mean": 7.618181818181819,
+            "y_profile": [
+              4.26,
+              5.68,
+              7.24,
+              4.82,
+              6.95,
+              8.81,
+              8.14,
+              8.33,
+              10.84,
+              8.77,
+              9.96
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom replica_replica.harness import submit\n\n# Anscombe's quartet data\nx = np.array([10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5], dtype=float)\n\ny1 = np.array([8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68], dtype=float)\ny2 = np.array([9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74], dtype=float)\ny3 = np.array([7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73], dtype=float)\ny4 = np.array([8.14, 6.95, 8.77, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68], dtype=float)\n\ndatasets = [y1, y2, y3, y4]\nlabels = ['I', 'II', 'III', 'IV']\n\n# Regression line y = 3 + 0.5x\nx_line = np.linspace(0, 15, 200)\ny_line = 3 + 0.5 * x_line\n\nfig, axs = plt.subplots(2, 2, figsize=(8, 6), sharex=True, sharey=True)\naxs = axs.ravel()\n\nfor ax, y, label in zip(axs, datasets, labels):\n    ax.scatter(x, y, color='black')\n    ax.plot(x_line, y_line, color='red', linestyle='--')\n    ax.set_title(f'Dataset {label}')\n    ax.set_xlim(0, 15)\n    ax.set_ylim(0, 12)\n    ax.grid(True, which='both', linestyle=':', linewidth=0.5)\n\nplt.tight_layout()\nsubmit(fig)",
+  "attempt": 1
+}

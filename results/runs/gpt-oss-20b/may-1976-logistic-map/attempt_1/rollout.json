@@ -1,0 +1,63 @@
+{
+  "task_id": "may-1976-logistic-map",
+  "status": "ok",
+  "runtime_seconds": 30.1,
+  "budget_seconds": 180,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Bifurcation diagram of the logistic map",
+        "xlabel": "Growth parameter r",
+        "ylabel": "Population x",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          2.5,
+          4.0
+        ],
+        "ylim": [
+          0.0,
+          1.0
+        ],
+        "legend_labels": [],
+        "lines": [],
+        "collections": [
+          {
+            "n_points": 4000000,
+            "x_range": [
+              2.5,
+              4.0
+            ],
+            "y_range": [
+              0.0,
+              0.9999139813982514
+            ],
+            "y_mean": 0.6371235592064566,
+            "y_profile": [
+              0.6,
+              0.6207,
+              0.6393,
+              0.6562,
+              0.5937,
+              0.5202,
+              0.474,
+              0.4214,
+              0.8647,
+              0.9264,
+              0.6925,
+              0.0
+            ],
+            "kind": "scatter"
+          }
+        ],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nimport matplotlib.pyplot as plt\n\n# Parameters for the bifurcation diagram\nr_min = 2.5\nr_max = 4.0\nnum_r = 5000          # number of r values\ntransient = 200       # iterations to discard as transient\niterations = 1000     # total iterations per r\nrecord = iterations - transient  # number of points to record\n\n# Generate r values\nr_values = np.linspace(r_min, r_max, num_r)\n\n# Prepare lists to collect data for plotting\nr_plot = []\nx_plot = []\n\n# Initial condition\nx0 = 0.5\n\nfor r in r_values:\n    x = x0\n    # Iterate the logistic map\n    for i in range(iterations):\n        x = r * x * (1.0 - x)\n        if i >= transient:\n            r_plot.append(r)\n            x_plot.append(x)\n\n# Create the figure\nfig, ax = plt.subplots(figsize=(10, 6))\nax.scatter(r_plot, x_plot, s=0.1, color='black', rasterized=True)\nax.set_xlabel('Growth parameter r')\nax.set_ylabel('Population x')\nax.set_title('Bifurcation diagram of the logistic map')\nax.set_xlim(r_min, r_max)\nax.set_ylim(0, 1)\n\n# Finalize and submit\nfrom replica_replica.harness import submit\nsubmit(fig)"
+}

@@ -1,0 +1,94 @@
+{
+  "task_id": "zipf-1949",
+  "status": "ok",
+  "runtime_seconds": 1.4,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "Zipf's law for Moby\u2011Dick (log\u2011log plot)",
+        "xlabel": "Frequency rank (r)",
+        "ylabel": "Word frequency (f)",
+        "xscale": "log",
+        "yscale": "log",
+        "xlim": [
+          0.614515085933236,
+          27594.115080589414
+        ],
+        "ylim": [
+          0.4901078734961814,
+          23737.549914320844
+        ],
+        "legend_labels": [
+          "Data",
+          "Fit: s=1.167"
+        ],
+        "lines": [
+          {
+            "n_points": 16957,
+            "x_range": [
+              1.0,
+              16957.0
+            ],
+            "y_range": [
+              1.0,
+              14537.0
+            ],
+            "y_mean": 12.918912543492363,
+            "y_profile": [
+              14537.0,
+              14.0,
+              7.0,
+              4.0,
+              3.0,
+              2.0,
+              2.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "label": "Data"
+          },
+          {
+            "n_points": 200,
+            "x_range": [
+              10.0,
+              16947.0
+            ],
+            "y_range": [
+              0.8002999319334958,
+              4690.3554404467695
+            ],
+            "y_mean": 31.00133599198747,
+            "y_profile": [
+              4690.3554,
+              13.1215,
+              5.8663,
+              3.6596,
+              2.6177,
+              2.0184,
+              1.632,
+              1.3636,
+              1.167,
+              1.0173,
+              0.8997,
+              0.8003
+            ],
+            "label": "Fit: s=1.167"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import re\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom collections import Counter\nfrom replica_replica.harness import submit\n\n# Load and tokenize the corpus\nwith open('moby_dick.txt', 'r', encoding='utf-8') as f:\n    text = f.read().lower()\ntokens = re.findall(r'[a-z]+', text)\n\n# Count word frequencies\nfreq_counter = Counter(tokens)\nfreqs = np.array(sorted(freq_counter.values(), reverse=True))\nranks = np.arange(1, len(freqs) + 1)\n\n# Prepare data for fitting: exclude extreme ranks\nmin_rank = 10\nmax_rank = len(freqs) - 10\nfit_mask = (ranks >= min_rank) & (ranks <= max_rank)\nlog_r = np.log10(ranks[fit_mask])\nlog_f = np.log10(freqs[fit_mask])\n\n# Linear regression on log-log data\nslope, intercept = np.polyfit(log_r, log_f, 1)\ns_est = -slope  # exponent in f \u221d 1/r^s\n\n# Generate fitted line\nr_fit = np.linspace(ranks[fit_mask][0], ranks[fit_mask][-1], 200)\nf_fit = 10**(intercept) * r_fit**slope\n\n# Plotting\nfig, ax = plt.subplots(figsize=(8, 6))\nax.loglog(ranks, freqs, marker='o', linestyle='', markersize=4, alpha=0.6, label='Data')\nax.loglog(r_fit, f_fit, 'r-', linewidth=2, label=f'Fit: s={s_est:.3f}')\nax.set_xlabel('Frequency rank (r)')\nax.set_ylabel('Word frequency (f)')\nax.set_title('Zipf\\'s law for Moby\u2011Dick (log\u2011log plot)')\nax.legend()\nax.grid(True, which='both', ls='--', lw=0.5)\n\n# Annotate slope\nax.text(0.05, 0.95, f'Estimated exponent s \u2248 {s_est:.3f}',\n        transform=ax.transAxes, verticalalignment='top', bbox=dict(facecolor='white', alpha=0.8))\n\nsubmit(fig)",
+  "attempt": 1
+}

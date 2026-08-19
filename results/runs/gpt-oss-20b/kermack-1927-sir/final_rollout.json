@@ -1,0 +1,122 @@
+{
+  "task_id": "kermack-1927-sir",
+  "status": "ok",
+  "runtime_seconds": 1.3,
+  "budget_seconds": 120,
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "figure_meta": {
+    "n_axes": 1,
+    "suptitle": "",
+    "axes": [
+      {
+        "title": "SIR epidemic model (beta=0.4, gamma=0.1, N=1000, I0=1)",
+        "xlabel": "Time (days)",
+        "ylabel": "Population",
+        "xscale": "linear",
+        "yscale": "linear",
+        "xlim": [
+          -5.0,
+          105.0
+        ],
+        "ylim": [
+          -49.95,
+          1048.95
+        ],
+        "legend_labels": [
+          "Susceptible",
+          "Infected",
+          "Recovered"
+        ],
+        "lines": [
+          {
+            "n_points": 1001,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              19.786393579458842,
+              999.0
+            ],
+            "y_mean": 247.05145360914267,
+            "y_profile": [
+              999.0,
+              980.8873,
+              774.4972,
+              248.1705,
+              69.7897,
+              34.7157,
+              25.2303,
+              21.9649,
+              20.6633,
+              20.1185,
+              19.8863,
+              19.7864
+            ],
+            "label": "Susceptible"
+          },
+          {
+            "n_points": 1001,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.8847236599839954,
+              403.5252385469068
+            ],
+            "y_mean": 97.83707818221777,
+            "y_profile": [
+              1.0,
+              14.5385,
+              161.9354,
+              403.5147,
+              265.6217,
+              127.5107,
+              57.0015,
+              24.9542,
+              10.8635,
+              4.7159,
+              2.0441,
+              0.8847
+            ],
+            "label": "Infected"
+          },
+          {
+            "n_points": 1001,
+            "x_range": [
+              0.0,
+              100.0
+            ],
+            "y_range": [
+              0.0,
+              979.3288827605572
+            ],
+            "y_mean": 655.1114682086396,
+            "y_profile": [
+              0.0,
+              4.5742,
+              63.5675,
+              348.3149,
+              664.5886,
+              837.7735,
+              917.7683,
+              953.0809,
+              968.4733,
+              975.1656,
+              978.0696,
+              979.3289
+            ],
+            "label": "Recovered"
+          }
+        ],
+        "collections": [],
+        "n_bars": 0
+      }
+    ]
+  },
+  "has_png": true,
+  "solution_code": "import numpy as np\nfrom scipy.integrate import solve_ivp\nimport matplotlib.pyplot as plt\nfrom replica_replica.harness import submit\n\ndef sir_ode(t, y, beta, gamma, N):\n    S, I, R = y\n    dSdt = -beta * S * I / N\n    dIdt = beta * S * I / N - gamma * I\n    dRdt = gamma * I\n    return [dSdt, dIdt, dRdt]\n\ndef main():\n    # Parameters\n    N = 1000.0\n    beta = 0.4   # per day\n    gamma = 0.1  # per day\n    I0 = 1.0\n    S0 = N - I0\n    R0 = 0.0\n    y0 = [S0, I0, R0]\n\n    # Time grid\n    t_start = 0.0\n    t_end = 100.0\n    t_eval = np.linspace(t_start, t_end, 1001)\n\n    # Solve ODE\n    sol = solve_ivp(\n        fun=lambda t, y: sir_ode(t, y, beta, gamma, N),\n        t_span=(t_start, t_end),\n        y0=y0,\n        t_eval=t_eval,\n        method='RK45',\n        vectorized=False,\n    )\n\n    S, I, R = sol.y\n\n    # Plotting\n    fig, ax = plt.subplots(figsize=(8, 5))\n    ax.plot(sol.t, S, label='Susceptible', color='blue')\n    ax.plot(sol.t, I, label='Infected', color='red')\n    ax.plot(sol.t, R, label='Recovered', color='green')\n    ax.set_xlabel('Time (days)')\n    ax.set_ylabel('Population')\n    ax.set_title(f'SIR epidemic model (beta={beta}, gamma={gamma}, N={int(N)}, I0={int(I0)})')\n    ax.legend()\n    ax.grid(True, linestyle='--', alpha=0.4)\n\n    # Submit figure\n    submit(fig)\n\nif __name__ == \"__main__\":\n    main()",
+  "attempt": 1
+}
