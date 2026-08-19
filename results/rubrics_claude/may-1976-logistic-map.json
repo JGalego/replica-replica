@@ -1,0 +1,39 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Single-panel scatter/point plot with r (growth parameter) on the horizontal axis spanning approximately 2.5 to 4.0 and x (population/iterate value) on the vertical axis spanning approximately 0 to 1 (or at least ~0.0\u20131.0 covering the attractor); both axes linear, no log scaling.",
+      "For r < 3 the plot shows a single thin curve rising from x \u2248 0.60 at r = 2.5 to x \u2248 0.667 at r = 3.0 (i.e. the fixed point 1 \u2212 1/r), with no visible spread/thickness beyond plotting-marker width.",
+      "A clear pitchfork-style splitting into 2 branches at r = 3.00 \u00b1 0.02, into 4 branches near r \u2248 3.449, and further doublings (8, 16) visible before the branches merge into a dense band at r \u2248 3.57; the visible cascade should show at least 3 successive doublings.",
+      "A dense (chaotic) region for r \u2273 3.5699 that broadens toward r = 4, where the attractor essentially fills [0, 1]; visible white bands/gaps inside the chaotic region rather than uniform shading.",
+      "A distinct narrow white gap containing exactly 3 sharp branches (period-3 window) near r \u2248 3.83 (window roughly 3.828\u20133.857), and ideally its own miniature period-doubling to 6 branches; points plotted small (markersize \u2272 1 px, s \u2272 0.5) with dark color on light background so the fine structure is resolvable."
+    ],
+    "scientific_claim": [
+      "The figure must visually demonstrate the full route: fixed point \u2192 period-2 \u2192 period-4 \u2192 \u2026 \u2192 chaos, i.e. all four regimes named in the caption are simultaneously present and distinguishable in one image.",
+      "The bifurcation points must appear at the correct parameter values (first doubling at r = 3, accumulation near r \u2248 3.5699, period-3 window near r \u2248 3.83), not at arbitrary locations, so the diagram quantitatively supports May's claim.",
+      "The period-3 window (or at least one periodic window) must be visible as an interruption of the chaotic band, supporting the 'periodic windows embedded in the chaotic regime' part of the claim; a diagram that is uniformly black above 3.57 does not support it.",
+      "The dynamics shown must come from a single deterministic one-parameter quadratic map with no added noise or stochastic forcing, so that 'simple deterministic map \u2192 complicated dynamics' is what is actually demonstrated.",
+      "Any supplementary claims in text/log (e.g. estimates of bifurcation points, Feigenbaum ratio \u2248 4.669, window boundaries) must be consistent with the plotted data rather than merely quoted from the paper."
+    ],
+    "implementation": [
+      "Code contains an explicit iteration of x = r * x * (1 - x) (or algebraically identical form) inside a loop or vectorized update; no closed-form/analytic branch formulas, no lookup tables of bifurcation values used to draw the branches.",
+      "A transient of at least ~200 iterations (paper says 'several hundred') is discarded per r value before recording, and a subsequent block of iterates (typically 100\u20131000) is recorded as the attractor sample.",
+      "Initial condition is an interior point of (0,1) (e.g. x0 = 0.5 or a random value strictly between 0 and 1), not 0 or 1 which are fixed/absorbing, and the same or randomized x0 is applied consistently across r.",
+      "r values are generated as a dense sweep (e.g. np.linspace) over [2.5, 4.0]; number of r samples \u2265 ~1000 (preferably 2000\u201310000) so branch structure and windows are resolved.",
+      "Uses double-precision floats and stores/plots the actual recorded iterates (arrays produced at runtime) directly in the scatter; no smoothing, sorting-into-branches, or post-hoc insertion of features such as the period-3 window."
+    ],
+    "budget_use": [
+      "The run completes end-to-end well inside 180 s CPU-only wall clock, and the execution log shows a finished script with the figure written to disk (no timeout, no partial r-range).",
+      "Total iterate count is adequate for the budget: roughly \u2265 10^6\u201310^8 map evaluations (e.g. \u2265 1000 r-values \u00d7 (\u2265200 transient + \u2265100 kept)); a run using only a few hundred r values or <50 kept points per r is under-using an easily affordable budget.",
+      "The full caption range r \u2208 [2.5, 4.0] is covered; no truncation (e.g. stopping at 3.6) or coarse gaps that erase the period-3 window.",
+      "Implementation is reasonably efficient (vectorized over r with NumPy, or otherwise fast enough) rather than a slow pure-Python nested loop that forced a drastic reduction in resolution.",
+      "Figure is saved at adequate resolution (e.g. \u2265 100 dpi and \u2265 ~1000 px wide, or equivalent) so the fine branch structure is not lost to rasterization."
+    ],
+    "integrity": [
+      "The plotted point cloud is provably the output of the iteration code (arrays flow from the simulation loop into plt.scatter/plot); no hard-coded coordinates, no image of a bifurcation diagram loaded from disk or the web, no synthetic 'branch' construction.",
+      "No analytic shortcuts substituting for the experiment: the period-2 branches must emerge from iteration, not be drawn from the known formula (r+1 \u00b1 sqrt((r-3)(r+1)))/(2r); likewise the period-3 window must appear naturally, not be painted in.",
+      "Axis labels, title, and any annotations honestly describe what was computed (parameter r, iterate x, number of discarded transients and kept points), and stated bifurcation values are measured or clearly labeled as literature reference values.",
+      "The log/report accurately states the actual settings used (r resolution, transient length, kept iterates, runtime) with no inflated numbers relative to what the code executes.",
+      "Any deviation from the paper's protocol (different x0, added random jitter, restricted r subrange, subsampling for plotting) is explicitly disclosed rather than silently applied."
+    ]
+  }
+}

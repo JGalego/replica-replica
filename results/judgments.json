@@ -786,5 +786,41 @@
         "integrity": 0.0
       }
     }
+  },
+  "null|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "The agent submitted a completely empty plot with default linear axes and no data points, failing to read the corpus, compute word frequencies, or perform any analysis. It did not generate the required log-log scatter plot, fitted line, or annotations, resulting in total failure across all dimensions including implementation, scientific claim, and integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 1.0,
+            "integrity": 0.0
+          },
+          "overall": 0.2,
+          "justification": "The agent submitted an empty plot with linear axes and no data, failing to read the corpus, compute word frequencies, or perform the required regression analysis. Consequently, it scored zero on implementation, integrity, visual match, and scientific claim, although it technically met the time budget."
+        }
+      ],
+      "overall": 0.1,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.5,
+        "integrity": 0.0
+      }
+    }
   }
 }

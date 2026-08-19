@@ -132,3 +132,4 @@
   gpt-oss-20b    zipf-1949                    -> ok (1.4s)
 == Phase 3: judging ==
   judged null|may-1976-logistic-map [rubric] -> 0.100
+  judged null|zipf-1949 [rubric] -> 0.100

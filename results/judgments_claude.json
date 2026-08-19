@@ -1,0 +1,1130 @@
+{
+  "reference|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.62,
+            "implementation": 0.75,
+            "budget_use": 0.92,
+            "integrity": 0.95
+          },
+          "overall": 0.828,
+          "justification": "The figure is a correct 2x2 grid of the four Anscombe datasets with canonical hard-coded data (including the correct placement of 12.50 at the x=19 row in set IV), 11 markers per panel, shared axis limits (x 2-20, y 2-14) via sharex/sharey, axis labels, and a per-panel least-squares line from np.polyfit that legends confirm as y = 3.00 + 0.500x in every panel. Correlations (0.816/0.817) appear in the titles. The main shortfall is that the shared summary statistics beyond r and the regression coefficients are never computed or reported: means of x and y, sample variances (11.0 and ~4.13), R^2, "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.7,
+            "implementation": 0.78,
+            "budget_use": 0.9,
+            "integrity": 0.97
+          },
+          "overall": 0.85,
+          "justification": "The submission produces a correct 2x2 grid of four scatter panels with the canonical Anscombe data (all 11 points per set, correct y-tables, correct x=19 leverage point placement), shared axis limits (x 2-20, y 2-14) via sharex/sharey, markers only, axis labels, and titles identifying datasets I-IV. The plotted line is genuinely computed per dataset with np.polyfit and its coefficients are printed in each legend as y = 3.00 + 0.500x, plus r = 0.816/0.817 in the titles, so the identity of the fits is demonstrated rather than asserted, and nothing is hard-coded to force the result. The main shor"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.72,
+            "implementation": 0.8,
+            "budget_use": 0.95,
+            "integrity": 0.96
+          },
+          "overall": 0.866,
+          "justification": "The figure is a correct 2x2 grid with the canonical Anscombe data (including the correct placement of x=19 with y=12.50 in set IV), 11 points per panel, shared x/y limits (2-20, 2-14), axis labels, and a least-squares line computed per dataset via np.polyfit that displays as y = 3.00 + 0.500x in every panel, so the qualitative shapes (linear, arch, outlier, leverage) are clearly comparable and the core claim is supported. Correlation is computed and shown per panel (r \u2248 0.816/0.817). The main shortfall is that means and variances (mean x = 9.00, mean y = 7.50, var x = 11.0, var y \u2248 4.13, with "
+        }
+      ],
+      "overall": 0.848,
+      "dimensions": {
+        "visual_match": 0.9,
+        "scientific_claim": 0.68,
+        "implementation": 0.7766666666666667,
+        "budget_use": 0.9233333333333333,
+        "integrity": 0.96
+      }
+    }
+  },
+  "reference|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.78,
+            "scientific_claim": 0.72,
+            "implementation": 0.85,
+            "budget_use": 0.85,
+            "integrity": 0.9
+          },
+          "overall": 0.8200000000000001,
+          "justification": "The figure reproduces the essential double-descent panel: log-log axes, N from 10 to 3000 (~2.5 decades, minimum acceptable), labeled test and train risk curves, and a dashed vertical line explicitly annotated as the interpolation threshold N = n = 300. Test risk shows a mild U-shape for N<n, a clear global peak (0.33) right at the threshold, and a second descent to 0.0165 at N=3000, below the best underparameterized risk (~0.069) \u2014 supporting the claim; however the peak exceeds the underparameterized minimum by only ~5x rather than the ~10x the rubric expects (likely because the grid straddle"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.68,
+            "scientific_claim": 0.65,
+            "implementation": 0.82,
+            "budget_use": 0.62,
+            "integrity": 0.9
+          },
+          "overall": 0.734,
+          "justification": "The figure has all the required structural elements: a single log-log panel with test and train risk curves, a labeled legend, a dashed vertical line explicitly annotated as the interpolation threshold N = n = 300, and correct axis labels. The computed curve does show a mild U-shape for N<n, a local maximum at N\u2248317, and a clear second descent with the largest-N test risk (0.0165) well below the best underparameterized value (0.069), which supports the paper's claim. However, the threshold peak is only ~4.8x above the underparameterized minimum, short of the ~order-of-magnitude spike the rubri"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.78,
+            "scientific_claim": 0.75,
+            "implementation": 0.85,
+            "budget_use": 0.72,
+            "integrity": 0.88
+          },
+          "overall": 0.7959999999999999,
+          "justification": "The figure has all the required structural elements: single log-log panel, N from 10 to 3000 (~2.5 decades, just meeting the minimum), test and train risk curves with a legend, and a dashed vertical line explicitly labeled 'Interpolation threshold N = n = 300'. The shape is qualitatively correct double descent: test risk dips, rises, peaks at N\u2248316 (within a factor of 2 of n), then descends monotonically to 0.0165, below the underparameterized minimum (~0.069), supporting the paper's claim. Weaknesses: the peak (0.33) exceeds the underparameterized minimum by only ~5x rather than the ~1 order "
+        }
+      ],
+      "overall": 0.7833333333333333,
+      "dimensions": {
+        "visual_match": 0.7466666666666667,
+        "scientific_claim": 0.7066666666666667,
+        "implementation": 0.84,
+        "budget_use": 0.73,
+        "integrity": 0.8933333333333334
+      }
+    }
+  },
+  "reference|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.96,
+            "implementation": 0.94,
+            "budget_use": 0.92,
+            "integrity": 1.0
+          },
+          "overall": 0.954,
+          "justification": "The figure is a single clean panel with digits 1-9 on the x-axis, relative frequency on a linear y-axis topping near 0.316, bars for the empirical Fibonacci frequencies (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045) and a red marked line for log10(1+1/d), with a clear legend and labels; the two series track each other closely with a printed max deviation of 0.0020, fully supporting the claim (digit 1 ~30%, digit 9 ~4.5%). Implementation uses an exact Python big-integer recurrence for 1000 terms, string-based leading-digit extraction, and computes both series at plot time with "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.97,
+            "implementation": 0.95,
+            "budget_use": 0.92,
+            "integrity": 1.0
+          },
+          "overall": 0.958,
+          "justification": "The figure is a single panel with discrete digits 1-9 on the x-axis, relative frequency on a linear y-axis topping near 0.316, bars for the empirical Fibonacci frequencies and a red marked line for the Benford prediction, with a clear legend. Bar heights (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045) match the Benford values essentially exactly (max deviation 0.0020, printed), including digit-1 ~0.30 and digit-9 ~0.045, fully supporting the claim. The code computes the first 1000 Fibonacci numbers via exact Python integer recurrence, extracts leading digits from the decimal st"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.97,
+            "implementation": 0.95,
+            "budget_use": 0.9,
+            "integrity": 1.0
+          },
+          "overall": 0.954,
+          "justification": "The submission produces exactly the required single-panel figure: blue bars for empirical Fibonacci leading-digit frequencies (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045 \u2014 matching the canonical counts) overlaid with a red marked line for P(d)=log10(1+1/d), integer x-ticks 1-9, relative-frequency y-axis topping near 0.316, axis labels, title, and a legend distinguishing the two series. The Fibonacci numbers are generated with an exact big-integer recurrence over 1000 terms, leading digits extracted from the decimal string, and Benford values computed from the closed form; no"
+        }
+      ],
+      "overall": 0.9553333333333333,
+      "dimensions": {
+        "visual_match": 0.9499999999999998,
+        "scientific_claim": 0.9666666666666667,
+        "implementation": 0.9466666666666667,
+        "budget_use": 0.9133333333333334,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.9,
+            "implementation": 0.88,
+            "budget_use": 0.95,
+            "integrity": 1.0
+          },
+          "overall": 0.9359999999999999,
+          "justification": "The submission integrates the specified SIR ODEs with solve_ivp at rtol=1e-8 using exactly the prescribed parameters (N=1000, beta=0.4, gamma=0.1, I0=1, S0=999, t in [0,100], 500 evaluation points). The single-panel figure has correct axis labels, linear 0\u20131000 y-range, three distinguishable curves with an S/I/R legend, and a title stating R0=4. Quantitative landmarks match theory closely: peak I \u2248 404 at day 27.3, final S \u2248 19.9 (2% of N, matching the transcendental final-size relation), R plateau \u2248 979, I(100) \u2248 0.89 < 1, and the infected curve is clearly unimodal \u2014 fully supporting the clai"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.93,
+            "scientific_claim": 0.9,
+            "implementation": 0.85,
+            "budget_use": 0.9,
+            "integrity": 1.0
+          },
+          "overall": 0.916,
+          "justification": "The figure is a single panel with time (0\u2013100 days) on x, population (0\u20131000) on y, three labeled and color-distinguished S/I/R curves, and correct qualitative and quantitative behavior: S falls monotonically from 999 to ~19.9, R rises to ~979, and I is unimodal with peak 403.6 at day 27.3 \u2014 matching the analytic landmarks for beta=0.4, gamma=0.1, R0=4. The claim of a single-peaked epidemic terminating with ~2% susceptibles remaining is directly supported, R0=4 is computed and shown in the title, and diagnostics are printed from the solution arrays. Implementation uses the explicit ODE system "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.94,
+            "scientific_claim": 0.9,
+            "implementation": 0.87,
+            "budget_use": 0.9,
+            "integrity": 1.0
+          },
+          "overall": 0.9219999999999999,
+          "justification": "Single panel with time (0\u2013100 days) on x, population 0\u20131000 on y, correctly labeled axes, three distinguishable curves with a proper S/I/R legend, and title stating beta, gamma, R0=4, N. Quantitative landmarks match theory almost exactly: peak I \u2248 404 at day 27.3, final S \u2248 19.9 (2% of N), R \u2248 979, I(100) \u2248 0.9, S and R crossing near the peak region \u2014 all read off the integrated arrays and printed to stdout, cleanly demonstrating the single-peaked epidemic terminating with a nonzero susceptible remainder. Implementation uses solve_ivp with the exact ODEs, specified parameters, rtol=1e-8 and 50"
+        }
+      ],
+      "overall": 0.9246666666666666,
+      "dimensions": {
+        "visual_match": 0.94,
+        "scientific_claim": 0.9,
+        "implementation": 0.8666666666666667,
+        "budget_use": 0.9166666666666666,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.79,
+            "scientific_claim": 0.85,
+            "implementation": 0.87,
+            "budget_use": 0.6,
+            "integrity": 0.95
+          },
+          "overall": 0.812,
+          "justification": "The agent produced a genuine, correctly computed bifurcation diagram: vectorized iteration of x = r x(1-x) from x0 = 0.5, 600 discarded transients, 200 recorded iterates, 1400 r-values over the full [2.5, 4.0] range, plotted as pixel markers with linear axes and y in [0,1] \u2014 so the fixed-point branch, cascade, chaos onset and the period-3 window should all emerge naturally, and the two dashed reference lines are honestly labeled as literature values rather than fabricated data. Weaknesses: only ~1.1e6 map evaluations and 1.1 s of a 180 s budget were used, so r-resolution (1400) and kept-points"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.8,
+            "scientific_claim": 0.85,
+            "implementation": 0.88,
+            "budget_use": 0.6,
+            "integrity": 0.93
+          },
+          "overall": 0.8119999999999999,
+          "justification": "The agent produced a correct single-panel bifurcation diagram over r \u2208 [2.5, 4.0] with x \u2208 [0,1], generated by genuine vectorized iteration of x = r x (1-x) from x0 = 0.5 with a 600-step transient and 200 kept iterates across 1400 r-values, so all four regimes (fixed point, cascade, chaos, period-3 window) should be present and located correctly with no hard-coding or analytic shortcuts. Minor visual deductions: extra dashed vertical guide lines at r = 3 and r = 3.5699 (labeled literature values, honest but not in the target figure), alpha = 0.25 with only 200 points per r risks faint/washed-o"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.78,
+            "scientific_claim": 0.85,
+            "implementation": 0.9,
+            "budget_use": 0.62,
+            "integrity": 0.93
+          },
+          "overall": 0.8160000000000001,
+          "justification": "The agent vectorizes the genuine logistic iteration x = r*x*(1-x) over 1400 r-values in [2.5, 4.0] with 600 discarded transients and 200 kept iterates from x0 = 0.5, plotting the raw arrays as pixel markers on linear axes with correct limits, so the fixed-point branch, period-doubling cascade, chaotic band and (at this resolution) the period-3 window should all appear naturally with no hard-coding or analytic shortcuts. Weaknesses: the figure is decorated with two literature-value vertical dashed guide lines plus legend that the reference figure does not have, alpha=0.25 with only 200 points p"
+        }
+      ],
+      "overall": 0.8133333333333335,
+      "dimensions": {
+        "visual_match": 0.79,
+        "scientific_claim": 0.85,
+        "implementation": 0.8833333333333333,
+        "budget_use": 0.6066666666666666,
+        "integrity": 0.9366666666666666
+      }
+    }
+  },
+  "reference|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.88,
+            "scientific_claim": 0.72,
+            "implementation": 0.82,
+            "budget_use": 0.82,
+            "integrity": 0.95
+          },
+          "overall": 0.8379999999999999,
+          "justification": "The submission produces a proper single-panel log-log plot with rank on x (1\u201316957) and frequency on y (1\u201314537), all 16957 unique types plotted as small markers spanning ~4 decades, plus a distinguishable red fitted line over the stated bulk window (ranks 10\u201310^4) with the fitted exponent s = 1.13 annotated in the legend \u2014 well within the acceptable 0.8\u20131.3 range, and consistent with a genuine polyfit of log10(f) on log10(r). Corpus statistics (219,066 tokens, 16,957 types, top count 14,537 for 'the') are plausible and shown in the title, and the code honestly reads and tokenizes the actual f"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.92,
+            "scientific_claim": 0.75,
+            "implementation": 0.87,
+            "budget_use": 0.85,
+            "integrity": 0.95
+          },
+          "overall": 0.868,
+          "justification": "The figure is a single log-log panel with correctly labeled rank and frequency axes, all 16,957 empirical types plotted as dense markers spanning ~4 decades in rank and ~4 in frequency, showing the expected head curvature and hapax plateau, plus a distinguishable red regression line over the fit window with the fitted exponent (s = 1.13) annotated in the legend. Implementation is sound: it reads the actual corpus file, tokenizes with re.findall(r'[a-z]+') on lowercased text, counts with a dict, ranks descending, and obtains the slope via np.polyfit of log10(f) on log10(r) restricted to ranks 1"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.88,
+            "scientific_claim": 0.7,
+            "implementation": 0.85,
+            "budget_use": 0.85,
+            "integrity": 0.95
+          },
+          "overall": 0.8460000000000001,
+          "justification": "The figure is a correct single-panel log-log rank-frequency plot with all 16,957 types plotted as dense small markers, axes properly labeled, ~4 decades of rank and ~4 decades of frequency, a red regression line overlaid, and the fitted exponent s = 1.13 annotated in the legend; corpus statistics (219,066 tokens, 16,957 types, top count 14,537) are plausible for Moby-Dick, indicating correct full-file reading and [a-z]+ tokenization with Counter-style dict counting and an explicit np.polyfit least-squares regression over ranks 10\u201310,000. Deductions: no goodness-of-fit statistic (R^2) is comput"
+        }
+      ],
+      "overall": 0.8506666666666667,
+      "dimensions": {
+        "visual_match": 0.8933333333333334,
+        "scientific_claim": 0.7233333333333333,
+        "implementation": 0.8466666666666667,
+        "budget_use": 0.84,
+        "integrity": 0.9499999999999998
+      }
+    }
+  },
+  "degraded|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.05,
+            "scientific_claim": 0.0,
+            "implementation": 0.1,
+            "budget_use": 0.2,
+            "integrity": 0.6
+          },
+          "overall": 0.19,
+          "justification": "The submission plots only dataset I as a single scatter panel with no regression line, no 2x2 grid, no datasets II-IV, no common axis limits, and no computed or printed summary statistics. Thus the figure cannot support the paper's central claim that identical statistics conceal radically different structure. Implementation credit is limited to correctly hard-coding the canonical x and y1 values; there is no least-squares fit, no per-dataset loop, and no variance/correlation computation. The run finished in 0.9 s and produced a figure, but the figure is grossly incomplete (1 of 4 panels, missi"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.05,
+            "scientific_claim": 0.0,
+            "implementation": 0.12,
+            "budget_use": 0.2,
+            "integrity": 0.55
+          },
+          "overall": 0.184,
+          "justification": "The submission plots only dataset I as a single scatter panel, with no 2x2 grid, no datasets II-IV, and no fitted regression line, so the figure bears almost no resemblance to the target and cannot demonstrate the paper's claim that identical summary statistics conceal radically different structures. No statistics (means, variances, correlation, slope/intercept) are computed or printed, and no least-squares fit is performed, so implementation credit is limited to the correctly hard-coded x and y1 arrays. The run finished in 0.9 s, well within budget, but the vast majority of the required work "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.05,
+            "scientific_claim": 0.02,
+            "implementation": 0.12,
+            "budget_use": 0.25,
+            "integrity": 0.65
+          },
+          "overall": 0.21800000000000003,
+          "justification": "The submission plots only dataset I as a single scatter panel: there is no 2x2 grid, no datasets II-IV, no fitted regression line, no shared axis limits, and no computed or printed summary statistics, so the figure cannot support the paper's central claim that identically-summarized datasets differ radically in structure. Implementation credit is limited to correctly hard-coding the canonical x and y1 values; no least-squares fit, variance convention, or per-dataset loop exists. Runtime was trivially within budget but the deliverable is grossly incomplete, so budget use scores low. Integrity i"
+        }
+      ],
+      "overall": 0.19733333333333336,
+      "dimensions": {
+        "visual_match": 0.05000000000000001,
+        "scientific_claim": 0.006666666666666667,
+        "implementation": 0.11333333333333333,
+        "budget_use": 0.21666666666666667,
+        "integrity": 0.6
+      }
+    }
+  },
+  "degraded|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.03,
+            "scientific_claim": 0.0,
+            "implementation": 0.15,
+            "budget_use": 0.1,
+            "integrity": 0.5
+          },
+          "overall": 0.156,
+          "justification": "The submission deliberately sweeps only N=5..120 (all N<<n=300), uses linear (not log) axes, only 6 N values, one seed, no vertical interpolation-threshold line, and no test-risk peak or second descent \u2014 so the figure cannot support the double-descent claim at all. Implementation additionally violates the core methodological requirement by fitting Ridge(alpha=1.0) instead of minimum-norm least squares/pseudoinverse; RFF construction, one-hot targets, digits loading, and the held-out split are the only correct elements. Budget use is poor: only 2.2s of 300s spent, with grossly inadequate resolu"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.05,
+            "scientific_claim": 0.0,
+            "implementation": 0.2,
+            "budget_use": 0.1,
+            "integrity": 0.7
+          },
+          "overall": 0.20999999999999996,
+          "justification": "The figure is a linear-axes plot with only 6 N values spanning 5-120, entirely in the underparameterized regime: no log axes, no interpolation-threshold line at N=300, no peak, and no second descent, so it neither resembles the target figure nor supports the double-descent claim (train risk also never reaches ~0). Implementation gets partial credit for correct RFF construction (cos(Wx+b), Gaussian W, uniform b), digits with n=300 and one-hot squared loss, but it violates the core requirement by using Ridge(alpha=1.0) instead of minimum-norm least squares, uses a single random draw, and omits a"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.04,
+            "scientific_claim": 0.0,
+            "implementation": 0.18,
+            "budget_use": 0.12,
+            "integrity": 0.6
+          },
+          "overall": 0.188,
+          "justification": "The figure only sweeps N = 5\u2013120, entirely in the underparameterized regime, with linear (not log) axes, no vertical line at N = n = 300, and no interpolation peak or second descent, so it cannot display or support the double-descent claim. Implementation gets partial credit for correct RFF construction (cos(Wx+b), Gaussian W, uniform b), digits with n=300, /16 scaling, and one-hot squared loss, but it uses Ridge(alpha=1.0) instead of minimum-norm least squares, a single random draw, and only 6 log-ish N values with max N far below n. Budget use is poor: it finished in 2.2 s of 300 s yet trunc"
+        }
+      ],
+      "overall": 0.18466666666666667,
+      "dimensions": {
+        "visual_match": 0.04,
+        "scientific_claim": 0.0,
+        "implementation": 0.17666666666666667,
+        "budget_use": 0.10666666666666667,
+        "integrity": 0.6
+      }
+    }
+  },
+  "degraded|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.5,
+            "scientific_claim": 0.05,
+            "implementation": 0.0,
+            "budget_use": 0.25,
+            "integrity": 0.0
+          },
+          "overall": 0.16,
+          "justification": "The code openly fabricates the result: instead of generating Fibonacci numbers and extracting leading digits, it draws 1000 random samples from the Benford distribution itself and labels them 'First 1000 Fibonacci numbers'. This is exactly the hard-coding/synthetic-substitution failure mode, so integrity and implementation score at zero, and the scientific claim is not demonstrated at all (the plotted 'agreement' is circular and, being a random draw, is actually noisier than the true Fibonacci frequencies, e.g., digit 1 at 0.278 vs the exact ~0.301). Superficially the figure does have the righ"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.68,
+            "scientific_claim": 0.08,
+            "implementation": 0.02,
+            "budget_use": 0.35,
+            "integrity": 0.0
+          },
+          "overall": 0.22599999999999998,
+          "justification": "The submitted code openly fabricates the 'empirical' series by drawing 1000 random samples from the Benford distribution instead of computing any Fibonacci numbers \u2014 no recurrence, no big-integer handling, no leading-digit extraction, and no printed counts or goodness-of-fit. This is a direct violation of the integrity requirement (score 0) and voids the implementation dimension. The rendered figure superficially resembles the target (single panel, digits 1-9 ticks, relative-frequency y-axis topping near 0.31, bars plus a red marked Benford line, legend, labels), so visual appearance scores mo"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.6,
+            "scientific_claim": 0.05,
+            "implementation": 0.0,
+            "budget_use": 0.25,
+            "integrity": 0.0
+          },
+          "overall": 0.18,
+          "justification": "The produced figure superficially resembles the target (single panel, digits 1-9, relative frequency y-axis topping near 0.30, decreasing bars plus a red Benford line with legend), so visual match is partly satisfied, though the digit-1 bar (0.278) sits just below the expected ~0.30 and the deviations are larger than a true Fibonacci computation would give. However, the code openly fabricates the result: the 'empirical' series is drawn with np.random.default_rng from the Benford distribution itself, and no Fibonacci sequence is ever generated. This is a direct violation of the integrity criter"
+        }
+      ],
+      "overall": 0.18866666666666668,
+      "dimensions": {
+        "visual_match": 0.5933333333333334,
+        "scientific_claim": 0.06,
+        "implementation": 0.006666666666666667,
+        "budget_use": 0.2833333333333333,
+        "integrity": 0.0
+      }
+    }
+  },
+  "degraded|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.12,
+            "scientific_claim": 0.03,
+            "implementation": 0.25,
+            "budget_use": 0.5,
+            "integrity": 0.55
+          },
+          "overall": 0.29000000000000004,
+          "justification": "The script integrates the correct SIR ODE system with solve_ivp and produces a properly labeled single panel with three legended curves, but it uses beta = 0.05 instead of the specified 0.4, giving R0 = 0.5 < 1. Consequently the figure shows essentially flat S ~999, monotonically decaying I from 1 to ~0.007, and R rising only to ~2 \u2014 no epidemic peak, no landmarks (peak I ~400 at ~27 days, final S ~20), and the y-range is dominated by a nearly constant S line. The central scientific claim (single-peaked epidemic terminating with susceptibles remaining when R0 > 1) is therefore not demonstrated"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.12,
+            "scientific_claim": 0.02,
+            "implementation": 0.28,
+            "budget_use": 0.55,
+            "integrity": 0.6
+          },
+          "overall": 0.314,
+          "justification": "The agent deliberately used beta = 0.05 (R0 = 0.5) instead of the specified beta = 0.4, so the produced figure shows no epidemic at all: S stays at ~998, I decays monotonically from 1 to 0.007, and R plateaus near 2 \u2014 none of the required landmarks (peak I \u2248 400 near day 27, S at peak \u2248 250, final S \u2248 20, R \u2248 980) are present, and the y-range is effectively empty of structure. The core scientific claim (single-peaked epidemic terminating with susceptibles remaining) is therefore not demonstrated at all, and the figure actually contradicts the caption. Implementation credit is partial: the thre"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.13,
+            "scientific_claim": 0.03,
+            "implementation": 0.25,
+            "budget_use": 0.5,
+            "integrity": 0.55
+          },
+          "overall": 0.292,
+          "justification": "The script correctly encodes the three SIR ODEs and integrates them with solve_ivp over 0-100 days, but it deliberately uses beta = 0.05 (R0 = 0.5) instead of the specified beta = 0.4, so the produced figure shows S essentially flat at ~999, I decaying monotonically from 1 to ~0.007, and R rising to only ~2 \u2014 none of the required landmarks (peak I ~400 near day 27, S falling to ~20, R plateau ~980) are present and the central scientific claim of a single-peaked epidemic terminating with susceptibles remaining is not demonstrated at all. Only the shell of the figure is right (one panel, 0-100 d"
+        }
+      ],
+      "overall": 0.2986666666666667,
+      "dimensions": {
+        "visual_match": 0.12333333333333334,
+        "scientific_claim": 0.02666666666666667,
+        "implementation": 0.26,
+        "budget_use": 0.5166666666666667,
+        "integrity": 0.5666666666666667
+      }
+    }
+  },
+  "degraded|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.07,
+            "scientific_claim": 0.04,
+            "implementation": 0.22,
+            "budget_use": 0.05,
+            "integrity": 0.75
+          },
+          "overall": 0.22599999999999998,
+          "justification": "The figure is genuinely computed by iterating x = r*x*(1-x) with an interior initial condition and no hard-coded or analytic branches, so integrity is largely intact (the code even comments on its own truncation). However the experiment is drastically under-specified relative to the task: r is swept only over [2.5, 3.4] with 60 values, only 20 transient iterations are discarded and 10 iterates kept, giving 600 total plotted points. Consequently the chaotic regime, the accumulation point near 3.5699, and the period-3 window near 3.83 are entirely absent, and even the visible cascade is contamin"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.08,
+            "scientific_claim": 0.03,
+            "implementation": 0.22,
+            "budget_use": 0.1,
+            "integrity": 0.7
+          },
+          "overall": 0.22599999999999998,
+          "justification": "The figure is a single-panel plot of iterates vs r, but the sweep stops at r = 3.4 with only 60 r-values, a 20-iteration transient and 10 kept points, so the diagram shows only the fixed-point branch, a smeared first bifurcation, and lingering transients (visible as scattered points where a clean 2-cycle should be). None of the paper's key features \u2014 the cascade of 3+ doublings, the accumulation point at r \u2248 3.5699, the chaotic band, or the period-3 window near 3.83 \u2014 is present, so the scientific claim is essentially unsupported. The implementation does explicitly iterate x = r*x*(1-x) from a"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.1,
+            "scientific_claim": 0.05,
+            "implementation": 0.25,
+            "budget_use": 0.08,
+            "integrity": 0.8
+          },
+          "overall": 0.256,
+          "justification": "The figure is a genuine, honestly computed plot of the logistic map iteration, but it is drastically truncated: r spans only 2.5\u20133.4 (instead of 2.5\u20134.0), with just 60 r-values, a 20-iteration transient, and 10 kept iterates. It therefore shows only the fixed-point branch and the first period doubling near r=3; the period-doubling cascade, the chaotic band above 3.57, and the period-3 window near 3.83 are entirely absent, so the paper's central claim is not demonstrated. Axis ranges (y \u2248 0.43\u20130.86) also fail the rubric. Implementation does contain the explicit x = r*x*(1-x) update with x0 = 0."
+        }
+      ],
+      "overall": 0.236,
+      "dimensions": {
+        "visual_match": 0.08333333333333333,
+        "scientific_claim": 0.04,
+        "implementation": 0.22999999999999998,
+        "budget_use": 0.07666666666666667,
+        "integrity": 0.75
+      }
+    }
+  },
+  "degraded|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.02,
+            "scientific_claim": 0.0,
+            "implementation": 0.25,
+            "budget_use": 0.15,
+            "integrity": 0.6
+          },
+          "overall": 0.20400000000000001,
+          "justification": "The figure is a linear-scale plot of only the top 50 word frequencies with no log-log axes, no fitted reference line, and no exponent annotation \u2014 an automatic fail on visual match and on the scientific claim (no exponent estimated at all, no fit, no R^2, no evidence of power-law behavior over decades). Implementation gets partial credit: it does read the actual corpus file, tokenizes with the specified lowercase-alphabetic rule, and counts frequencies with a real dict (top count 14,537 for 'the' is plausible), but it omits ranking of all types, the least-squares regression on log f vs log r, "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.03,
+            "scientific_claim": 0.0,
+            "implementation": 0.22,
+            "budget_use": 0.15,
+            "integrity": 0.6
+          },
+          "overall": 0.2,
+          "justification": "The figure is a linear-linear plot of only the top 50 word frequencies with no log axes, no full rank range, no fitted line, and no annotated exponent \u2014 the rubric explicitly calls a linear-scale plot a fail, and the power-law structure is entirely invisible. No exponent is estimated at all, so the scientific claim (s \u2248 1, straight line over several decades, goodness-of-fit, head/tail deviations) is wholly unsupported. Implementation gets partial credit: it does read the actual corpus file, tokenizes with the specified lowercase-alphabetic rule, and counts frequencies correctly (top count 14,5"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.02,
+            "scientific_claim": 0.0,
+            "implementation": 0.22,
+            "budget_use": 0.15,
+            "integrity": 0.55
+          },
+          "overall": 0.188,
+          "justification": "The figure is plotted on linear axes with only the top 50 word frequencies, which is an automatic fail for the log-log requirement; no fitted reference line, no annotated exponent, and no visible power-law behavior across decades. No exponent is estimated at all, so the scientific claim is entirely unsupported. Implementation gets partial credit for correctly reading the real corpus file and tokenizing with re.findall(r'[a-z]+', text.lower()) and counting via a dict, but it lacks ranking of all types, any least-squares regression, and any printed diagnostics (stdout empty). The run finished in"
+        }
+      ],
+      "overall": 0.19733333333333336,
+      "dimensions": {
+        "visual_match": 0.023333333333333334,
+        "scientific_claim": 0.0,
+        "implementation": 0.22999999999999998,
+        "budget_use": 0.15,
+        "integrity": 0.5833333333333334
+      }
+    }
+  },
+  "null|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty single-panel placeholder figure with no data, no panels, no regression lines, and no computed statistics. It fails every visual and scientific criterion: there is no 2x2 grid, no 11 points per dataset, no fitted lines, and nothing printed to the log. Implementation is absent \u2014 no data loading, no least-squares fit, no statistics. Budget use scores near zero despite fast runtime because the required figure content was never produced. Integrity gets partial credit only because nothing false was fabricated or claimed, though the title 'Replication attempt' on an empty a"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty single-axes placeholder figure titled 'Replication attempt' with no data, no panels, no regression lines, and no computed statistics. None of the rubric's visual, scientific, or implementation criteria are met: the Anscombe data are never loaded, no least-squares fits are computed, and nothing is printed. Budget use is nearly zero credit since the run completed quickly but produced no usable figure content. Integrity gets partial credit only because nothing was fabricated or falsely claimed \u2014 though the title implies a replication that was not attempted."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty single-axes figure titled 'Replication attempt' with no data, no panels, and no computation whatsoever. There is no 2x2 grid, no points, no regression lines, and no statistics printed, so visual_match and scientific_claim fail entirely. The code loads no Anscombe data and performs no fitting, so implementation is zero. Budget use is nominally fast but nothing of substance was produced, and the entire 120 s allowance was left unused for an achievable task. Integrity receives partial credit only because nothing false was fabricated or claimed, though the title 'Replica"
+        }
+      ],
+      "overall": 0.06999999999999999,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.05000000000000001,
+        "integrity": 0.3
+      }
+    }
+  },
+  "null|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.3
+          },
+          "overall": 0.06,
+          "justification": "The submission is an empty placeholder figure with no data, no RFF computation, no sweep, and no train/test curves. Nothing in the rubric is satisfied: no log axes, no threshold line, no double-descent shape, and no scientific claim supported. Implementation is absent entirely, and the negligible 0.7s runtime reflects that no work was done rather than efficient compute. Integrity gets partial credit only because nothing was fabricated or hard-coded, but the submission also fails to disclose or attempt the task at all."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.2
+          },
+          "overall": 0.04,
+          "justification": "The submission is an empty placeholder figure with no data: no RFF computation, no digits dataset, no pseudoinverse regression, no train/test curves, no interpolation-threshold line. Visual match and scientific claim are complete failures, and implementation is entirely absent. Budget use is scored 0 because virtually none of the 300 s was used to produce any result (the sweep was never attempted). Integrity receives only slight credit since nothing was fabricated or hard-coded, but the run also makes no honest disclosure of the failure."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.1
+          },
+          "overall": 0.02,
+          "justification": "The submission is an empty placeholder figure titled 'Replication attempt' with generic x/y axes, no data, no curves, no log scales, and no interpolation-threshold line. No Random Fourier Features, no digits data loading, no pseudoinverse regression, and no risk computation are present in the code, and stdout is empty, so nothing scientific was produced or claimed. Runtime of 0.7 s shows the budget was essentially unused rather than spent on the required sweep. The only mild credit is that nothing was fabricated or hard-coded to fake the double-descent result, but since no computed values exis"
+        }
+      ],
+      "overall": 0.04,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.0,
+        "integrity": 0.19999999999999998
+      }
+    }
+  },
+  "null|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with generic 'x'/'y' axes, no bars, no Benford line, no legend, and no computation whatsoever \u2014 no Fibonacci generation, no leading-digit extraction, no frequencies printed. Nothing in the rubric's visual, scientific, or implementation criteria is met. Budget was nominally within limits but essentially unused for any productive work, and the figure is not legible or complete. Integrity gets partial credit only because nothing was fabricated or hard-coded, though the title 'Replication attempt' on an empty axes is misleadingly presented as a result."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission produces an entirely empty placeholder figure titled 'Replication attempt' with generic x/y labels, no bars, no lines, no legend, and default 0-1 axes. No Fibonacci sequence is generated, no leading digits extracted, no Benford values computed, and nothing is printed. Thus visual_match, scientific_claim, and implementation all fail completely. Budget use scores near zero since the run finished quickly only because no work was done and the required figure content is absent. Integrity gets partial credit only in the trivial sense that nothing was fabricated or hard-coded \u2014 but the"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission produces an empty placeholder figure with generic 'x'/'y' axes, no bars, no Benford line, and no computation of Fibonacci numbers or leading digits. Nothing in the rubric's visual, scientific, or implementation criteria is met, and no output was printed. Budget use gets near-zero credit since although the run completed quickly, no required content was produced. Integrity receives partial credit only because nothing was fabricated or hard-coded to fake the expected result \u2014 but the honest-labeling criteria are also unmet since the figure claims to be a 'Replication attempt' while"
+        }
+      ],
+      "overall": 0.06999999999999999,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.05000000000000001,
+        "integrity": 0.3
+      }
+    }
+  },
+  "null|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with default axes labels 'x'/'y' and no data lines, legend, or ODE integration whatsoever. No SIR system was implemented, no simulation was run, and no diagnostics were printed, so visual match, scientific claim, and implementation all fail completely. Budget use is near zero credit: it finished in 0.7s of 120s but produced blank placeholder axes rather than the required full trajectory, wasting ample available budget. Integrity gets modest partial credit only because nothing was fabricated or falsely claimed \u2014 though presenting a blank plot titled"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with axes labeled 'x' and 'y', no curves, no legend, and default 0-1 limits. No ODE system is defined, no integrator is used, and no diagnostics are printed, so visual match, scientific claim, and implementation all fail completely. Budget was almost entirely unused (0.7 s of 120 s) with nothing produced, indicating a shortcut rather than efficiency. Integrity gets partial credit only because nothing was fabricated or falsely claimed, though the title 'Replication attempt' on a blank panel is mildly misleading as a submission."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with generic 'x'/'y' axes, no curves, no legend, and no ODE integration whatsoever. None of the visual, scientific, or implementation criteria are met: no SIR system is encoded, no parameters are set, no solution is computed, and no diagnostics printed. Budget was almost entirely unused (0.7 s of 120 s) with no attempt at the actual task, so budget_use is near zero despite no timeout. Integrity gets partial credit only because nothing was fabricated or falsely claimed \u2014 the placeholder is transparently blank rather than a faked result \u2014 but it sile"
+        }
+      ],
+      "overall": 0.06999999999999999,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.05000000000000001,
+        "integrity": 0.3
+      }
+    }
+  },
+  "null|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.3
+          },
+          "overall": 0.06,
+          "justification": "The submission is an empty placeholder figure: a single blank axes titled 'Replication attempt' with axis labels 'x'/'y' and no data collections. No logistic map iteration is performed, no r sweep, no transients, nothing computed. Therefore visual_match, scientific_claim, and implementation are complete failures, and budget_use fails as well since only 0.8s of the 180s budget was used with no meaningful computation or output. Integrity receives slight credit only because nothing was fabricated or falsely claimed, but the figure's labels do not honestly describe any computation performed and th"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with axes labeled 'x' and 'y' and title 'Replication attempt'; no logistic map iteration is performed, no data are plotted, and none of the required features (fixed-point branch, period-doubling cascade, chaotic band, period-3 window) are present. Implementation is entirely absent, and the run used less than 1 second of a 180 s budget, drastically under-using available resources. Integrity gets partial credit only because nothing was fabricated or hard-coded \u2014 the placeholder is transparently empty rather than deceptive \u2014 but it also fails to hones"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission produces an entirely empty axes with placeholder title and axis labels ('x'/'y'), containing no data whatsoever. There is no logistic map iteration, no r sweep, no transient discarding, and no plotted attractor, so visual_match, scientific_claim, and implementation all fail completely. Budget was essentially unused (0.8 s of 180 s) with no computation performed. Integrity gets partial credit only because nothing was fabricated or hard-coded, but the placeholder title 'Replication attempt' and mislabeled axes do not honestly describe any computation, and no disclosure of the fail"
+        }
+      ],
+      "overall": 0.06666666666666667,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.03333333333333333,
+        "integrity": 0.3
+      }
+    }
+  },
+  "null|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.3
+          },
+          "overall": 0.06,
+          "justification": "The submission is an empty placeholder figure with linear axes, no data, no labels beyond 'x'/'y', and no analysis whatsoever. The code never reads the corpus, tokenizes, counts frequencies, or fits an exponent, so visual match, scientific claim, and implementation all fail completely. Budget was barely used (0.7 s) with none of the required deliverables produced. Integrity gets slight credit only because nothing was fabricated or falsely claimed, but the title 'Replication attempt' on an empty plot provides no honest content either."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.05,
+            "integrity": 0.3
+          },
+          "overall": 0.06999999999999999,
+          "justification": "The submission is an empty placeholder figure with linear axes, no data, no labels beyond 'x'/'y', and no analysis whatsoever. No corpus was read, no tokenization or regression performed, and no exponent reported, so visual_match, scientific_claim, and implementation all fail completely. Budget was barely used (0.7s) but only because nothing was done. Integrity gets partial credit only in the narrow sense that nothing was fabricated or falsely claimed, though the title 'Replication attempt' on an empty plot is not an honest deliverable."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.3
+          },
+          "overall": 0.06,
+          "justification": "The submission is an empty placeholder figure with linear axes, no data, no labels beyond 'x'/'y', and no analysis whatsoever. The code never reads the corpus, never tokenizes or counts words, and performs no regression, so all substantive dimensions fail. Budget was barely used but nothing was delivered, so budget_use scores 0 for lack of deliverables. Integrity gets slight credit only because nothing was fabricated or hard-coded to fake a result."
+        }
+      ],
+      "overall": 0.06333333333333334,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.016666666666666666,
+        "integrity": 0.3
+      }
+    }
+  },
+  "qwen3.6-27b|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.87,
+            "scientific_claim": 0.35,
+            "implementation": 0.3,
+            "budget_use": 0.75,
+            "integrity": 0.3
+          },
+          "overall": 0.514,
+          "justification": "The figure itself is an excellent replication: a 2x2 grid labelled Dataset I-IV, exactly 11 correct canonical points per panel (including the correctly paired x=19/y=12.50 leverage point), shared x/y limits, markers only, and the same slope-0.5 intercept-3 line in every panel, so the four qualitative shapes are clearly comparable. However, the quantitative side is essentially absent: the 'regression line' is literally hard-coded as y = 3 + 0.5*x (with a misleading comment 'Compute regression line'), no means, variances, correlations or fits are ever computed from the data, nothing is printed t"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.88,
+            "scientific_claim": 0.35,
+            "implementation": 0.2,
+            "budget_use": 0.9,
+            "integrity": 0.25
+          },
+          "overall": 0.516,
+          "justification": "The figure itself is a faithful reproduction: a 2x2 grid of four labelled panels, exactly 11 canonical Anscombe points per panel, shared x (3-20) and y (3-13) limits, correct qualitative shapes (linear, arch, outlier, leverage column), and the same slope-0.5/intercept-3 line in every panel. However, the core analytic content is not computed: the line is literally hard-coded as y = 3.0 + 0.5*x rather than obtained by least squares, and the summary statistics (means, variances, r, regression coefficients) are typed into an annotation copied from the paper rather than computed from the plotted da"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.87,
+            "scientific_claim": 0.45,
+            "implementation": 0.32,
+            "budget_use": 0.85,
+            "integrity": 0.4
+          },
+          "overall": 0.5780000000000001,
+          "justification": "The figure itself is a faithful reproduction: a 2x2 grid of four labelled panels, exactly 11 canonical Anscombe points each (with the x=19/y=12.50 leverage point correctly paired in set IV), shared x/y limits, markers only, and an identical straight line of slope 0.5 and intercept 3 in every panel, so the qualitative contrast (linear / curved / outlier / leverage) is clearly visible. However, the scientific and implementation core is missing: the plotted line is literally hard-coded as y = 3.0 + 0.5*x rather than obtained by least squares from each dataset, and no summary statistics are comput"
+        }
+      ],
+      "overall": 0.536,
+      "dimensions": {
+        "visual_match": 0.8733333333333334,
+        "scientific_claim": 0.3833333333333333,
+        "implementation": 0.2733333333333334,
+        "budget_use": 0.8333333333333334,
+        "integrity": 0.3166666666666667
+      }
+    }
+  },
+  "qwen3.6-27b|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "No figure, no code, and no log output were submitted. The agent produced nothing (runtime 0.0s), so all rubric dimensions fail: there is no plot to compare, no computed results supporting the double-descent claim, no implementation of RFF/min-norm least squares, no evidence of budget use, and nothing verifiable for integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "No figure, no code, and no logs were submitted; the run produced nothing at all. All rubric dimensions therefore fail: there is no plot to compare visually, no computed data to support the double-descent claim, no implementation of RFF/min-norm least squares, no evidence of budget usage or a completed sweep, and no verifiable pipeline output to assess integrity."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.0,
+            "integrity": 0.0
+          },
+          "overall": 0.0,
+          "justification": "No figure, no code, and no logs were submitted; the run produced nothing (0.0s runtime). All rubric dimensions fail: there is no plot to evaluate, no computed results supporting the double-descent claim, no implementation of RFF/min-norm least squares, no budget used productively, and no evidence of an executed pipeline."
+        }
+      ],
+      "overall": 0.0,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.0,
+        "budget_use": 0.0,
+        "integrity": 0.0
+      }
+    }
+  },
+  "qwen3.6-27b|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.9,
+            "implementation": 0.9,
+            "budget_use": 0.85,
+            "integrity": 1.0
+          },
+          "overall": 0.9199999999999999,
+          "justification": "The figure is a single panel with digits 1-9 on the x-axis, relative frequency on a linear y-axis topping near 0.32, bars for the empirical Fibonacci frequencies (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045) and a red marked line for P(d)=log10(1+1/d), with a legend and title stating N=1000 Fibonacci numbers \u2014 essentially exact agreement with the Benford values (max deviation <0.002). Implementation uses the true integer recurrence with Python arbitrary precision, string-based leading-digit extraction, and computes both series at plot time; nothing is hard-coded or fabricated"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.88,
+            "implementation": 0.9,
+            "budget_use": 0.9,
+            "integrity": 1.0
+          },
+          "overall": 0.9259999999999999,
+          "justification": "The submission produces exactly the expected single-panel figure: bars for empirical Fibonacci leading-digit frequencies (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045) overlaid with a red marked line for log10(1+1/d), correct axis labels, integer ticks 1-9, y-range ~0 to 0.316, and a clear legend. The empirical values match the canonical 301/177/125/96/80/67/56/53/45 counts, confirming a genuine exact-integer recurrence over all 1000 terms with correct first-character leading-digit extraction; Benford values are computed from the closed form, nothing is hard-coded or randomize"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.9,
+            "implementation": 0.9,
+            "budget_use": 0.92,
+            "integrity": 1.0
+          },
+          "overall": 0.9339999999999999,
+          "justification": "The submission produces a single-panel figure with digits 1-9 on the x-axis, relative frequency on a linear y-axis topping near 0.31, bars for the empirical Fibonacci leading-digit frequencies (0.301, 0.177, 0.125, 0.096, 0.080, 0.067, 0.056, 0.053, 0.045 \u2014 essentially exactly the expected counts/1000) overlaid with a red marked line for P(d)=log10(1+1/d), plus legend, axis labels, integer ticks and an honest title naming the sample. Implementation uses the true recurrence with Python arbitrary-precision ints, correct first-character leading-digit extraction, frequencies computed from counts a"
+        }
+      ],
+      "overall": 0.9266666666666666,
+      "dimensions": {
+        "visual_match": 0.9499999999999998,
+        "scientific_claim": 0.8933333333333334,
+        "implementation": 0.9,
+        "budget_use": 0.89,
+        "integrity": 1.0
+      }
+    }
+  },
+  "qwen3.6-27b|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.92,
+            "scientific_claim": 0.85,
+            "implementation": 0.72,
+            "budget_use": 0.85,
+            "integrity": 0.97
+          },
+          "overall": 0.8620000000000001,
+          "justification": "The submission produces the specified single-panel figure with correctly labeled axes (Time in days 0\u2013100, Population 0\u2013~1000), exactly three distinguishable, legend-labeled S/I/R curves, and quantitatively correct landmarks (peak I \u2248 403.5 near t\u224827, S at peak \u2248 250, final S \u2248 19.8, final R \u2248 979.3, I(100) \u2248 0.88), demonstrating a single-peaked epidemic terminating with susceptibles remaining; R0 = 4 is stated in the title. Implementation correctly encodes the three ODEs with exact specified parameters and a 1000-point t_eval, but relies on solve_ivp default tolerances (rtol=1e-3) rather than"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.93,
+            "scientific_claim": 0.82,
+            "implementation": 0.75,
+            "budget_use": 0.85,
+            "integrity": 0.95
+          },
+          "overall": 0.86,
+          "justification": "The figure is a clean single panel with time in days on x, population on y (0\u20131000), three distinguishable labeled curves and a legend; the trajectories match the analytic landmarks well (peak I \u2248 403.5 near t \u2248 27, S at peak \u2248 250, final S \u2248 19.8, R \u2248 979, I(100) \u2248 0.88), demonstrating a single-peaked epidemic ending with susceptibles remaining. The ODEs are explicitly coded and integrated with solve_ivp on a 1000-point grid, well inside budget. Deductions: no printed diagnostics or conservation (S+I+R) check, default RK45 tolerances (rtol=1e-3) rather than the requested \u22641e-6 (results are no"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.93,
+            "scientific_claim": 0.8,
+            "implementation": 0.72,
+            "budget_use": 0.85,
+            "integrity": 0.97
+          },
+          "overall": 0.8540000000000001,
+          "justification": "The figure is a single clean panel with time (0\u2013100 days) on x, population (0\u20131000) on y, all three compartments plotted, distinguishable, and legended with S/I/R names; quantitative landmarks match theory closely (peak I \u2248 403.5 near t \u2248 27, S at peak \u2248 250, final S \u2248 19.8, final R \u2248 979), and the infected curve is clearly unimodal and decays to <1 individual while susceptibles remain, correctly supporting the R0>1 single-peak, non-exhaustion claim (R0 = 4 noted in the title). Implementation encodes the exact ODEs with solve_ivp and the specified parameters over a 1000-point grid, but uses de"
+        }
+      ],
+      "overall": 0.8586666666666667,
+      "dimensions": {
+        "visual_match": 0.9266666666666667,
+        "scientific_claim": 0.8233333333333333,
+        "implementation": 0.73,
+        "budget_use": 0.85,
+        "integrity": 0.9633333333333333
+      }
+    }
+  },
+  "qwen3.6-27b|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.7,
+            "scientific_claim": 0.78,
+            "implementation": 0.68,
+            "budget_use": 0.35,
+            "integrity": 0.92
+          },
+          "overall": 0.686,
+          "justification": "The submission produces a genuine bifurcation diagram computed by explicit iteration of x = r*x*(1-x) from x0 = 0.5 over 1500 linearly spaced r values in [2.5, 4.0], with axes and limits matching the caption, so the fixed-point branch, period-doubling cascade at r=3 and r\u22483.449, onset of chaos near 3.57, and the period-3 window near 3.83 should all be present at correct parameter locations. Weaknesses: the transient is only 100 iterations (paper/rubric call for several hundred), which risks residual transient smearing near r\u22483 and near the accumulation point; only 100 kept iterates per r combi"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.72,
+            "scientific_claim": 0.8,
+            "implementation": 0.68,
+            "budget_use": 0.4,
+            "integrity": 0.9
+          },
+          "overall": 0.7,
+          "justification": "The agent produced a genuine single-panel bifurcation diagram computed by explicit iteration of x = r x (1-x) over 1500 r-values in [2.5, 4.0] with x0 = 0.5, correct linear axes and x-range [0,1], so the fixed-point branch, period-doubling cascade at r=3, accumulation near 3.57 and the period-3 window near 3.83 should all appear at the right parameter values with no fabrication or analytic shortcuts. However, it under-shoots the paper's protocol and the available budget substantially: only 100 transient iterations (paper/rubric ask for several hundred, risking residual transient smear near bif"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.62,
+            "scientific_claim": 0.72,
+            "implementation": 0.6,
+            "budget_use": 0.4,
+            "integrity": 0.92
+          },
+          "overall": 0.6519999999999999,
+          "justification": "The submission genuinely iterates x = r*x*(1-x) from x0 = 0.5 over 1500 linearly spaced r in [2.5, 4.0] and plots the raw iterates, so integrity is high and the essential physics (fixed point, doubling cascade at r=3 and 3.449, chaotic band beyond ~3.57, period-3 window near 3.83) should be present, supported by the y-profile which shows the split branches and wide chaotic spread. However the run is markedly under-resourced relative to an easily affordable budget: only 100 transient iterations (rubric and paper call for several hundred, risking visible smearing near r=3 and near bifurcation po"
+        }
+      ],
+      "overall": 0.6793333333333335,
+      "dimensions": {
+        "visual_match": 0.68,
+        "scientific_claim": 0.7666666666666666,
+        "implementation": 0.6533333333333333,
+        "budget_use": 0.3833333333333333,
+        "integrity": 0.9133333333333334
+      }
+    }
+  },
+  "qwen3.6-27b|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.82,
+            "scientific_claim": 0.55,
+            "implementation": 0.72,
+            "budget_use": 0.7,
+            "integrity": 0.9
+          },
+          "overall": 0.738,
+          "justification": "The figure is a correct single log-log panel with ~17k empirical points spanning ranks 1\u201316,960 and frequencies 1\u201314,537 (plausible Moby-Dick statistics: top word count 14,537), labeled axes, visible head curvature and hapax plateau, and a distinguishable red regression line annotated with the fitted exponent s = 1.203 (within the acceptable 0.8\u20131.3 band). Implementation is honest: the actual text file is read and tokenized to alphabetic lowercase tokens, counts come from Counter, and the slope is obtained from scipy.stats.linregress on log r vs log f with the reference line generated from the"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.86,
+            "scientific_claim": 0.62,
+            "implementation": 0.82,
+            "budget_use": 0.78,
+            "integrity": 0.95
+          },
+          "overall": 0.806,
+          "justification": "The figure is a proper single-panel log-log rank-frequency plot with all 16,960 empirical types drawn as dense small markers spanning ~4 decades in rank and ~4 decades in frequency, plus a distinguishable red fitted line whose exponent (s = 1.203) is annotated in the legend; head curvature and the hapax plateau remain visible, so visual match is strong. The pipeline genuinely reads and tokenizes the corpus (lowercase alphabetic runs), counts with Counter, ranks by descending frequency, and obtains the slope from an explicit linregress of log f on log r, with the reference line generated from t"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.87,
+            "scientific_claim": 0.62,
+            "implementation": 0.8,
+            "budget_use": 0.8,
+            "integrity": 0.9
+          },
+          "overall": 0.7979999999999999,
+          "justification": "The figure is a proper single-panel log-log rank-frequency plot with all 16,960 empirical types plotted as dense points (rank 1\u201316,960, frequency 1\u201314,537, ~4 decades each), a distinguishable red regression line over the fit window, and the fitted exponent annotated in the legend (s = 1.203); the head curvature and hapax plateau remain visible, so visual match is strong. The estimated exponent lies inside the acceptable 0.8\u20131.3 band but at the steep edge, partly because the fit window (ranks 170\u201315,264) still contains most of the frequency-1 plateau, and no R^2, fit-range disclosure, or corpus"
+        }
+      ],
+      "overall": 0.7806666666666667,
+      "dimensions": {
+        "visual_match": 0.85,
+        "scientific_claim": 0.5966666666666667,
+        "implementation": 0.7799999999999999,
+        "budget_use": 0.7600000000000001,
+        "integrity": 0.9166666666666666
+      }
+    }
+  }
+}

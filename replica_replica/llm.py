@@ -36,13 +36,20 @@ def _chat_anthropic(messages, model, max_tokens, retries):
     if _anthropic_client is None:
         os.environ.setdefault("SSL_CERT_FILE", "/root/.ccr/ca-bundle.crt")
         _anthropic_client = anthropic.Anthropic(max_retries=max(retries, 5))
-    r = _anthropic_client.messages.create(
-        model=model, max_tokens=max_tokens, messages=messages
-    )
-    LAST_USAGE.update(
-        {"prompt_tokens": r.usage.input_tokens, "completion_tokens": r.usage.output_tokens}
-    )
-    return "".join(b.text for b in r.content if b.type == "text")
+    last_err = None
+    for attempt in range(3):
+        r = _anthropic_client.messages.create(
+            model=model, max_tokens=max_tokens, messages=messages
+        )
+        LAST_USAGE.update(
+            {"prompt_tokens": r.usage.input_tokens, "completion_tokens": r.usage.output_tokens}
+        )
+        if r.stop_reason == "max_tokens":
+            last_err = f"truncated at max_tokens={max_tokens}"
+            max_tokens = int(max_tokens * 2)  # thinking ran long; give headroom
+            continue
+        return "".join(b.text for b in r.content if b.type == "text")
+    raise RuntimeError(f"Anthropic call failed: {last_err}")
 
 
 def chat(messages, model=JUDGE_MODEL, temperature=0.7, max_tokens=4096,

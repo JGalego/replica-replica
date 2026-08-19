@@ -1,0 +1,38 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Single panel with both axes logarithmic (log-log), x-axis = frequency rank r (labeled, starting at 1) and y-axis = word frequency f (labeled, counts); a linear-scale plot or semilog plot is a fail.",
+      "Rank axis spans roughly 1 to 10^4 (~15,000\u201320,000 unique lowercase alphabetic types for a Moby-Dick-sized corpus, i.e. ~4 decades) and frequency axis spans ~1 to ~10^4 (top word 'the' \u2248 13,000\u201315,000 occurrences), so the data covers at least 3 orders of magnitude on each axis.",
+      "Empirical data drawn as many points/markers or a dense step-like curve (order 10^3\u201310^4 plotted points), monotonically non-increasing in rank, not a smooth analytic line and not a handful (<50) of aggregated points.",
+      "A fitted/reference straight line of slope \u2248 -1 is overlaid on the data, visually distinguishable (different color/dashed) and spanning the fit region, with the fitted exponent s (or slope) annotated numerically in the legend, title, or as text on the axes.",
+      "Qualitative shape shows the expected departures: mild flattening/curvature at the extreme head (ranks 1\u201310) and a flat 'staircase'/plateau of frequency-1 hapax words at the tail (the last decade of ranks), with an approximately straight middle region."
+    ],
+    "scientific_claim": [
+      "A numerically estimated exponent is reported (in the figure annotation and/or log) with magnitude near 1 \u2014 acceptable range |s| \u2248 0.8\u20131.3 (typical full-range log-log fit on Moby-Dick gives \u2248 1.0\u20131.15); a value outside 0.7\u20131.5 contradicts the claim.",
+      "The fit is performed over 'the bulk' of the distribution (e.g. ranks ~10 to ~1000\u20135000, or explicitly stated head/tail exclusions), and the excluded regions are stated, so the slope is not an artifact of fitting only the extreme head or only the hapax plateau.",
+      "Goodness of fit is reported or evident (e.g. R^2 \u2273 0.95 on log f vs log r over the fit range), demonstrating approximate linearity rather than merely asserting it.",
+      "The straight-line region visibly extends over at least ~2 decades of rank and ~2 decades of frequency, supporting 'power law across several orders of magnitude' rather than a local slope estimate.",
+      "The figure/log does not overclaim exactness: deviations at head and tail are visible or acknowledged, consistent with 'approximate' power law."
+    ],
+    "implementation": [
+      "Code reads the actual provided corpus text file from disk and tokenizes it; tokenization uses a lowercase alphabetic rule (e.g. re.findall(r'[a-z]+', text.lower()) or [a-zA-Z]+ then .lower()), with digits/punctuation excluded as specified.",
+      "Frequency counting via a dict/collections.Counter over all tokens, then sorted descending to assign ranks 1..N (ties may be broken arbitrarily but ranks must be consecutive integers over all types).",
+      "Exponent estimated by an explicit least-squares regression of log(f) on log(r) (e.g. numpy.polyfit(np.log10(r), np.log10(f), 1) or np.linalg.lstsq) over the chosen bulk rank window; slope is taken from the regression output, not assumed.",
+      "Sanity statistics printed/logged and plausible for the corpus: total tokens ~2.0\u00d710^5\u20132.6\u00d710^5, unique types ~1.5\u00d710^4\u20132.1\u00d710^4, top-ranked token 'the' with count ~1.3\u00d710^4\u20131.5\u00d710^4, and 'of'/'and' next; grossly different numbers indicate mis-tokenization or truncated reading.",
+      "No hard-coded frequency table, no synthetic sampling from a Zipf/zeta distribution used in place of the text, and no arbitrary trimming of the vocabulary before ranking (beyond the documented fit window)."
+    ],
+    "budget_use": [
+      "Whole pipeline completes well inside the 120 s CPU-only budget (tokenizing+counting Moby-Dick should take ~1\u20135 s); execution log shows successful termination and a saved figure file, no timeout or partial output.",
+      "The full corpus is processed (all lines/characters read), not a truncated prefix or random subsample; token/type counts in the log confirm full coverage.",
+      "All unique word types are plotted (no aggressive downsampling that would hide the tail plateau); if downsampling is used for rendering, it is stated and retains \u226510^3 points spanning the full rank range.",
+      "Given the generous budget, at least the required deliverables are complete: rank-frequency points, fit over the bulk, annotated exponent, and printed diagnostics (slope, intercept, R^2, fit range); nothing left as a placeholder or TODO."
+    ],
+    "integrity": [
+      "Plotted y-values are the empirical counts computed in the script; the reference line is generated from the regression coefficients (10^(intercept) * r^slope), not a hand-drawn or hard-coded 1/r curve masquerading as data.",
+      "The annotated exponent in the figure equals the value printed by the regression in the execution log (same number to within rounding); no rounding of a fitted 1.17 down to 'exactly -1'.",
+      "No fabricated or paper-copied numbers: the log shows real corpus statistics derived from the file, and the code contains no literal arrays of frequencies or ranks.",
+      "Honest labeling: the corpus actually used is named correctly, axes/legend state 'empirical' vs 'fit slope = ...', and any restriction of the fit range or exclusion of hapax legomena is disclosed rather than silently applied to force slope \u2248 -1.",
+      "No selective deletion of inconvenient regions from the plot (head or tail points must still be shown even if they deviate from the fitted line)."
+    ]
+  }
+}

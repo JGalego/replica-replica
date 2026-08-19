@@ -95,13 +95,21 @@ def judge_once(task, rollout, rubric=None, seed=None):
         )
     # Claude judges think adaptively before answering, so give them headroom;
     # Groq judges run with reasoning off to fit tokens-per-minute limits.
-    max_tokens = 10000 if llm.JUDGE_MODEL.startswith("claude") else 900
-    resp = llm.chat(
-        [{"role": "user", "content": prompt}],
-        model=llm.JUDGE_MODEL, temperature=0.7, json_mode=True, seed=seed,
-        max_tokens=max_tokens, reasoning_effort="none",
-    )
-    scores = llm.extract_json(resp)
+    max_tokens = 16000 if llm.JUDGE_MODEL.startswith("claude") else 900
+    scores = None
+    for parse_attempt in range(3):
+        resp = llm.chat(
+            [{"role": "user", "content": prompt}],
+            model=llm.JUDGE_MODEL, temperature=0.7, json_mode=True,
+            seed=(seed + 31 * parse_attempt) if seed is not None else None,
+            max_tokens=max_tokens, reasoning_effort="none",
+        )
+        try:
+            scores = llm.extract_json(resp)
+            break
+        except (ValueError, json.JSONDecodeError):
+            if parse_attempt == 2:
+                raise
     dims = {}
     for d in DIMENSIONS:
         v = float(scores.get(d, 0.0))
