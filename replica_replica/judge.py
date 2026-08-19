@@ -71,10 +71,10 @@ def _evidence(rollout):
         status=rollout["status"],
         runtime=rollout["runtime_seconds"],
         budget=rollout["budget_seconds"],
-        code=rollout["solution_code"][:6000],
-        figure_meta=json.dumps(fm, indent=1)[:4000] if fm else "(no figure submitted)",
-        stdout=rollout["stdout_tail"][-800:] or "(empty)",
-        stderr=rollout["stderr_tail"][-800:] or "(empty)",
+        code=rollout["solution_code"][:3500],
+        figure_meta=json.dumps(fm)[:2500] if fm else "(no figure submitted)",
+        stdout=rollout["stdout_tail"][-400:] or "(empty)",
+        stderr=rollout["stderr_tail"][-400:] or "(empty)",
     )
 
 
@@ -96,6 +96,7 @@ def judge_once(task, rollout, rubric=None, seed=None):
     resp = llm.chat(
         [{"role": "user", "content": prompt}],
         model=llm.JUDGE_MODEL, temperature=0.7, json_mode=True, seed=seed,
+        max_tokens=900, reasoning_effort="none",
     )
     scores = llm.extract_json(resp)
     dims = {}

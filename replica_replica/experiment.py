@@ -76,21 +76,21 @@ def main():
     if os.path.exists(judgments_path):
         with open(judgments_path) as f:
             judgments = json.load(f)
-    for agent in AGENTS:
-        for task in tasks:
-            key = f"{agent}|{task['id']}"
-            rec = rollouts[(agent, task["id"])]
-            entry = judgments.get(key, {})
-            changed = False
-            for judge_name, rubric in [("rubric", rubrics[task["id"]]), ("baseline", None)]:
+    # Rubric judging first (primary results), then the baseline ablation, so a
+    # rate-limit outage mid-run still leaves a complete primary table.
+    for judge_name in ["rubric", "baseline"]:
+        for agent in AGENTS:
+            for task in tasks:
+                key = f"{agent}|{task['id']}"
+                rec = rollouts[(agent, task["id"])]
+                entry = judgments.get(key, {})
                 if judge_name in entry:
                     continue
+                rubric = rubrics[task["id"]] if judge_name == "rubric" else None
                 entry[judge_name] = judge_rollout(task, rec, rubric=rubric, k=JUDGE_SAMPLES)
-                changed = True
                 print(f"  judged {key} [{judge_name}] -> "
-                      f"{entry[judge_name]['overall']:.3f}")
-            judgments[key] = entry
-            if changed:
+                      f"{entry[judge_name]['overall']:.3f}", flush=True)
+                judgments[key] = entry
                 with open(judgments_path, "w") as f:
                     json.dump(judgments, f, indent=2)
     print(f"Done. Judgments in {judgments_path}")

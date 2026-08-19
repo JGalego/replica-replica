@@ -1,0 +1,646 @@
+{
+  "reference|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.7,
+            "scientific_claim": 0.8,
+            "implementation": 0.4,
+            "budget_use": 0.2,
+            "integrity": 0.6
+          },
+          "overall": 0.54,
+          "justification": "The script correctly loads the canonical Anscombe data, produces a 2\u00d72 grid in the right order, plots the points and OLS regression lines, and the visual patterns match the paper\u2019s description, but axis limits are narrower than required. Statistics are computed correctly (correlation shown) though not explicitly reported, satisfying the scientific claim. Implementation lacks saving the figure as a high\u2011resolution PNG and does not call plt.show(), and it does not enforce a dataset\u2011size check, reducing its score. The runtime is well within the budget but the figure DPI and dimensions fall short "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.55,
+            "scientific_claim": 0.9,
+            "implementation": 0.6,
+            "budget_use": 0.2,
+            "integrity": 0.7
+          },
+          "overall": 0.5900000000000001,
+          "justification": "The script correctly plots the four Anscombe datasets in the right order with the proper points and regression lines, demonstrating the scientific claim, but it uses narrower axis limits (2\u201120, 2\u201114) and does not save a high\u2011resolution PNG or call plt.show(), violating the implementation and budget requirements; it also lacks an explicit integrity comment and some axis labels, lowering those scores."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.4,
+            "scientific_claim": 0.9,
+            "implementation": 0.5,
+            "budget_use": 0.4,
+            "integrity": 0.7
+          },
+          "overall": 0.5800000000000001,
+          "justification": "The figure shows the correct 2\u00d72 layout, ordered datasets, and accurate points, and the regression line is computed via OLS, satisfying the scientific claim. However, axis limits do not match the required 0\u201120/0\u201115 range, the script never saves or displays the PNG (missing plt.savefig/plt.show), and it lacks explicit verification of point count or a comment about data authenticity, which lowers implementation, budget and integrity scores. Overall the submission captures the core idea but falls short on several rubric details."
+        }
+      ],
+      "overall": 0.5700000000000001,
+      "dimensions": {
+        "visual_match": 0.5499999999999999,
+        "scientific_claim": 0.8666666666666667,
+        "implementation": 0.5,
+        "budget_use": 0.26666666666666666,
+        "integrity": 0.6666666666666666
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.96,
+            "scientific_claim": 0.97,
+            "implementation": 0.98,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.982,
+          "justification": "The agent correctly reproduced Anscombe's quartet: four 2\u00d72 scatter\u2011plot panels with identical axis limits, the eleven original points per dataset, and the common regression line y=3+0.5x (shown in the legend). The visual layout and caption\u2011style information match the paper\u2019s description, and the figure clearly illustrates the claim that identical summary statistics can mask very different data structures. The code runs without error, uses the canonical data, stays well within the 120\u2011second budget, and does not fabricate any results."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.96,
+            "scientific_claim": 0.98,
+            "implementation": 0.96,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9800000000000001,
+          "justification": "The agent reproduced Anscombe's quartet correctly: a 2\u00d72 grid with shared axes, the eleven points per panel and the common regression line y=3+0.5x, displaying the distinct patterns that illustrate the paper\u2019s claim. The code uses the canonical data, runs well within the 120\u202fs wall\u2011clock limit, and shows no evidence of fabricated results."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.95,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The agent correctly reproduced Anscombe's quartet with four subplots, shared axis limits, and the exact regression line y=3+0.5x, clearly illustrating the differing data structures that support the paper's claim. All data are authentic and the code ran well within the time budget; minor omissions of axis labels prevent a perfect implementation score."
+        }
+      ],
+      "overall": 0.9740000000000001,
+      "dimensions": {
+        "visual_match": 0.9566666666666667,
+        "scientific_claim": 0.9666666666666667,
+        "implementation": 0.9466666666666667,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|belkin-2019-double-descent": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.75,
+            "scientific_claim": 1.0,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.93,
+          "justification": "The figure meets most visual requirements (log\u2011scaled axes, proper labels, train and test curves, peak at N\u2248n) but does not extend to the full 10^4 range demanded by the rubric, lowering the visual match score. All scientific claim conditions are satisfied: the test risk peaks within 5% of n and declines substantially thereafter. The implementation follows the specification exactly, using random Fourier features, minimum\u2011norm least\u2011squares, a 300\u2011sample training set, and correct risk computation. The experiment runs well within the 300\u202fs budget and uses an adequate number of N values. All plot"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.5,
+            "scientific_claim": 0.2,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.72,
+          "justification": "The code correctly implements Random Fourier Features, uses a 300\u2011sample training set, computes minimum\u2011norm least\u2011squares risk and stays well within the time and memory budget, earning full marks for implementation and budget use. The figure is plotted with log\u2011scaled axes, appropriate labels, and a vertical line at N=n, but it only spans N up to ~3e3 (not the full 1e4 range) and the test\u2011risk peak occurs away from the interpolation threshold, so visual match and the scientific claim are only partially satisfied. All points are generated from actual model runs, with no hard\u2011coded values, thou"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.5,
+            "scientific_claim": 0.4,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 0.95
+          },
+          "overall": 0.7699999999999999,
+          "justification": "The submission correctly implements Random Fourier Features, uses a 300\u2011sample training set, and plots both train and test risks on log\u2011log axes with a vertical line at N=n, satisfying the implementation, budget, and integrity criteria. However, the swept N values stop at 3000 instead of extending to 10^4, and the test\u2011risk peak occurs away from the interpolation threshold rather than within the required \u00b115% of n, so the visual match and scientific claim are only partially met."
+        }
+      ],
+      "overall": 0.8066666666666666,
+      "dimensions": {
+        "visual_match": 0.5833333333333334,
+        "scientific_claim": 0.5333333333333333,
+        "implementation": 1.0,
+        "budget_use": 1.0,
+        "integrity": 0.9166666666666666
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.5,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.8699999999999999,
+          "justification": "The figure displays log\u2011log test and train risk curves versus the number of random Fourier features, includes a vertical line at the interpolation threshold (N\u2248300), and shows a peak followed by a descent, matching the caption\u2019s description. However, the test\u2011risk peak occurs well after N=n rather than exactly at the threshold, so the evidence for the claimed double\u2011descent peak at N\u2248n is only partial. The code follows the described experimental protocol (digits data, 300\u2011sample training set, one\u2011hot targets, minimum\u2011norm regression) and runs well within the 300\u2011second CPU budget, with no sign"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.9,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.95,
+          "justification": "The submitted figure displays log\u2011log plots of test and train squared loss versus the number of random Fourier features, includes a vertical line at N\u2248n=300, and shows a clear peak in test risk near the interpolation threshold followed by a descent, matching the caption and supporting the double\u2011descent claim. The code follows the described experimental protocol (digits data, 300\u2011sample training split, RFF generation, minimum\u2011norm least\u2011squares, multiple seeds) and runs well within the 300\u2011second CPU budget, with no evidence of fabricated results."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.9,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.95,
+          "justification": "The generated plot follows the caption: both axes are log\u2011scaled, test and train risks are shown, a vertical dashed line marks N\u2248n=300, and the test risk exhibits a clear peak at the interpolation threshold followed by a descent, while train risk drops to zero after the threshold. The code implements the Random Fourier Features experiment correctly, averaging over seeds, and runs well within the 300\u202fs budget, with no evidence of fabricated data."
+        }
+      ],
+      "overall": 0.9233333333333332,
+      "dimensions": {
+        "visual_match": 0.9,
+        "scientific_claim": 0.7666666666666666,
+        "implementation": 0.9499999999999998,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|benford-1938": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.55,
+            "scientific_claim": 0.75,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.86,
+          "justification": "The figure shows nine correctly labeled bars and a Benford curve, and the leading\u2011digit frequencies match the expected range, but the y\u2011axis does not extend to 0.35 as required and the legend labels are not the exact required terms, lowering visual_match. The empirical frequencies satisfy the numeric criteria (digit\u202f1\u22480.30, max deviation\u202f0.002, sum\u22481.0), though a chi\u2011squared test is missing, so scientific_claim is partially met. All implementation requirements are fulfilled, the script runs well within the 120\u202fs budget, produces an adequately sized image, and uses no external data, earning ful"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.5,
+            "scientific_claim": 0.75,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.85,
+          "justification": "The submission correctly computes the first 1000 Fibonacci numbers, extracts leading digits, and plots nine empirical bars with a superimposed Benford curve, satisfying most visual criteria, but the y\u2011axis limit stops at 0.316 (below the required 0.35) and the legend labels do not use the exact terms \"Empirical\" and \"Benford prediction\", reducing the visual_match score. The empirical frequencies meet the numeric claim criteria except for the missing chi\u2011squared test, yielding a solid scientific_claim score. All implementation, budget, and integrity requirements are fully met."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.55,
+            "scientific_claim": 0.75,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.86,
+          "justification": "The submission correctly computes the first 1000 Fibonacci numbers, extracts leading digits, and plots nine empirical bars with a Benford curve, but the y\u2011axis does not extend to 0.35 as required and the legend labels are not the exact terms \"Empirical\" and \"Benford prediction\". The empirical frequencies meet the numeric criteria for digit\u202f1 and overall deviation, though a chi\u2011squared test is missing. All implementation, budget, and integrity requirements are fully satisfied."
+        }
+      ],
+      "overall": 0.8566666666666666,
+      "dimensions": {
+        "visual_match": 0.5333333333333333,
+        "scientific_claim": 0.75,
+        "implementation": 1.0,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.97,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.984,
+          "justification": "The submitted figure correctly displays bars for the empirical leading\u2011digit frequencies of the first 1000 Fibonacci numbers alongside a red line of the Benford prediction, with appropriate axis labels, title, and legend matching the caption. The computed distribution (max deviation\u202f0.002) convincingly supports the claim that Fibonacci leading digits follow Benford\u2019s law. The code accurately generates the Fibonacci sequence, extracts leading digits, calculates frequencies, and produces the plot within the 120\u2011second budget, and the results are derived from genuine computation, showing no fabri"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.98,
+            "scientific_claim": 0.99,
+            "implementation": 0.99,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.992,
+          "justification": "The agent correctly generated the first 1000 Fibonacci numbers, extracted leading digits, computed empirical frequencies, and plotted them as bars alongside the Benford prediction line with appropriate labels and title, all within the time budget and without fabricating data; the resulting figure closely matches the caption and convincingly supports the claim that Fibonacci leading digits follow Benford's law."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.94,
+            "implementation": 0.96,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.97,
+          "justification": "The agent correctly generated the first 1000 Fibonacci numbers, computed the leading\u2011digit frequencies, plotted them as bars alongside the Benford prediction line, labeled axes and legend, and the resulting distribution matches the expected law with only a 0.2% maximum deviation, all within the time budget and without fabricating data."
+        }
+      ],
+      "overall": 0.9819999999999999,
+      "dimensions": {
+        "visual_match": 0.96,
+        "scientific_claim": 0.9666666666666667,
+        "implementation": 0.9833333333333334,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|kermack-1927-sir": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.6,
+            "scientific_claim": 1.0,
+            "implementation": 0.8,
+            "budget_use": 0.7,
+            "integrity": 0.95
+          },
+          "overall": 0.8100000000000002,
+          "justification": "The figure shows the three required curves with correct labels and overall axis ranges, but the infected peak is slightly above the specified 200\u2011400 range and the susceptible population at day\u202f100 falls below the 200 threshold, lowering the visual match. All scientific claim elements are satisfied. The implementation correctly uses solve_ivp and the right parameters, but it omits an explicit max_step \u22640.1, costing some points. Budget usage is well within limits, though the solver step count isn\u2019t reported, reducing the score. Integrity is high: the plot is generated directly from the computed"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.2,
+            "scientific_claim": 0.9,
+            "implementation": 0.7,
+            "budget_use": 0.7,
+            "integrity": 1.0
+          },
+          "overall": 0.7,
+          "justification": "The submission plots three correctly labeled curves and meets most runtime and plotting criteria, but the infected peak exceeds the specified 200\u2011400 range and the susceptible population at day\u202f100 falls far below the required >200, violating key visual constraints; the ODE solver is used correctly but without enforcing the \u22640.1\u202fday max step size, and integration\u2011step details are missing, lowering implementation and budget scores. Integrity is strong as the plot is generated directly from the solver output."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.2,
+            "scientific_claim": 1.0,
+            "implementation": 0.8,
+            "budget_use": 0.5,
+            "integrity": 0.9
+          },
+          "overall": 0.6799999999999999,
+          "justification": "The submission correctly generates three labeled S, I, R curves and reports the correct R\u2080, satisfying the scientific claim and most integrity criteria. However, the figure\u2019s axis limits exceed the specified ranges, the infected peak is slightly above the allowed 200\u2011400 range, and the susceptible population at day\u202f100 is far below the required >200, leading to a low visual_match score. The implementation uses solve_ivp but does not enforce the max step \u22640.1\u202fday, reducing its score. Budget usage meets runtime and plot resolution, but the required step\u2011count evidence is missing, yielding a mode"
+        }
+      ],
+      "overall": 0.7300000000000001,
+      "dimensions": {
+        "visual_match": 0.3333333333333333,
+        "scientific_claim": 0.9666666666666667,
+        "implementation": 0.7666666666666666,
+        "budget_use": 0.6333333333333333,
+        "integrity": 0.9500000000000001
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.96,
+            "scientific_claim": 0.97,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.986,
+          "justification": "The figure shows the three S\u2011I\u2011R curves over 100 days with the infected curve rising to a single peak and then declining, matching the caption; the simulation uses the specified parameters and ODE, and the results confirm the claim that R\u2080>1 yields a single\u2011peaked epidemic that ends with a non\u2011zero susceptible fraction. The code ran well within the 120\u202fs budget and appears to report genuine simulation output."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.97,
+            "implementation": 0.99,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.982,
+          "justification": "The code accurately solves the SIR ODEs with the given parameters, generates a clear figure showing susceptible, infected and recovered curves, the infected curve exhibits a single peak and declines, and the susceptible population remains non\u2011zero, matching the caption and supporting the claim. The implementation follows the specification, runs well within the 120\u202fs budget, and the reported results are consistent with the simulation, indicating no fabrication."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.96,
+            "scientific_claim": 0.92,
+            "implementation": 0.97,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.97,
+          "justification": "The submitted figure displays the three S\u2011I\u2011R curves with proper labels, legend and a clear single peak in the infected curve, matching the caption. The simulation uses the specified parameters, integrates the ODE correctly, and the results (peak around day 27 and a residual susceptible fraction \u22482%) illustrate the claimed behavior for R\u2080>1. Execution time is far below the 120\u2011second budget, and the output appears to be genuine, with no signs of fabricated data."
+        }
+      ],
+      "overall": 0.9793333333333333,
+      "dimensions": {
+        "visual_match": 0.9566666666666667,
+        "scientific_claim": 0.9533333333333333,
+        "implementation": 0.9866666666666667,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|may-1976-logistic-map": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.3,
+            "scientific_claim": 0.3,
+            "implementation": 0.6,
+            "budget_use": 0.5,
+            "integrity": 0.9
+          },
+          "overall": 0.52,
+          "justification": "The figure has correct axis limits and shows a dense cloud of points, but it records only 200 post\u2011transient iterates (far short of the required 500), so the period\u2011doubling cascade and the period\u20113 window are poorly resolved. The code follows the logistic map iteration and discards a sufficient transient, but fails the post\u2011transient length requirement. Runtime is well within the 180\u202fs budget, yet the output resolution (~800\u00d7550\u202fpx) is below the mandated 800\u00d7600, and the r\u2011grid is slightly coarser than the 0.001 step. No pre\u2011computed data are used and labeling is appropriate, so integrity is "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.35,
+            "scientific_claim": 0.35,
+            "implementation": 0.45,
+            "budget_use": 0.5,
+            "integrity": 0.95
+          },
+          "overall": 0.5199999999999999,
+          "justification": "The figure roughly spans the correct r and x ranges and shows a bifurcation\u2011like cloud, but the low number of post\u2011transient points (200\u202f<\u202f500) makes the classic period\u2011doubling branches and the period\u20113 window poorly resolved; the period\u20113 window is essentially absent. The code correctly implements the logistic map loop and discards a transient, yet it uses too few recorded iterates and a slightly coarse r step, violating the implementation rubric. Runtime is well within the 180\u202fs budget, but the default figure size yields only about 800\u00d7550\u202fpx, falling short of the required 800\u00d7600 resolutio"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.6,
+            "scientific_claim": 0.5,
+            "implementation": 0.2,
+            "budget_use": 0.2,
+            "integrity": 0.9
+          },
+          "overall": 0.48,
+          "justification": "The figure has the correct axis limits and shows the classic bifurcation cloud, but the period\u20113 window is not clearly visible and the density of points is modest. The code discards enough transients but records only 200 points per r (far below the required 500) and uses a step slightly larger than 0.001, violating the implementation rubric. Runtime is well within the 180\u202fs budget, yet the resolution (\u2248800\u00d7550\u202fpx) and the number of r values (\u22481400) fall short of the stipulated minimum, so budget use is poor. No pre\u2011computed data are used and labels/caption are appropriate, giving a high integr"
+        }
+      ],
+      "overall": 0.5066666666666667,
+      "dimensions": {
+        "visual_match": 0.4166666666666667,
+        "scientific_claim": 0.3833333333333333,
+        "implementation": 0.4166666666666667,
+        "budget_use": 0.39999999999999997,
+        "integrity": 0.9166666666666666
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 0.95,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9399999999999998,
+          "justification": "The figure correctly displays the logistic map bifurcation diagram over the required r\u2011range, showing the period\u2011doubling cascade and chaotic regime with vertical markers at r=3 and r\u22483.57; the period\u20113 window is present though not highlighted. The simulation follows the standard procedure (transient discard, multiple iterates) and runs well within the 180\u202fs budget, with no evidence of fabricated data."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.9,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.95,
+          "justification": "The figure correctly displays the logistic map bifurcation diagram over the requested r range, showing the stable branch, period\u2011doubling cascade, chaotic region and the period\u20113 window (though the latter is not explicitly labeled); it therefore matches the caption and supports the paper\u2019s claim. The implementation follows the standard procedure of discarding transients and recording subsequent iterates, and runs far below the 180\u202fs budget. No evidence of fabricated data is present."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.85,
+            "scientific_claim": 0.9,
+            "implementation": 0.85,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9199999999999999,
+          "justification": "The submitted figure correctly reproduces the classic logistic\u2011map bifurcation diagram over the required r\u2011range, showing the stable fixed point, the period\u2011doubling cascade, the chaotic regime and the period\u20113 window (though the latter is not explicitly labeled). The plot therefore plausibly matches the caption and convincingly illustrates the paper's claim about a period\u2011doubling route to chaos with embedded periodic windows. The implementation follows the standard procedure (discarding transients, iterating the map, plotting points) and runs well within the 180\u2011second budget, with no eviden"
+        }
+      ],
+      "overall": 0.9366666666666665,
+      "dimensions": {
+        "visual_match": 0.8666666666666667,
+        "scientific_claim": 0.9166666666666666,
+        "implementation": 0.9,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "reference|zipf-1949": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.35,
+            "scientific_claim": 0.25,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.6799999999999999,
+          "justification": "The code correctly tokenizes the corpus, counts frequencies, fits a power\u2011law and produces a log\u2011log scatter plot with a fitted line, satisfying implementation, budget and integrity criteria. However, the axis labels do not match the exact wording required, the fitted slope (-1.13) falls outside the allowed -1.1 to -0.9 range, and the submission lacks the verbatim figure caption, R\u00b2 value, and explicit central\u2011region point\u2011fit verification, leading to low scores on visual_match and scientific_claim."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.5,
+            "scientific_claim": 0.3,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.72,
+          "justification": "The submission correctly reads the corpus, tokenizes, counts frequencies, ranks them, fits a power\u2011law on the bulk of the data and produces a log\u2011log scatter plot with a fitted line and a legend, satisfying most implementation and budget criteria. However, the axis labels differ from the required exact wording, the slope reported in the annotation is the exponent (positive) rather than the negative line slope, and the slope value (~\u20111.13) falls just outside the allowed \u20131.1 to \u20130.9 range, lowering the visual match. The scientific claim criteria are not fully demonstrated: the required R\u00b2, the "
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.4,
+            "scientific_claim": 0.3,
+            "implementation": 0.7,
+            "budget_use": 1.0,
+            "integrity": 0.9
+          },
+          "overall": 0.6599999999999999,
+          "justification": "The code correctly tokenizes the text, computes frequencies, and produces a log\u2011log scatter plot with a fitted power\u2011law line and a legend, but the axis labels do not match the required wording and the fitted slope (-1.13) falls just outside the allowed -1.1 to -0.9 range. The exponent estimate satisfies the claim, yet no R\u00b2 or caption verification is provided, and the bulk\u2011fit range does not follow the exact exclusion of the bottom 5% of ranks. Implementation follows the specification aside from the precise bulk\u2011range definition, and the run stays well within the time and memory budget, using"
+        }
+      ],
+      "overall": 0.6866666666666665,
+      "dimensions": {
+        "visual_match": 0.4166666666666667,
+        "scientific_claim": 0.2833333333333334,
+        "implementation": 0.8333333333333334,
+        "budget_use": 1.0,
+        "integrity": 0.9
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.9,
+            "scientific_claim": 0.9,
+            "implementation": 1.0,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The generated log\u2011log plot shows the empirical rank\u2011frequency points for Moby\u2011Dick and a fitted power\u2011law line with exponent \u22481.13, matching the caption and supporting Zipf\u2019s law; the tokenisation, counting, ranking and least\u2011squares fit follow the specification, the code ran well within the 120\u202fs budget, and no fabricated data are evident."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.92,
+            "scientific_claim": 0.86,
+            "implementation": 0.9,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.9359999999999999,
+          "justification": "The generated log\u2011log plot shows the empirical rank\u2011frequency points for Moby\u2011Dick together with a fitted line whose slope (\u20111.13) is close to the expected \u20131, matching the caption and supporting Zipf\u2019s law; the tokenization, counting, ranking and least\u2011squares fit are performed as specified, and the run completed well within the 120\u202fs CPU budget with no evidence of fabricated data."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.95,
+            "scientific_claim": 0.9,
+            "implementation": 0.95,
+            "budget_use": 1.0,
+            "integrity": 1.0
+          },
+          "overall": 0.96,
+          "justification": "The submitted figure correctly displays a log\u2011log rank\u2011frequency plot of Moby\u2011Dick with empirical points and a fitted power\u2011law line whose exponent (~1.13) is close to the expected value of 1, matching the caption and supporting the paper\u2019s claim; the code tokenizes, counts and fits as specified, runs well within the 120\u202fs budget, and shows no evidence of fabricated data."
+        }
+      ],
+      "overall": 0.952,
+      "dimensions": {
+        "visual_match": 0.9233333333333333,
+        "scientific_claim": 0.8866666666666667,
+        "implementation": 0.9499999999999998,
+        "budget_use": 1.0,
+        "integrity": 1.0
+      }
+    }
+  },
+  "degraded|anscombe-1973": {
+    "rubric": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.0,
+            "budget_use": 0.1,
+            "integrity": 0.2
+          },
+          "overall": 0.06000000000000001,
+          "justification": "The submission only plots the first of Anscombe's four datasets, lacks the required 2\u00d72 grid, shared axis limits, regression line, and does not compute or display summary statistics for all four sets. Consequently it fails the visual_match, scientific_claim, and implementation criteria. While it does not use a pre\u2011generated image, it also omits required comments and other integrity checks, earning a low score. The runtime is within budget but the figure resolution and saving steps are missing, resulting in a minimal budget_use score."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.2,
+            "budget_use": 0.4,
+            "integrity": 0.6
+          },
+          "overall": 0.24000000000000005,
+          "justification": "The agent only plotted dataset\u202fI, omitting the required 2\u00d72 grid, the other three datasets, common axis limits, and the regression line, so it fails the visual_match and scientific_claim criteria entirely. Implementation is minimal: the data are hard\u2011coded and plotted, but regression is not computed, the figure is not saved at the stipulated resolution, and no validation checks are present, yielding a low score. The runtime is within the 120\u202fs budget, but no wall\u2011clock log or resolution details are reported, so budget_use is partial. Integrity is modestly satisfied because no pre\u2011generated ima"
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.0,
+            "scientific_claim": 0.0,
+            "implementation": 0.1,
+            "budget_use": 0.0,
+            "integrity": 0.4
+          },
+          "overall": 0.1,
+          "justification": "The submission plots only the first Anscombe dataset, lacks the required 2\u00d72 grid, does not include the regression line, uses non\u2011standard axis limits, and does not save or display the figure as specified; consequently it fails the visual, scientific\u2011claim, implementation, and budget criteria, though it does generate a figure from the original data without obvious fabrication, earning a modest integrity score."
+        }
+      ],
+      "overall": 0.13333333333333333,
+      "dimensions": {
+        "visual_match": 0.0,
+        "scientific_claim": 0.0,
+        "implementation": 0.10000000000000002,
+        "budget_use": 0.16666666666666666,
+        "integrity": 0.4000000000000001
+      }
+    },
+    "baseline": {
+      "samples": [
+        {
+          "dimensions": {
+            "visual_match": 0.1,
+            "scientific_claim": 0.05,
+            "implementation": 0.1,
+            "budget_use": 0.2,
+            "integrity": 0.9
+          },
+          "overall": 0.27,
+          "justification": "The submission only shows a single scatter plot of dataset I without the required regression line or the 2\u00d72 grid of all four Anscombe datasets, so it fails to match the caption, illustrate the paper's claim, or implement the experiment correctly; it does stay within the time budget but does not achieve the intended outcome, while the data used are genuine and not fabricated."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.2,
+            "scientific_claim": 0.1,
+            "implementation": 0.1,
+            "budget_use": 0.3,
+            "integrity": 0.9
+          },
+          "overall": 0.32,
+          "justification": "The agent plotted only the first of Anscombe's four datasets, omitted the required 2\u00d72 panel layout and the common regression line, thus failing to illustrate the paper's claim about identical summary statistics yielding different visual patterns; however, the data shown are genuine and no results appear fabricated, and the code ran well within the time budget."
+        },
+        {
+          "dimensions": {
+            "visual_match": 0.1,
+            "scientific_claim": 0.0,
+            "implementation": 0.1,
+            "budget_use": 0.2,
+            "integrity": 1.0
+          },
+          "overall": 0.27999999999999997,
+          "justification": "The figure shows only a single scatter plot of dataset I without the required 2\u00d72 grid or the common regression line, so it fails to match the caption, does not illustrate the paper\u2019s claim, and implements the experiment incompletely; however it respects the budget and does not fabricate data."
+        }
+      ],
+      "overall": 0.29000000000000004,
+      "dimensions": {
+        "visual_match": 0.13333333333333333,
+        "scientific_claim": 0.05000000000000001,
+        "implementation": 0.10000000000000002,
+        "budget_use": 0.2333333333333333,
+        "integrity": 0.9333333333333332
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+== Phase 1: rubric generation ==
+  rubric ready: anscombe-1973
+  rubric ready: belkin-2019-double-descent
+  rubric ready: benford-1938
+  rubric ready: kermack-1927-sir
+  rubric ready: may-1976-logistic-map
+  rubric ready: zipf-1949
+== Phase 2: rollouts ==
+  reference      anscombe-1973                -> ok (1.2s)
+  reference      belkin-2019-double-descent   -> ok (8.9s)
+  reference      benford-1938                 -> ok (0.9s)
+  reference      kermack-1927-sir             -> ok (1.4s)
+  reference      may-1976-logistic-map        -> ok (1.1s)
+  reference      zipf-1949                    -> ok (1.5s)
+  degraded       anscombe-1973                -> ok (0.9s)
+  degraded       belkin-2019-double-descent   -> ok (2.2s)
+  degraded       benford-1938                 -> ok (0.8s)
+  degraded       kermack-1927-sir             -> ok (1.3s)
+  degraded       may-1976-logistic-map        -> ok (0.8s)
+  degraded       zipf-1949                    -> ok (1.0s)
+  null           anscombe-1973                -> ok (0.7s)
+  null           belkin-2019-double-descent   -> ok (0.7s)
+  null           benford-1938                 -> ok (0.7s)
+  null           kermack-1927-sir             -> ok (0.7s)
+  null           may-1976-logistic-map        -> ok (0.8s)
+  null           zipf-1949                    -> ok (0.7s)
+  qwen3.6-27b    anscombe-1973                -> ok (1.2s)
+  qwen3.6-27b    belkin-2019-double-descent   -> no_figure (0.0s)
+  qwen3.6-27b    benford-1938                 -> ok (0.8s)
+  qwen3.6-27b    kermack-1927-sir             -> ok (1.4s)
+  qwen3.6-27b    may-1976-logistic-map        -> ok (1.0s)
+  qwen3.6-27b    zipf-1949                    -> ok (2.3s)
+  gpt-oss-20b    anscombe-1973                -> ok (1.1s)
+  gpt-oss-20b    belkin-2019-double-descent   -> ok (3.3s)
+  gpt-oss-20b    benford-1938                 -> ok (0.8s)
+  gpt-oss-20b    kermack-1927-sir             -> ok (1.3s)
+  gpt-oss-20b    may-1976-logistic-map        -> ok (30.1s)
+  gpt-oss-20b    zipf-1949                    -> ok (1.4s)
+== Phase 3: judging ==

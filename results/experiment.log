@@ -37,3 +37,37 @@
   gpt-oss-20b    may-1976-logistic-map        -> ok (30.1s)
   gpt-oss-20b    zipf-1949                    -> ok (1.4s)
 == Phase 3: judging ==
+  judged reference|anscombe-1973 [rubric] -> 0.570
+  judged reference|anscombe-1973 [baseline] -> 0.974
+  judged reference|belkin-2019-double-descent [rubric] -> 0.807
+  judged reference|belkin-2019-double-descent [baseline] -> 0.923
+  judged reference|benford-1938 [rubric] -> 0.857
+  judged reference|benford-1938 [baseline] -> 0.982
+  judged reference|kermack-1927-sir [rubric] -> 0.730
+  judged reference|kermack-1927-sir [baseline] -> 0.979
+  judged reference|may-1976-logistic-map [rubric] -> 0.507
+  judged reference|may-1976-logistic-map [baseline] -> 0.937
+  judged reference|zipf-1949 [rubric] -> 0.687
+  judged reference|zipf-1949 [baseline] -> 0.952
+  judged degraded|anscombe-1973 [rubric] -> 0.133
+  judged degraded|anscombe-1973 [baseline] -> 0.290
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/replica-replica/replica_replica/experiment.py", line 100, in <module>
+    main()
+  File "/home/user/replica-replica/replica_replica/experiment.py", line 88, in main
+    entry[judge_name] = judge_rollout(task, rec, rubric=rubric, k=JUDGE_SAMPLES)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/judge.py", line 114, in judge_rollout
+    samples = [judge_once(task, rollout, rubric=rubric, seed=1000 + 7 * i) for i in range(k)]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/judge.py", line 114, in <listcomp>
+    samples = [judge_once(task, rollout, rubric=rubric, seed=1000 + 7 * i) for i in range(k)]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/judge.py", line 96, in judge_once
+    resp = llm.chat(
+           ^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/llm.py", line 58, in chat
+    raise RuntimeError(f"Groq call failed after {retries} attempts: {last_err}")
+RuntimeError: Groq call failed after 5 attempts: {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01hqk06mbse7zr1pxcxgqq5x6s` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198731, Requested 3109. Please try again in 13m14.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}
