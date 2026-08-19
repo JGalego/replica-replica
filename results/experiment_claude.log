@@ -20,3 +20,4 @@ ValueError: no JSON object in response: {"dimensions": {"visual_match": ["Single
   rubric ready: anscombe-1973
   rubric ready: belkin-2019-double-descent
   rubric ready: benford-1938
+  rubric ready: kermack-1927-sir

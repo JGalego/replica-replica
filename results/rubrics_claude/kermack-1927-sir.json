@@ -1,0 +1,39 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Single panel (or clearly one main panel) with time on the x-axis spanning 0 to 100 days and a linear y-axis covering the population range 0\u20131000 (or 0\u20131 if plotted as fractions of N, with axis label saying so); axes labeled (e.g. 'Time (days)', 'Population' / 'Number of individuals').",
+      "Exactly three curves plotted \u2014 susceptible, infected, recovered \u2014 visually distinguishable (different colors/styles) and identified by a legend with labels naming S/I/R (e.g. 'Susceptible', 'Infected', 'Recovered'), as required by the caption.",
+      "Qualitative shapes correct: S monotonically decreasing from ~999 to a small nonzero plateau (~20, i.e. ~2% of N); R monotonically increasing from 0 to a plateau ~975\u2013990; I starting near 1, rising to one interior maximum and decaying back toward ~0 by t\u224870\u2013100 days (no second bump, no oscillation, no negative values).",
+      "Quantitative landmarks consistent with beta=0.4, gamma=0.1, N=1000: peak infected \u2248 400 (accept ~370\u2013430; analytic I_max = N[1 - 1/R0 - ln(R0)/R0] \u2248 403), peak time \u2248 27 days (accept ~20\u201335), and S at the infected peak \u2248 N/R0 = 250 (accept ~200\u2013300).",
+      "All three curves span the full 0\u2013100 day window (no truncated x-range), and the three curves visibly sum to the constant N = 1000 (e.g. S and R curves cross around the region where I is near its peak/decline)."
+    ],
+    "scientific_claim": [
+      "The infected curve is unimodal: exactly one local maximum, demonstrating the 'single epidemic peak' claim rather than monotone growth or multiple waves.",
+      "The figure/log shows the epidemic terminating with a nonzero susceptible remainder: final S(100) clearly > 0 and roughly 1\u20134% of N (~10\u201340 individuals), and NOT S\u21920; correspondingly final R < N (~980, not 1000).",
+      "The infection dies out on its own (I(100) < ~1 individual, i.e. <0.1% of N) while susceptibles remain, i.e. depletion of susceptibles below the threshold N/R0 = 250 \u2014 not exhaustion of susceptibles \u2014 ends the epidemic.",
+      "R0 = beta/gamma = 4 > 1 is stated or computed in code/log/annotation, tying the observed epidemic to the threshold condition R0 > 1; ideally the code or log notes S falls below the threshold N/R0 at the peak.",
+      "Any quantitative claim made in text/log (peak size, peak day, final susceptible fraction) is read off the simulated solution and matches the plotted curves; optional bonus: comparison with the transcendental final-size relation s_inf = exp(-R0(1-s_inf)) \u2248 0.0198 or an R0<1 control showing no epidemic."
+    ],
+    "implementation": [
+      "Code explicitly encodes the three ODEs dS/dt = -beta*S*I/N, dI/dt = beta*S*I/N - gamma*I, dR/dt = gamma*I as a derivative function passed to a numerical integrator (scipy solve_ivp, odeint, or a hand-written RK4 loop) \u2014 not an analytic/closed-form or curve-fitted stand-in.",
+      "Parameters exactly as specified: N=1000, beta=0.4/day, gamma=0.1/day, I(0)=1, R(0)=0, S(0)=N-I0-R0=999, integration over t in [0,100] days.",
+      "Integration accuracy adequate: solve_ivp with rtol/atol \u2264 ~1e-6 (or RK4 with fixed step \u2264 0.1 day); dense output or t_eval grid of at least a few hundred points so the peak is resolved to better than ~1 day.",
+      "A conservation/sanity check is present or verifiable: S+I+R remains 1000 to within numerical tolerance (relative drift < 1e-4), and no compartment goes negative.",
+      "Reported diagnostics are computed from the solution arrays (e.g. argmax of I for peak time, max(I) for peak height, S[-1] for final susceptibles), not typed in by hand; if a Bombay-plague fit is attempted it uses real/stated data and is clearly separated from the main figure."
+    ],
+    "budget_use": [
+      "Total wall-clock runtime well inside 120 s CPU-only (this ODE integration should take <5 s); the execution log shows the script running to completion with a saved figure file and no timeout/kill.",
+      "The full 0\u2013100 day trajectory is produced and plotted \u2014 no early-stopped integration, no partial-range plot, no placeholder/blank axes.",
+      "Output resolution is generous given the trivial cost: \u2265 ~500\u20131000 time points (or dense output) rather than a coarse handful of samples that would visibly polygonize the peak.",
+      "Because the budget is ample relative to cost, cheap value-adds are appropriate and should not have caused truncation: e.g. printed summary statistics, an R0 sweep or R0<1 control, or a fraction-of-N secondary axis \u2014 but the primary caption figure must still be complete.",
+      "No evidence of budget-driven shortcuts such as replacing the solver with a coarse Euler step of >1 day, plotting only two of three compartments, or skipping the figure to save time."
+    ],
+    "integrity": [
+      "Curves come from the integrator's returned arrays; there are no hard-coded numeric arrays, no Gaussian/logistic/analytic ansatz drawn for the infected curve, and no smoothing/rescaling that alters the computed values.",
+      "No fabricated or 'expected' data injected: the script would produce the same figure if parameters were changed, i.e. the plot is a function of the simulation, and any figure annotations (peak value/time, final S) are printed from the computed solution.",
+      "Labels are honest and unambiguous: y-axis units correctly stated as individuals (0\u20131000) or fractions (0\u20131), x-axis in days, legend entries matching the actual arrays plotted (no mislabeling R as I, etc.), and title/caption consistent with the parameters actually used.",
+      "Claims in the log/report are limited to what was run: if the Bombay 1905\u201306 plague fit was not implemented, it is not claimed; if it was, the data source and fitting method are disclosed rather than invented.",
+      "Any deviation from the specification (different solver, extra panels, alternative initial conditions, unit changes) is disclosed in code comments or the log rather than silently presented as the specified experiment."
+    ]
+  }
+}
