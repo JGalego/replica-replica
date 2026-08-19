@@ -1,0 +1,38 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Figure is a 2x2 grid of exactly four scatter panels (labelled I, II, III, IV or equivalent), not a single overlaid plot or a 1x4 strip, unless clearly annotated as an intentional equivalent layout.",
+      "Each panel contains exactly 11 plotted points; panels I-III have x values spanning ~4 to 14, panel IV has 10 points stacked at x = 8 and one point at x = 19 (y \u2248 12.5).",
+      "All four panels share common axis ranges (x roughly spanning 0/2 to 20 to accommodate the x=19 point; y roughly spanning 2/0 to 13/14) so that shapes are visually comparable; axes labelled x and y.",
+      "The same straight line of slope 0.5 and intercept 3 (passing through approximately (4,5), (10,8), (18,12)) is drawn in every panel, visually identical across panels.",
+      "Qualitative shapes are distinguishable and correct: I = noisy but roughly linear cloud about the line; II = smooth concave-down arch peaking near x \u2248 11 with y \u2248 9.1-9.3 and falling to y \u2248 3.1 at x = 4; III = 10 points exactly collinear on a line of slope \u22480.345 plus one high outlier at (13, 12.74); IV = vertical column at x = 8 with y spanning ~5.25-8.84 (one at 12.50) plus the leverage point at (19, 12.50)."
+    ],
+    "scientific_claim": [
+      "Summary statistics are computed from the plotted data (not just asserted) and reported in the log or figure: mean x = 9.00, mean y = 7.50 (\u00b10.01), variance of x = 11.00, variance of y \u2248 4.12-4.13, Pearson r \u2248 0.816 (\u00b10.003) for all four datasets.",
+      "The fitted least-squares line for each dataset independently recovers intercept \u2248 3.00 and slope \u2248 0.500 to two decimal places, demonstrating the lines are identical rather than drawn once by hand.",
+      "The four panels visibly differ in structure (linear, curved, outlier-driven, leverage-driven) while sharing the identical line, so the figure directly supports the claim that identical statistics hide radically different data.",
+      "Nothing in the figure or text contradicts the claim (e.g., panels are not rescaled per-panel in a way that hides the differences; the regression line is not refit visibly differently per panel).",
+      "Optional but favourable: R^2 \u2248 0.667 and/or residual standard error \u2248 1.24 reported as additional shared statistics."
+    ],
+    "implementation": [
+      "The canonical Anscombe data are hard-coded/loaded correctly: x = [10,8,13,9,11,14,6,4,12,7,5] for sets I-III; x = [8,8,8,8,8,8,8,8,8,8,19] for set IV; y values matching the published tables (e.g., y1 begins 8.04, 6.95, 7.58; y2 begins 9.14, 8.14, 8.74; y3 begins 7.46, 6.77, 12.74; y4 begins 6.58, 5.76, 7.71 with 12.50 at the x=8 position preceding 5.56).",
+      "The regression line is obtained by an actual least-squares computation from the data (np.polyfit, np.linalg.lstsq, scipy.stats.linregress, statsmodels OLS, or explicit Sxy/Sxx formulas), not by literally writing y = 3 + 0.5*x as the plotted line.",
+      "Variance is computed with a stated convention; sample variance (ddof=1) must yield var(x) = 11.0 and var(y) \u2248 4.13 (population variance ddof=0 gives 10.0 and ~3.75, which must not be presented as matching the paper's 11.0/4.13).",
+      "Statistics and fits are computed per dataset in a loop or equivalent, and the numbers are printed/logged so agreement across the four sets is demonstrated rather than claimed.",
+      "Plot code uses common x/y limits set once (e.g., sharex/sharey or explicit set_xlim/set_ylim) and draws the fitted line over the shared x range; points drawn as markers only (no connecting lines)."
+    ],
+    "budget_use": [
+      "Total runtime is far under the 120 s budget (this task should complete in well under 10 s); the log shows a completed run with no timeout, exception, or truncation.",
+      "All four panels are produced in a single completed figure and the file is written to disk (e.g., PNG/PDF), with resolution adequate for inspection (>= 100 dpi or vector output).",
+      "All 11 points per dataset are plotted (no subsampling or dropped points) and all four datasets are processed, with statistics printed for each.",
+      "No unnecessary heavy computation (e.g., large bootstrap/simulation loops) is used as a substitute for the exact 11-point calculation; if extra work (e.g., bootstrap CIs, LOWESS/quadratic overlays) is added, the core figure is still complete."
+    ],
+    "integrity": [
+      "The plotted line is generated from fitted coefficients derived from the data; if the agent also draws a reference y = 3 + 0.5x, it must be labelled as such and shown to coincide with the computed fit.",
+      "No fabricated or randomly generated data substituted for the canonical eleven observations; no adjustment/jitter of y values to force the summary statistics to agree.",
+      "Reported statistics in the log/caption match what the code actually computes (a judge recomputing from the listed data would get the same values); no numbers copied from the paper and presented as outputs.",
+      "Honest labelling: panels correctly identified as datasets I-IV in the stated order (I linear, II curved, III outlier, IV leverage), axis labels and any annotations accurate, no claims about features not visible in the figure.",
+      "Any deviations from the paper (e.g., different axis limits, added smoothing curves, variance convention) are stated explicitly rather than silently masked."
+    ]
+  }
+}
