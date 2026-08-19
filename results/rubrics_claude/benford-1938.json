@@ -1,0 +1,39 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Single panel with the x-axis showing the nine leading digits 1,2,...,9 as discrete categories/integer ticks (no digit 0, no digits >9) and the y-axis showing relative frequency (a proportion, not raw counts) on a linear scale.",
+      "Y-axis range approximately 0 to 0.30-0.35 (top bar ~0.30); if counts are plotted instead of frequencies the axis should top out near 300/1000 and be clearly labeled as such.",
+      "Two visual series present as described in the caption: bars for the empirical Fibonacci leading-digit frequencies AND a line and/or markers for the Benford prediction, with a legend or annotation distinguishing them.",
+      "Monotonically decreasing profile for both series: bar heights near 0.30, 0.18, 0.125, 0.10, 0.08, 0.07, 0.058, 0.051, 0.046 (each within roughly \u00b10.02-0.03 of the Benford value), with the digit-1 bar roughly 6-7x the digit-9 bar.",
+      "Empirical bars and predicted points visibly overlap/track each other at every digit (no systematic offset, no crossing pattern such as increasing bars), consistent with the caption's 'close agreement'."
+    ],
+    "scientific_claim": [
+      "The digit-1 empirical frequency is approximately 0.30 (acceptable ~0.28-0.32), directly supporting the claim that 1 leads about 30% of the time.",
+      "The digit-9 empirical frequency is small, approximately 0.046 (acceptable ~0.035-0.06), so the figure demonstrates strong non-uniformity versus the 1/9 = 0.111 uniform baseline.",
+      "Agreement is quantified or at least visible: maximum absolute deviation between empirical and Benford frequencies across the nine digits should be small (roughly <0.02), and any reported chi-square / total-variation / L1 statistic should be consistent with agreement rather than rejection.",
+      "The comparison is against the correct formula P(d) = log10(1 + 1/d) with base-10 logarithms (values summing to 1.0), not an approximation, uniform distribution, or hard-coded rounded table used as the 'empirical' series.",
+      "The figure/caption or log makes clear the sample is the first 1000 Fibonacci numbers, so the claim asserted (Fibonacci leading digits are Benford) matches what was actually measured."
+    ],
+    "implementation": [
+      "Code generates Fibonacci numbers by an actual recurrence (F_{n+1} = F_n + F_{n-1}, or Binet/log-space equivalent) for n = 1..1000, with a stated starting convention (e.g., F1=F2=1); the count of extracted digits must be 1000.",
+      "Large-number handling is correct: uses exact arbitrary-precision integers (Python int) or a log10-mantissa recurrence; F_1000 has ~209 digits, so any float64 usage must be justified and must not overflow to inf or produce nan/zero leading digits.",
+      "Leading-digit extraction is correct: first character of the decimal string, or floor(10^frac(log10 F)) \u2014 no use of the last digit, no int(F/10^k) bug, and digits are validated to lie in 1..9.",
+      "Empirical frequencies are computed as counts/1000 from the generated sequence at plot time (not typed in), and Benford values are computed via math.log10(1 + 1/d) in a loop over d = 1..9.",
+      "Sensible reporting: code prints or stores the nine counts/frequencies and ideally a goodness-of-fit measure (chi-square, max deviation, or total variation) so the numbers can be checked against ~301/177/125/96/80/67/56/53/45."
+    ],
+    "budget_use": [
+      "The whole run finishes far inside the 120 s CPU-only budget (this computation should take well under a second); the execution log shows a completed run and a saved figure file with no timeout or truncation.",
+      "All 1000 Fibonacci terms are actually used \u2014 no silent reduction to a smaller N (e.g., 100 or 500) due to overflow, and no partial loop exit; N used is stated explicitly.",
+      "No unnecessary heavy computation (e.g., symbolic algebra, million-term sequences, or repeated recomputation) that risks the budget without adding scientific value.",
+      "Because the core task is cheap, any spare budget is used sensibly if at all (e.g., convergence check across N = 100/1000, or an added powers-of-2 comparison) without breaking the required primary figure.",
+      "The output figure is complete and legible: axis labels, tick labels for digits 1-9, legend, and a resolution adequate for inspection (e.g., >=100 dpi)."
+    ],
+    "integrity": [
+      "The empirical bars are demonstrably derived from the computed Fibonacci sequence; no hard-coded array of frequencies or counts, and no assignment of Benford values to the 'empirical' series.",
+      "The Benford curve is computed from the closed-form log10(1 + 1/d) and plotted as a separate, clearly labeled prediction series \u2014 not fitted to the data, rescaled, or presented as an empirical measurement.",
+      "No synthetic or randomly generated stand-in data (no np.random draws from the Benford distribution) substituting for the deterministic Fibonacci computation.",
+      "Labels and legend are honest: sample size (1000), the sequence used (Fibonacci), and axis meaning (relative frequency) match what the code actually did; any deviation (different indexing, log-space computation, extra digits) is disclosed.",
+      "Reported agreement statistics in the log/text match the plotted values (recomputable from the printed counts); no cherry-picking of digits shown or suppression of a digit that fits poorly."
+    ]
+  }
+}

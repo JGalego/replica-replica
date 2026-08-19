@@ -95,7 +95,7 @@ def judge_once(task, rollout, rubric=None, seed=None):
         )
     # Claude judges think adaptively before answering, so give them headroom;
     # Groq judges run with reasoning off to fit tokens-per-minute limits.
-    max_tokens = 6000 if llm.JUDGE_MODEL.startswith("claude") else 900
+    max_tokens = 10000 if llm.JUDGE_MODEL.startswith("claude") else 900
     resp = llm.chat(
         [{"role": "user", "content": prompt}],
         model=llm.JUDGE_MODEL, temperature=0.7, json_mode=True, seed=seed,

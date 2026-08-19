@@ -1,2 +1,22 @@
 == Phase 1: rubric generation (backend: claude) ==
   rubric ready: anscombe-1973
+  rubric ready: belkin-2019-double-descent
+  rubric ready: benford-1938
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/replica-replica/replica_replica/experiment.py", line 119, in <module>
+    main()
+  File "/home/user/replica-replica/replica_replica/experiment.py", line 80, in main
+    rubrics[task["id"]] = generate_rubric(task, os.path.join(RESULTS, RUBRIC_DIR))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/rubric.py", line 66, in generate_rubric
+    rubric = llm.extract_json(resp)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/replica-replica/replica_replica/llm.py", line 116, in extract_json
+    raise ValueError(f"no JSON object in response: {text[:200]}")
+ValueError: no JSON object in response: {"dimensions": {"visual_match": ["Single panel with time on the x-axis spanning 0 to 100 days (linear scale) and population on the y-axis on a linear scale covering roughly 0 to 1000 (or 0 to 1 if plo
+== Phase 1: rubric generation (backend: claude) ==
+  rubric ready: anscombe-1973
+  rubric ready: belkin-2019-double-descent
+  rubric ready: benford-1938

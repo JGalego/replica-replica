@@ -1,0 +1,38 @@
+{
+  "dimensions": {
+    "visual_match": [
+      "Single plot (or panel set) with x-axis = number of random features N on a logarithmic scale spanning from well below n=300 (e.g. N\u22481-10) to well above it (e.g. N\u22483,000-10,000+), i.e. at least ~2.5-3 decades of N.",
+      "Y-axis = risk (squared loss) on a logarithmic scale, with at least two curves plotted: test risk and train risk, clearly distinguished and labeled in a legend.",
+      "A vertical dashed (or dotted) line at N = n = 300 marking the interpolation threshold, explicitly annotated/labeled as such.",
+      "Qualitative shape matches double descent: test risk decreases then rises for N<n, exhibits a sharp local maximum within roughly a factor of 2 of N=300 (peak N between ~150 and ~600), then decreases monotonically-ish for N>n; the peak should exceed the neighboring underparameterized minimum by at least ~1 order of magnitude on the log axis.",
+      "Train risk curve decreases toward ~0 (numerically <1e-6 relative to initial risk, or shown clipped/floored on the log axis) at and beyond N=n, and stays at that floor for all N>n."
+    ],
+    "scientific_claim": [
+      "The final test risk at the largest N is lower than the best (minimum) test risk achieved in the underparameterized regime N<n, supporting 'often below the best underparameterized risk'; if not strictly lower, the agent must state this discrepancy honestly.",
+      "Test risk at N\u2248n is the global maximum of the test curve over the swept range, and is at least an order of magnitude above both the underparameterized minimum and the large-N asymptote.",
+      "The N grid contains enough points near the threshold (several values in, e.g., 100-600, including N\u2248250-350) that the peak is resolved rather than inferred from two widely spaced points.",
+      "Curves are computed on a held-out test set disjoint from the n=300 training samples (e.g. remaining digits samples), and the train/test split procedure is stated.",
+      "Reported numbers/text (log or figure annotation) explicitly identify the classical U-shape for N<n and the second descent for N>n, matching the plotted data rather than contradicting it."
+    ],
+    "implementation": [
+      "Code constructs Random Fourier Features as z(x)=cos(Wx+b) with W entries i.i.d. Gaussian (a sensible bandwidth/scale, e.g. sigma tuned or ~1/median-distance heuristic) and b ~ Uniform[0,2pi] (or equivalent cos/sin pair); features are generated fresh/nested per N, not a fixed kernel approximation with hard-coded outputs.",
+      "Regression solved by minimum-norm least squares: numpy.linalg.pinv / lstsq / scipy pinv (or an explicit min-norm formula Z^T(ZZ^T)^+Y for N>n), NOT ridge regression with a nonzero fixed lambda and not gradient descent with early stopping; if a tiny rcond/jitter is used it must be negligible (<=1e-8 scale) and disclosed.",
+      "Targets are 10-dimensional one-hot encodings of the digit labels, loss is squared loss (mean or sum over classes, stated consistently), computed on both train and test sets.",
+      "Uses sklearn load_digits with n\u2248300 training samples (250-400 acceptable) and features scaled/normalized sensibly (e.g. /16 or standardized); n used for the threshold line equals the actual training set size.",
+      "Averages over multiple independent random feature draws / seeds (>=3, ideally 5-20 trials) per N, or at minimum documents that a single draw is used; N grid is log-spaced with >=20 distinct values."
+    ],
+    "budget_use": [
+      "Total runtime reported in the log and under the 300 s CPU budget, with the sweep completed (no early abort, no missing high-N points, no 'ran out of time' note).",
+      "Resolution adequate for the budget: >=20 (ideally 30-60) N values with several trials each; largest N at least ~10x n (>=3000) so the second descent is visible over a decade beyond the threshold.",
+      "Compute is spent sensibly: pseudoinverse of a 300xN design matrix is cheap, so the log should show the full sweep taking well under the cap; if the agent trimmed the sweep it must justify it (memory/time) rather than silently truncating.",
+      "Curves are smooth enough to read: the peak region and the tail are not dominated by single-trial noise spikes that obscure the double-descent shape (or error bars / medians are shown)."
+    ],
+    "integrity": [
+      "Test/train risk values in the figure are produced by the executed pipeline (visible in the run log or saved arrays), not literals, analytic formulas, or a hand-drawn 'expected' double-descent curve.",
+      "No hard-coded peak: the code contains no term that inflates risk at N\u2248n and no post-hoc manipulation (e.g. multiplying, clipping upward, or replacing values near the threshold).",
+      "Train risk plotted at its computed value (including its numerical floor at N>=n); if clipping is needed for the log axis, the clipping is disclosed in caption/code comment.",
+      "Any deviation from the paper (dataset substitution to digits, choice of n, bandwidth, number of trials, mean-vs-sum squared loss, ridge/rcond regularization) is stated explicitly in code comments, log, or figure caption.",
+      "Axis labels, legend, and the vertical line label honestly describe the quantities (e.g. 'test squared loss', 'N = number of random features', 'interpolation threshold N = n = 300') with no mislabeled or smoothed-away data points."
+    ]
+  }
+}

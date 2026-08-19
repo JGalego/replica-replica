@@ -61,7 +61,7 @@ def generate_rubric(task, out_dir):
             return json.load(f)
     resp = llm.chat(
         [{"role": "user", "content": META_PROMPT + task_card(task)}],
-        model=llm.RUBRIC_MODEL, temperature=0.3, json_mode=True,
+        model=llm.RUBRIC_MODEL, temperature=0.3, json_mode=True, max_tokens=12000,
     )
     rubric = llm.extract_json(resp)
     with open(path, "w") as f:
