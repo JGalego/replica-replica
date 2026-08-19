@@ -28,10 +28,15 @@ FIGDIR = os.path.join(RESULTS, "figures")
 AGENT_ORDER = ["reference", "qwen3.6-27b", "gpt-oss-20b", "degraded", "null"]
 TIER_RANK = {"reference": 2, "degraded": 1, "null": 0}
 
-# Multi-sample aggregation depth used in analysis. Some rollouts carry 3
-# judge samples and some 2 (daily token budgets, see REPORT.md); the first K
-# are used uniformly everywhere.
-K = 2
+# Primary judgments file: Claude Opus 5 (k=3, the paper's protocol) when
+# present, else the Groq qwen judge (k=2, budget-constrained fallback).
+_claude_path = os.path.join(RESULTS, "judgments_claude.json")
+JUDGMENTS_FILE = os.environ.get(
+    "REPLICA_JUDGMENTS",
+    _claude_path if os.path.exists(_claude_path) else os.path.join(RESULTS, "judgments.json"),
+)
+# Multi-sample aggregation depth: first K samples used uniformly everywhere.
+K = 3 if "claude" in os.path.basename(JUDGMENTS_FILE) else 2
 
 
 def score(judgments, key, judge_name):
@@ -40,7 +45,7 @@ def score(judgments, key, judge_name):
 
 
 def load_all():
-    with open(os.path.join(RESULTS, "judgments.json")) as f:
+    with open(JUDGMENTS_FILE) as f:
         judgments = json.load(f)
     tasks = {t: load_task(t) for t in list_tasks()}
     return judgments, tasks
@@ -149,6 +154,34 @@ def make_figures(table, rel_rubric, rel_baseline, judgments, tasks):
     fig.savefig(os.path.join(FIGDIR, "per_task_scores.png"), dpi=120)
 
 
+def cross_judge_agreement(judgments):
+    """Kendall tau between the Claude and qwen rubric judges on rollouts both
+    have scored — an analog of the paper's judge-vs-human agreement check."""
+    other_path = (
+        os.path.join(RESULTS, "judgments.json")
+        if "claude" in os.path.basename(JUDGMENTS_FILE)
+        else _claude_path
+    )
+    if not os.path.exists(other_path):
+        return None
+    with open(other_path) as f:
+        other = json.load(f)
+    other_k = 3 if "claude" in os.path.basename(other_path) else 2
+    keys = sorted(
+        k for k in judgments
+        if "rubric" in judgments[k] and "rubric" in other.get(k, {})
+    )
+    if len(keys) < 10:
+        return None
+    a = [score(judgments, k, "rubric") for k in keys]
+    b = [
+        float(np.mean([s["overall"] for s in other[k]["rubric"]["samples"][:other_k]]))
+        for k in keys
+    ]
+    tau, p = kendalltau(a, b)
+    return {"n_common_rollouts": len(keys), "kendall_tau": float(tau), "p_value": float(p)}
+
+
 def main():
     judgments, tasks = load_all()
     table = agent_table(judgments, tasks)
@@ -158,6 +191,8 @@ def main():
     val_baseline = validity(judgments, tasks, "baseline")
 
     summary = {
+        "judge": {"file": os.path.basename(JUDGMENTS_FILE), "k": K},
+        "cross_judge_agreement": cross_judge_agreement(judgments),
         "agent_scores_rubric_judge": table,
         "per_task_rubric_scores": per_task_table(judgments, tasks),
         "judge_reliability_kendall_tau": {

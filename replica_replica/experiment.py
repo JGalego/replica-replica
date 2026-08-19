@@ -27,11 +27,26 @@ AGENTS = {
     "qwen3.6-27b": ("llm", llm.AGENT_27B),
     "gpt-oss-20b": ("llm", llm.AGENT_20B),
 }
-# The paper aggregates k=3 judge samples. Groq's free tier gives each model
-# 200k tokens/day; full k=3 judging needs ~470k, so we collect k=2 (the
-# minimum that still measures inter-sample reliability) and analysis uses the
-# first 2 samples uniformly. Documented as a deviation in REPORT.md.
-JUDGE_SAMPLES = 2
+# Judging backend, selected via REPLICA_JUDGE:
+#   claude (default when ANTHROPIC_API_KEY is set) — Claude Opus 5 rubrics and
+#     judging at the paper's k=3, written to results/judgments_claude.json;
+#   groq — qwen3.6-27b judge. The paper aggregates k=3 samples; Groq's free
+#     tier gives each model 200k tokens/day and full k=3 judging needs ~470k,
+#     so the groq backend collects k=2 (the minimum that still measures
+#     inter-sample reliability). Documented as a deviation in REPORT.md.
+BACKEND = os.environ.get(
+    "REPLICA_JUDGE", "claude" if os.environ.get("ANTHROPIC_API_KEY") else "groq"
+)
+if BACKEND == "claude":
+    llm.JUDGE_MODEL = "claude-opus-5"
+    llm.RUBRIC_MODEL = "claude-opus-5"
+    JUDGE_SAMPLES = 3
+    RUBRIC_DIR = "rubrics_claude"
+    JUDGMENTS_FILE = "judgments_claude.json"
+else:
+    JUDGE_SAMPLES = 2
+    RUBRIC_DIR = "rubrics"
+    JUDGMENTS_FILE = "judgments.json"
 
 
 def rollout_path(agent, task_id):
@@ -59,11 +74,11 @@ def main():
     os.makedirs(RESULTS, exist_ok=True)
     tasks = [load_task(t) for t in list_tasks()]
 
-    print("== Phase 1: rubric generation ==")
+    print(f"== Phase 1: rubric generation (backend: {BACKEND}) ==")
     rubrics = {}
     for task in tasks:
-        rubrics[task["id"]] = generate_rubric(task, os.path.join(RESULTS, "rubrics"))
-        print(f"  rubric ready: {task['id']}")
+        rubrics[task["id"]] = generate_rubric(task, os.path.join(RESULTS, RUBRIC_DIR))
+        print(f"  rubric ready: {task['id']}", flush=True)
 
     print("== Phase 2: rollouts ==")
     rollouts = {}
@@ -75,7 +90,7 @@ def main():
                   f"({rec['runtime_seconds']}s)")
 
     print("== Phase 3: judging ==")
-    judgments_path = os.path.join(RESULTS, "judgments.json")
+    judgments_path = os.path.join(RESULTS, JUDGMENTS_FILE)
     judgments = {}
     if os.path.exists(judgments_path):
         with open(judgments_path) as f:
