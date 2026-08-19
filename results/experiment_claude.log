@@ -148,3 +148,40 @@ json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 128
   gpt-oss-20b    may-1976-logistic-map        -> ok (30.1s)
   gpt-oss-20b    zipf-1949                    -> ok (1.4s)
 == Phase 3: judging ==
+  judged gpt-oss-20b|anscombe-1973 [rubric] -> 0.281
+  judged gpt-oss-20b|belkin-2019-double-descent [rubric] -> 0.500
+  judged gpt-oss-20b|benford-1938 [rubric] -> 0.867
+  judged gpt-oss-20b|kermack-1927-sir [rubric] -> 0.865
+  judged gpt-oss-20b|may-1976-logistic-map [rubric] -> 0.913
+  judged gpt-oss-20b|zipf-1949 [rubric] -> 0.786
+  judged reference|anscombe-1973 [baseline] -> 0.961
+  judged reference|belkin-2019-double-descent [baseline] -> 0.916
+  judged reference|benford-1938 [baseline] -> 0.977
+  judged reference|kermack-1927-sir [baseline] -> 0.968
+  judged reference|may-1976-logistic-map [baseline] -> 0.945
+  judged reference|zipf-1949 [baseline] -> 0.928
+  judged degraded|anscombe-1973 [baseline] -> 0.279
+  judged degraded|belkin-2019-double-descent [baseline] -> 0.235
+  judged degraded|benford-1938 [baseline] -> 0.218
+  judged degraded|kermack-1927-sir [baseline] -> 0.385
+  judged degraded|may-1976-logistic-map [baseline] -> 0.308
+  judged degraded|zipf-1949 [baseline] -> 0.303
+  judged null|anscombe-1973 [baseline] -> 0.093
+  judged null|belkin-2019-double-descent [baseline] -> 0.100
+  judged null|benford-1938 [baseline] -> 0.110
+  judged null|kermack-1927-sir [baseline] -> 0.097
+  judged null|may-1976-logistic-map [baseline] -> 0.073
+  judged null|zipf-1949 [baseline] -> 0.100
+  judged qwen3.6-27b|anscombe-1973 [baseline] -> 0.954
+  judged qwen3.6-27b|belkin-2019-double-descent [baseline] -> 0.067
+  judged qwen3.6-27b|benford-1938 [baseline] -> 0.976
+  judged qwen3.6-27b|kermack-1927-sir [baseline] -> 0.963
+  judged qwen3.6-27b|may-1976-logistic-map [baseline] -> 0.907
+  judged qwen3.6-27b|zipf-1949 [baseline] -> 0.894
+  judged gpt-oss-20b|anscombe-1973 [baseline] -> 0.563
+  judged gpt-oss-20b|belkin-2019-double-descent [baseline] -> 0.707
+  judged gpt-oss-20b|benford-1938 [baseline] -> 0.959
+  judged gpt-oss-20b|kermack-1927-sir [baseline] -> 0.974
+  judged gpt-oss-20b|may-1976-logistic-map [baseline] -> 0.929
+  judged gpt-oss-20b|zipf-1949 [baseline] -> 0.879
+Done. Judgments in /home/user/replica-replica/results/judgments_claude.json

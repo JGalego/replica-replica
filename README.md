@@ -40,4 +40,19 @@ Outputs land in `results/`: per-rollout workspaces (`runs/`), rubrics,
 
 ## Findings
 
-See [REPORT.md](REPORT.md).
+Full report: [REPORT.md](REPORT.md). Headlines (Claude Opus 5 rubric judge, k=3):
+
+- **The environment works end to end**: 30 rollouts (5 agents × 6 tasks) ran
+  under budget and were auto-graded against generated rubrics.
+- **The reward signal is valid**: the judge ordered reference > degraded >
+  null tiers correctly in 18/18 task-pairs (τ = 0.85 vs ground truth).
+- **Rubric > no-rubric reliability replicates in direction only**: τ 0.923 vs
+  0.911 here against the paper's 0.66 vs 0.46 — our tier-separated rollout
+  pool is easier to rank consistently than the paper's all-agent pool.
+- **Untrained models leave the gap the paper's RL closes**: qwen3.6-27b
+  (Faraday's parameter count, untrained) scores 0.63 and gpt-oss-20b 0.70 vs
+  0.86 for the frontier-authored reference tier; ML-methodology tasks were
+  hardest for the LLM agents (0.48 vs 0.85 on science tasks), matching the
+  paper's difficulty ordering.
+- **Cross-judge agreement** (Claude vs an independent 27B judge, 18 common
+  rollouts): τ = 0.673.

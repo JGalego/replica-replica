@@ -1,0 +1,114 @@
+{
+  "judge": {
+    "file": "judgments_claude.json",
+    "k": 3
+  },
+  "cross_judge_agreement": {
+    "n_common_rollouts": 18,
+    "kendall_tau": 0.6728202771654768,
+    "p_value": 0.00022092909319251086
+  },
+  "agent_scores_rubric_judge": {
+    "reference": {
+      "train": 0.8273333333333334,
+      "test": 0.8977777777777778,
+      "all": 0.8625555555555554
+    },
+    "qwen3.6-27b": {
+      "train": 0.43888888888888894,
+      "test": 0.8215555555555557,
+      "all": 0.6302222222222224
+    },
+    "gpt-oss-20b": {
+      "train": 0.5224444444444445,
+      "test": 0.8815555555555555,
+      "all": 0.7020000000000001
+    },
+    "degraded": {
+      "train": 0.19311111111111112,
+      "test": 0.24111111111111114,
+      "all": 0.21711111111111112
+    },
+    "null": {
+      "train": 0.05777777777777778,
+      "test": 0.06888888888888889,
+      "all": 0.06333333333333334
+    }
+  },
+  "per_task_rubric_scores": {
+    "anscombe-1973": {
+      "reference": 0.848,
+      "qwen3.6-27b": 0.536,
+      "gpt-oss-20b": 0.281,
+      "degraded": 0.197,
+      "null": 0.07
+    },
+    "belkin-2019-double-descent": {
+      "reference": 0.783,
+      "qwen3.6-27b": 0.0,
+      "gpt-oss-20b": 0.5,
+      "degraded": 0.185,
+      "null": 0.04
+    },
+    "benford-1938": {
+      "reference": 0.955,
+      "qwen3.6-27b": 0.927,
+      "gpt-oss-20b": 0.867,
+      "degraded": 0.189,
+      "null": 0.07
+    },
+    "kermack-1927-sir": {
+      "reference": 0.925,
+      "qwen3.6-27b": 0.859,
+      "gpt-oss-20b": 0.865,
+      "degraded": 0.299,
+      "null": 0.07
+    },
+    "may-1976-logistic-map": {
+      "reference": 0.813,
+      "qwen3.6-27b": 0.679,
+      "gpt-oss-20b": 0.913,
+      "degraded": 0.236,
+      "null": 0.067
+    },
+    "zipf-1949": {
+      "reference": 0.851,
+      "qwen3.6-27b": 0.781,
+      "gpt-oss-20b": 0.786,
+      "degraded": 0.197,
+      "null": 0.063
+    }
+  },
+  "judge_reliability_kendall_tau": {
+    "rubric": {
+      "mean": 0.9234362390883625,
+      "pairwise": [
+        0.9191248172561166,
+        0.9299090802426775,
+        0.9212748197662931
+      ],
+      "paper_value": 0.66
+    },
+    "baseline": {
+      "mean": 0.91115666415148,
+      "pairwise": [
+        0.8865551650224299,
+        0.912486035440409,
+        0.9344287919916009
+      ],
+      "paper_value": 0.46
+    }
+  },
+  "judge_validity_vs_ground_truth_tiers": {
+    "rubric": {
+      "pairwise_accuracy": 1.0,
+      "kendall_tau": 0.8513707857127238,
+      "p_value": 1.1979153800044269e-05
+    },
+    "baseline": {
+      "pairwise_accuracy": 1.0,
+      "kendall_tau": 0.8429272304235246,
+      "p_value": 1.2529705717100251e-05
+    }
+  }
+}
